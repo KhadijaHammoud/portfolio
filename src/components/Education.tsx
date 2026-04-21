@@ -31,7 +31,7 @@ export const Education: React.FC = () => {
               </div>
             </div>
             <div className='mt-5 text-base text-ink'>{e.degree}</div>
-            <p className='mt-2 text-sm leading-relaxed text-ink-muted'>
+            <p className='mt-2 text-base leading-relaxed text-ink-muted'>
               {e.note}
             </p>
           </motion.div>

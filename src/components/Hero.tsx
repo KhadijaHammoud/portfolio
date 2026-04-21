@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
           initial='hidden'
           animate='show'
           custom={0}
-          className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-ink-muted'
+          className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-3 py-1.5 text-sm text-ink-muted'
         >
           <MapPin className='h-3.5 w-3.5 text-accent' />
           {profile.location}
@@ -89,7 +89,7 @@ export const Hero: React.FC = () => {
           </a>
           <a
             href='#experience'
-            className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-white/30'
+            className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-line/30'
           >
             View experience
           </a>
@@ -117,7 +117,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] sm:flex-row'
+          className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
         >
           <Stat label='Years of experience' value='5+' />
           <Stat label='Zero-to-one products' value='4' />
@@ -138,7 +138,7 @@ const IconLink: React.FC<{
     target={href.startsWith('http') ? '_blank' : undefined}
     rel='noreferrer'
     aria-label={label}
-    className='grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/[0.03] text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
+    className='grid h-10 w-10 place-items-center rounded-full border border-line/10 bg-line/[0.03] text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
   >
     {icon}
   </a>
@@ -149,7 +149,7 @@ const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
     <div className='font-mono text-2xl font-semibold text-ink md:text-3xl'>
       {value}
     </div>
-    <div className='mt-1 text-xs uppercase tracking-wider text-ink-faint'>
+    <div className='mt-1 text-xs uppercase tracking-wider text-ink-muted'>
       {label}
     </div>
   </div>

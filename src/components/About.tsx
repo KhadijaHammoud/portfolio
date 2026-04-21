@@ -36,7 +36,7 @@ export const About: React.FC = () => {
             value='Frontend · Architecture · Performance'
           />
           <div>
-            <div className='text-xs uppercase tracking-wider text-ink-faint'>
+            <div className='text-xs uppercase tracking-wider text-ink-muted'>
               Languages
             </div>
             <ul className='mt-3 space-y-2'>
@@ -62,9 +62,9 @@ const InfoRow: React.FC<{ label: string; value: string }> = ({
   value,
 }) => (
   <div>
-    <div className='text-xs uppercase tracking-wider text-ink-faint'>
+    <div className='text-xs uppercase tracking-wider text-ink-muted'>
       {label}
     </div>
-    <div className='mt-1 text-sm text-ink'>{value}</div>
+    <div className='mt-1 text-base text-ink'>{value}</div>
   </div>
 );

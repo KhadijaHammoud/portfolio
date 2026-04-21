@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -25,28 +26,29 @@ module.exports = {
       },
       colors: {
         bg: {
-          DEFAULT: '#07080b',
-          soft: '#0b0d12',
-          card: '#10131a',
+          DEFAULT: 'rgb(var(--color-bg) / <alpha-value>)',
+          soft: 'rgb(var(--color-bg-soft) / <alpha-value>)',
+          card: 'rgb(var(--color-bg-card) / <alpha-value>)',
         },
         ink: {
-          DEFAULT: '#e8ecf1',
-          muted: '#9aa3b2',
-          faint: '#5b6475',
+          DEFAULT: 'rgb(var(--color-ink) / <alpha-value>)',
+          muted: 'rgb(var(--color-ink-muted) / <alpha-value>)',
+          faint: 'rgb(var(--color-ink-faint) / <alpha-value>)',
         },
         accent: {
           DEFAULT: '#7c5cff',
           soft: '#a58bff',
           glow: '#5b3dff',
         },
+        line: 'rgb(var(--color-line) / <alpha-value>)',
       },
       boxShadow: {
         glow: '0 0 60px -20px rgba(124, 92, 255, 0.55)',
-        card: '0 1px 0 rgba(255,255,255,0.04) inset, 0 0 0 1px rgba(255,255,255,0.04)',
+        card: '0 1px 0 rgb(var(--color-line) / 0.04) inset, 0 0 0 1px rgb(var(--color-line) / 0.04)',
       },
       backgroundImage: {
         'grid-faint':
-          'linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)',
+          'linear-gradient(to right, rgb(var(--color-line) / 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgb(var(--color-line) / 0.04) 1px, transparent 1px)',
       },
       animation: {
         float: 'float 7s ease-in-out infinite',

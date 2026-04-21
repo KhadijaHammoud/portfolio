@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { ThemeToggle } from './ThemeToggle';
 
 const links = [
   { href: '#about', label: 'About' },
@@ -26,7 +27,7 @@ export const Navbar: React.FC = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? 'border-b border-white/5 bg-bg/70 backdrop-blur-xl'
+          ? 'border-b border-line/5 bg-bg/70 backdrop-blur-xl'
           : 'border-b border-transparent'
       }`}
     >
@@ -35,9 +36,11 @@ export const Navbar: React.FC = () => {
           href='#top'
           className='flex items-center gap-2 text-sm font-semibold tracking-tight text-ink'
         >
-          <span className='grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-accent to-accent-glow text-xs font-bold text-white shadow-glow'>
-            KH
-          </span>
+          <img
+            src='/photo.png'
+            alt='Khadija Hammoud'
+            className='h-8 w-8 rounded-full object-cover ring-1 ring-line/10 ring-offset-2 ring-offset-bg'
+          />
           <span className='hidden sm:block'>Khadija Hammoud</span>
         </a>
 
@@ -54,16 +57,19 @@ export const Navbar: React.FC = () => {
           ))}
         </ul>
 
-        <a
-          href='#contact'
-          className='group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-medium text-ink transition-all hover:border-accent/60 hover:bg-accent/10'
-        >
-          <span className='relative flex h-2 w-2'>
-            <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70' />
-            <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
-          </span>
-          Available for work
-        </a>
+        <div className='flex items-center gap-2 sm:gap-3'>
+          <ThemeToggle />
+          <a
+            href='#contact'
+            className='group hidden items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink transition-all hover:border-accent/60 hover:bg-accent/10 sm:inline-flex'
+          >
+            <span className='relative flex h-2 w-2'>
+              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70' />
+              <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
+            </span>
+            Available for work
+          </a>
+        </div>
       </nav>
     </motion.header>
   );

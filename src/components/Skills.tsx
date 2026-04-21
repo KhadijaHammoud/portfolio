@@ -25,7 +25,7 @@ export const Skills: React.FC = () => {
               <span className='grid h-8 w-8 place-items-center rounded-lg bg-accent/15 text-sm font-semibold text-accent-soft'>
                 {idx + 1}
               </span>
-              <h3 className='text-sm font-medium text-ink'>{group.group}</h3>
+              <h3 className='text-base font-semibold text-ink'>{group.group}</h3>
             </div>
             <ul className='mt-5 flex flex-wrap gap-2'>
               {group.items.map((item) => (

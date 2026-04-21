@@ -42,7 +42,7 @@ export const Contact: React.FC = () => {
             </a>
             <a
               href={`tel:${profile.phone.replace(/\s+/g, '')}`}
-              className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-white/30'
+              className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-line/30'
             >
               <Phone className='h-4 w-4' />
               {profile.phone}
@@ -76,7 +76,7 @@ const SocialLink: React.FC<{
     href={href}
     target='_blank'
     rel='noreferrer'
-    className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-xs font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
+    className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
   >
     {icon}
     {label}
