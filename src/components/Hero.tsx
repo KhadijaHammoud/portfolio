@@ -120,7 +120,7 @@ export const Hero: React.FC = () => {
           className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
         >
           <Stat label='Years of experience' value='5+' />
-          <Stat label='Zero-to-one products' value='4' />
+          <Stat label='Zero-to-one products' value='5' />
           <Stat label='Open-source stars' value='420+' />
         </motion.div>
       </div>
