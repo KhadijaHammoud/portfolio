@@ -120,9 +120,8 @@ export const Hero: React.FC = () => {
           className='mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] sm:grid-cols-4'
         >
           <Stat label='Years of experience' value='5+' />
-          <Stat label='Zero-to-one products' value='2' />
+          <Stat label='Zero-to-one products' value='4' />
           <Stat label='Open-source stars' value='420+' />
-          <Stat label='Countries shipped from' value='2' />
         </motion.div>
       </div>
     </section>
