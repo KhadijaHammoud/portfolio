@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Github, Star } from 'lucide-react';
 import React from 'react';
-import { openSource } from '../data/portfolio';
+import { OPEN_SOURCE } from '../data/portfolio';
 import { Section } from './Section';
 
 export const OpenSource: React.FC = () => {
@@ -28,22 +28,22 @@ export const OpenSource: React.FC = () => {
           <div className='min-w-0 flex-1'>
             <div className='flex items-center gap-2 text-sm text-ink-muted'>
               <Github className='h-4 w-4' />
-              <span>Open-Source Contribution · {openSource.organization}</span>
+              <span>Open-Source Contribution · {OPEN_SOURCE.organization}</span>
             </div>
             <h3 className='mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl'>
-              {openSource.name}
+              {OPEN_SOURCE.name}
             </h3>
-            <p className='mt-1 text-base text-ink-muted'>{openSource.tagline}</p>
+            <p className='mt-1 text-base text-ink-muted'>{OPEN_SOURCE.tagline}</p>
           </div>
 
           <a
-            href={openSource.url}
+            href={OPEN_SOURCE.url}
             target='_blank'
             rel='noopener noreferrer'
             className='inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-medium text-ink transition-all hover:border-accent/70 hover:bg-accent/20'
           >
             <Star className='h-4 w-4 text-accent' />
-            <span>{openSource.stars} stars</span>
+            <span>{OPEN_SOURCE.stars} stars</span>
             <span className='h-3 w-px bg-line/20' />
             <span>View on GitHub</span>
             <ArrowUpRight className='h-4 w-4' />
@@ -51,11 +51,11 @@ export const OpenSource: React.FC = () => {
         </div>
 
         <p className='relative mt-6 max-w-3xl text-base leading-relaxed text-ink-muted'>
-          {openSource.summary}
+          {OPEN_SOURCE.summary}
         </p>
 
         <ul className='relative mt-6 space-y-2.5'>
-          {openSource.highlights.map((h) => (
+          {OPEN_SOURCE.highlights.map((h) => (
             <li
               key={h}
               className='relative pl-5 text-base leading-relaxed text-ink-muted'
@@ -67,7 +67,7 @@ export const OpenSource: React.FC = () => {
         </ul>
 
         <div className='relative mt-6 flex flex-wrap gap-2'>
-          {openSource.stack.map((s) => (
+          {OPEN_SOURCE.stack.map((s) => (
             <span key={s} className='chip'>
               {s}
             </span>

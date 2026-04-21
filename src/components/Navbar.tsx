@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ThemeToggle } from './ThemeToggle';
 
-const links = [
+const LINKS = [
   { href: '#about', label: 'About' },
   { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },
@@ -46,7 +46,7 @@ export const Navbar: React.FC = () => {
         </a>
 
         <ul className='hidden items-center gap-8 md:flex'>
-          {links.map((l) => (
+          {LINKS.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}

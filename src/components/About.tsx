@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { profile, languages } from '../data/portfolio';
+import { PROFILE, LANGUAGES } from '../data/portfolio';
 
 export const About: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6 }}
           className='space-y-5 text-lg leading-relaxed text-ink-muted'
         >
-          {profile.bio.map((p, i) => (
+          {PROFILE.bio.map((p, i) => (
             <p key={i}>{p}</p>
           ))}
         </motion.div>
@@ -26,7 +26,7 @@ export const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className='card space-y-6 p-6'
         >
-          <InfoRow label='Based in' value={profile.location} />
+          <InfoRow label='Based in' value={PROFILE.location} />
           <InfoRow
             label='Current role'
             value='Founding Engineer at FullyRamped'
@@ -40,7 +40,7 @@ export const About: React.FC = () => {
               Languages
             </div>
             <ul className='mt-3 space-y-2'>
-              {languages.map((l) => (
+              {LANGUAGES.map((l) => (
                 <li
                   key={l.name}
                   className='flex items-center justify-between text-sm'

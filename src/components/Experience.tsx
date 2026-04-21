@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { experiences } from '../data/portfolio';
+import { EXPERIENCES } from '../data/portfolio';
 import { Section } from './Section';
 
 export const Experience: React.FC = () => {
@@ -12,7 +12,7 @@ export const Experience: React.FC = () => {
       description="Zero-to-one products, end-to-end encrypted suites, blockchain-backed platforms — a few of the teams and problems I've worked on over the years."
     >
       <ol className='relative space-y-10 border-l border-line/5 pl-6 md:pl-10'>
-        {experiences.map((exp, i) => (
+        {EXPERIENCES.map((exp, i) => (
           <motion.li
             key={exp.company + exp.start}
             initial={{ opacity: 0, y: 16 }}

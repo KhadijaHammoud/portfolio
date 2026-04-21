@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
 import { Section } from './Section';
-import { education } from '../data/portfolio';
+import { EDUCATION } from '../data/portfolio';
 
 export const Education: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Education: React.FC = () => {
       title={<>Academic background.</>}
     >
       <div className='grid gap-5 md:grid-cols-2'>
-        {education.map((e, i) => (
+        {EDUCATION.map((e, i) => (
           <motion.div
             key={e.school}
             initial={{ opacity: 0, y: 16 }}

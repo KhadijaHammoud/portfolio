@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { skills } from '../data/portfolio';
+import { SKILLS } from '../data/portfolio';
 
 export const Skills: React.FC = () => {
   return (
@@ -12,7 +12,7 @@ export const Skills: React.FC = () => {
       description="A snapshot of the stack I use day-to-day. I'm biased toward strongly-typed, composable systems and a pragmatic, product-first approach."
     >
       <div className='grid gap-5 md:grid-cols-3'>
-        {skills.map((group, idx) => (
+        {SKILLS.map((group, idx) => (
           <motion.div
             key={group.group}
             initial={{ opacity: 0, y: 16 }}

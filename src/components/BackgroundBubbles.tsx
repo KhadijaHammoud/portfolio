@@ -16,7 +16,7 @@ interface Bubble {
 const makeBubble = (rgb: string) =>
   `radial-gradient(circle at 50% 50%, rgba(${rgb}, 1) 0%, rgba(${rgb}, 0.7) 30%, rgba(${rgb}, 0.25) 55%, rgba(${rgb}, 0) 75%)`;
 
-const bubbles: Bubble[] = [
+const BUBBLES: Bubble[] = [
   {
     size: 560,
     color: makeBubble('124, 92, 255'),
@@ -80,7 +80,7 @@ export const BackgroundBubbles: React.FC = () => {
       className='pointer-events-none fixed inset-0 -z-10 overflow-hidden'
       style={{ opacity: 'var(--bubble-strength, 1)' }}
     >
-      {bubbles.map((b, i) => (
+      {BUBBLES.map((b, i) => (
         <motion.div
           key={i}
           animate={

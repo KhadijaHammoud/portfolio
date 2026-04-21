@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Github, Linkedin, Mail, Phone } from 'lucide-react';
-import { profile } from '../data/portfolio';
+import { PROFILE } from '../data/portfolio';
 
 export const Contact: React.FC = () => {
   return (
@@ -33,30 +33,30 @@ export const Contact: React.FC = () => {
 
           <div className='mt-10 flex flex-wrap items-center justify-center gap-3'>
             <a
-              href={`mailto:${profile.email}`}
+              href={`mailto:${PROFILE.email}`}
               className='group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-white shadow-glow transition-all hover:bg-accent-soft'
             >
               <Mail className='h-4 w-4' />
-              {profile.email}
+              {PROFILE.email}
               <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
             </a>
             <a
-              href={`tel:${profile.phone.replace(/\s+/g, '')}`}
+              href={`tel:${PROFILE.phone.replace(/\s+/g, '')}`}
               className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-line/30'
             >
               <Phone className='h-4 w-4' />
-              {profile.phone}
+              {PROFILE.phone}
             </a>
           </div>
 
           <div className='mt-8 flex items-center justify-center gap-3'>
             <SocialLink
-              href={profile.github}
+              href={PROFILE.github}
               label='GitHub'
               icon={<Github className='h-4 w-4' />}
             />
             <SocialLink
-              href={profile.linkedin}
+              href={PROFILE.linkedin}
               label='LinkedIn'
               icon={<Linkedin className='h-4 w-4' />}
             />

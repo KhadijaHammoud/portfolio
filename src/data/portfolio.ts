@@ -10,7 +10,7 @@ export type Experience = {
   url?: string;
 };
 
-export const profile = {
+export const PROFILE = {
   name: 'Khadija Hammoud',
   title: 'Senior Software Engineer',
   tagline:
@@ -27,7 +27,7 @@ export const profile = {
   ],
 };
 
-export const skills: { group: string; items: string[] }[] = [
+export const SKILLS: { group: string; items: string[] }[] = [
   {
     group: 'Languages',
     items: [
@@ -84,7 +84,7 @@ export type OpenSourceProject = {
   url: string;
 };
 
-export const openSource: OpenSourceProject = {
+export const OPEN_SOURCE: OpenSourceProject = {
   name: 'Skiff UI',
   tagline: 'React component library · Skiff Design System',
   organization: 'Skiff',
@@ -102,7 +102,7 @@ export const openSource: OpenSourceProject = {
   url: 'https://github.com/skiff-org/skiff-ui',
 };
 
-export const experiences: Experience[] = [
+export const EXPERIENCES: Experience[] = [
   {
     company: 'FullyRamped',
     role: 'Founding Engineer, Frontend',
@@ -179,7 +179,7 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education = [
+export const EDUCATION = [
   {
     school: 'German University in Cairo',
     degree: 'BSc Computer Science & Engineering',
@@ -188,7 +188,7 @@ export const education = [
   },
 ];
 
-export const languages = [
+export const LANGUAGES = [
   { name: 'English', level: 'Fluent' },
   { name: 'Arabic', level: 'Native' },
 ];
