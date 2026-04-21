@@ -96,9 +96,9 @@ export const experiences: Experience[] = [
     ],
   },
   {
-    company: 'Skiff (acquired by Notion)',
+    company: 'Skiff (acquired by Notion) via Nodogoro',
     role: 'Senior Software Engineer, Frontend',
-    location: 'via Nodogoro',
+    location: 'San Francisco (Remote)',
     start: 'Aug 2022',
     end: 'Apr 2024',
     summary:
@@ -112,9 +112,9 @@ export const experiences: Experience[] = [
     stack: ['React', 'Redux', 'TypeScript', 'GraphQL', 'E2E Encryption'],
   },
   {
-    company: 'Forest Park Group',
+    company: 'Forest Park Group via Nodogoro',
     role: 'Software Engineer',
-    location: 'via Nodogoro',
+    location: 'San Francisco (Remote)',
     start: 'Aug 2020',
     end: 'Jul 2022',
     summary:
