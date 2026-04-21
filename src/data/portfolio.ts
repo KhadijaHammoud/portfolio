@@ -35,6 +35,7 @@ export const skills: { group: string; items: string[] }[] = [
       'JavaScript',
       'HTML',
       'CSS',
+      'SCSS',
       'GraphQL',
       'Python',
       'Swift',
@@ -51,6 +52,7 @@ export const skills: { group: string; items: string[] }[] = [
       'Apollo Client',
       'Node.js',
       'Tailwind CSS',
+      'styled-components',
       'Radix UI',
       'Framer Motion',
       'Recharts',
@@ -80,19 +82,24 @@ export const experiences: Experience[] = [
     summary:
       'Leading frontend development for an AI-powered sales training and role-play platform. Owning architecture and core product decisions from zero to one.',
     highlights: [
-      'Built the web application from the ground up using React and TypeScript in a zero-to-one environment.',
-      'Designed scalable state management and data-fetching architecture with RTK Query and Redux Persist.',
-      'Integrated real-time video and audio using Daily.co (WebRTC) to power interactive AI-driven sales simulations.',
-      'Developed a reusable component system with Tailwind CSS, Radix UI, and DaisyUI to speed up development and keep UI consistent.',
+      'Built the web application from the ground up in a zero-to-one environment.',
+      'Designed a scalable, resilient state-management and data-fetching architecture with offline-aware caching.',
+      'Integrated real-time video and audio to power interactive AI-driven sales simulations.',
+      'Developed a reusable component system to speed up development and keep UI consistent.',
       'Partnered closely with founders, design, and backend teams to shape product direction and deliver high-impact features.',
     ],
     stack: [
       'React',
       'TypeScript',
+      'Redux',
       'RTK Query',
-      'Tailwind',
+      'WebRTC (Daily.co)',
+      'WebSockets (Socket.io)',
+      'Tailwind CSS',
       'Radix UI',
-      'Daily.co',
+      'Framer Motion',
+      'Recharts',
+      'Node.js',
     ],
   },
   {
@@ -104,12 +111,19 @@ export const experiences: Experience[] = [
     summary:
       'Founding engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
     highlights: [
-      'Built and scaled core product features using React, Redux, and CSS, contributing to product adoption and reliability.',
-      'Led the engineering revamp and open-source release of Skiff UI, a React component library (420+ GitHub stars).',
+      'Built and scaled core product features across the suite, contributing to product adoption and reliability.',
+      'Led the engineering revamp and open-source release of Skiff UI, a component library that grew to 420+ GitHub stars.',
       'Drove architecture decisions and resolved performance bottlenecks across key product areas.',
       'Collaborated closely with design and backend teams to deliver high-quality user experiences.',
     ],
-    stack: ['React', 'Redux', 'TypeScript', 'GraphQL', 'E2E Encryption'],
+    stack: [
+      'React',
+      'TypeScript',
+      'styled-components',
+      'Apollo Client',
+      'GraphQL',
+      'E2E Encryption',
+    ],
   },
   {
     company: 'Forest Park Group via Nodogoro',
@@ -120,11 +134,19 @@ export const experiences: Experience[] = [
     summary:
       'Developed full-stack features for LoanOS, a loan digitization platform using blockchain-based smart contracts to automate lending workflows.',
     highlights: [
-      'Built responsive user interfaces with React, Redux, HTML, and CSS.',
-      'Implemented backend services in Node.js with typed API contracts.',
-      'Authored Rust-based smart contracts for on-chain loan logic and integrated them into the web application.',
+      'Built responsive, accessible user interfaces for the platform.',
+      'Implemented backend services with typed API contracts.',
+      'Authored smart contracts for on-chain loan logic and integrated them into the web application.',
     ],
-    stack: ['React', 'Redux', 'Node.js', 'Rust', 'Blockchain'],
+    stack: [
+      'React',
+      'TypeScript',
+      'SCSS',
+      'Redux',
+      'Node.js',
+      'Rust',
+      'Blockchain',
+    ],
   },
 ];
 

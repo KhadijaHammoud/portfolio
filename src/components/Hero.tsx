@@ -117,7 +117,7 @@ export const Hero: React.FC = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className='mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] sm:grid-cols-4'
+          className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-white/5 bg-white/[0.04] sm:flex-row'
         >
           <Stat label='Years of experience' value='5+' />
           <Stat label='Zero-to-one products' value='4' />
@@ -145,7 +145,7 @@ const IconLink: React.FC<{
 );
 
 const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-  <div className='bg-bg-soft/70 px-5 py-6'>
+  <div className='flex-1 bg-bg-soft/70 px-5 py-6'>
     <div className='font-mono text-2xl font-semibold text-ink md:text-3xl'>
       {value}
     </div>
