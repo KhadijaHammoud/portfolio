@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
 import { ThemeToggle } from './ThemeToggle';
 
 const LINKS = [
   { href: '#about', label: 'About' },
-  { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },
+  { href: '#experience', label: 'Experience' },
   { href: '#open-source', label: 'Open Source' },
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
@@ -13,12 +13,58 @@ const LINKS = [
 
 export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeId, setActiveId] = useState<string>('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = LINKS.map((l) => l.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (sections.length === 0) return;
+
+    const NAV_HEIGHT = 64;
+    const ACTIVATION_RATIO = 0.25;
+
+    const update = () => {
+      const viewportH = window.innerHeight;
+      const availableH = viewportH - NAV_HEIGHT;
+      let bestId = '';
+      let bestCoverage = 0;
+
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        const visibleTop = Math.max(NAV_HEIGHT, rect.top);
+        const visibleBottom = Math.min(viewportH, rect.bottom);
+        const visible = Math.max(0, visibleBottom - visibleTop);
+        const screenCoverage = availableH > 0 ? visible / availableH : 0;
+
+        if (
+          screenCoverage >= ACTIVATION_RATIO &&
+          screenCoverage > bestCoverage
+        ) {
+          bestCoverage = screenCoverage;
+          bestId = section.id;
+        }
+      }
+
+      setActiveId(bestId);
+    };
+
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    return () => {
+      window.removeEventListener('scroll', update);
+      window.removeEventListener('resize', update);
+    };
   }, []);
 
   return (
@@ -46,16 +92,33 @@ export const Navbar: React.FC = () => {
         </a>
 
         <ul className='hidden items-center gap-8 md:flex'>
-          {LINKS.map((l) => (
-            <li key={l.href}>
-              <a
-                href={l.href}
-                className='link-hover text-sm text-ink-muted transition-colors hover:text-ink'
-              >
-                {l.label}
-              </a>
-            </li>
-          ))}
+          {LINKS.map((l) => {
+            const isActive = activeId === l.href.slice(1);
+            return (
+              <li key={l.href}>
+                <a
+                  href={l.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`link-hover relative text-sm transition-colors ${
+                    isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'
+                  }`}
+                >
+                  {l.label}
+                  {isActive && (
+                    <motion.span
+                      layoutId='nav-active'
+                      className='absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-accent'
+                      transition={{
+                        type: 'spring',
+                        stiffness: 380,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </a>
+              </li>
+            );
+          })}
         </ul>
 
         <div className='flex items-center gap-2 sm:gap-3'>
