@@ -7,6 +7,7 @@ import { Experience } from './components/Experience';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Navbar } from './components/Navbar';
+import { OpenSource } from './components/OpenSource';
 import { Skills } from './components/Skills';
 
 const App: React.FC = () => {
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <About />
         <Skills />
         <Experience />
+        <OpenSource />
         <Education />
         <Contact />
       </main>

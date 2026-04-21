@@ -72,6 +72,36 @@ export const skills: { group: string; items: string[] }[] = [
   },
 ];
 
+export type OpenSourceProject = {
+  name: string;
+  tagline: string;
+  organization: string;
+  role: string;
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  stars: string;
+  url: string;
+};
+
+export const openSource: OpenSourceProject = {
+  name: 'Skiff UI',
+  tagline: 'React component library · Skiff Design System',
+  organization: 'Skiff',
+  role: 'Lead Contributor',
+  summary:
+    'Led the engineering revamp that prepared Skiff UI for open-sourcing — turning an internal component library into a polished, public project adopted by the community.',
+  highlights: [
+    'Spearheaded the revamp of Skiff UI in preparation for open-sourcing — overhauling core components, public APIs, and code quality.',
+    'Served as a main contributor and maintainer of the open-source project after release.',
+    'Partnered closely with design to align every component with the Skiff UI design system.',
+    'Shipped foundational features that raised usability, developer experience, and community adoption.',
+  ],
+  stack: ['React', 'TypeScript', 'styled-components'],
+  stars: '420+',
+  url: 'https://github.com/skiff-org/skiff-ui',
+};
+
 export const experiences: Experience[] = [
   {
     company: 'FullyRamped',
@@ -112,7 +142,6 @@ export const experiences: Experience[] = [
       'Founding engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
     highlights: [
       'Built and scaled core product features across the suite, contributing to product adoption and reliability.',
-      'Led the engineering revamp and open-source release of Skiff UI, a component library that grew to 420+ GitHub stars.',
       'Drove architecture decisions and resolved performance bottlenecks across key product areas.',
       'Collaborated closely with design and backend teams to deliver high-quality user experiences.',
     ],
