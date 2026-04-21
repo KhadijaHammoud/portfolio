@@ -16,6 +16,7 @@ html.dark {
   --color-scrollbar-track: 7 8 11;
   --color-scrollbar-thumb: 26 30 39;
   --color-scrollbar-thumb-hover: 39 44 57;
+  --bubble-strength: 1;
   color-scheme: dark;
 }
 
@@ -30,6 +31,7 @@ html.light {
   --color-scrollbar-track: 246 247 250;
   --color-scrollbar-thumb: 203 213 225;
   --color-scrollbar-thumb-hover: 148 163 184;
+  --bubble-strength: 0.6;
   color-scheme: light;
 }
 

@@ -27,8 +27,8 @@ export const Navbar: React.FC = () => {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? 'border-b border-line/5 bg-bg/70 backdrop-blur-xl'
-          : 'border-b border-transparent'
+          ? 'border-b border-line/5 bg-bg/75 backdrop-blur-xl'
+          : 'border-b border-transparent bg-bg/40 backdrop-blur-md'
       }`}
     >
       <nav className='container-page flex h-16 items-center justify-between'>

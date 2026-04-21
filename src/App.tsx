@@ -1,5 +1,6 @@
 import React from 'react';
 import { About } from './components/About';
+import { BackgroundBubbles } from './components/BackgroundBubbles';
 import { Contact } from './components/Contact';
 import { Education } from './components/Education';
 import { Experience } from './components/Experience';
@@ -10,7 +11,8 @@ import { Skills } from './components/Skills';
 
 const App: React.FC = () => {
   return (
-    <div className='min-h-screen bg-bg text-ink'>
+    <div className='relative isolate min-h-screen text-ink'>
+      <BackgroundBubbles />
       <Navbar />
       <main>
         <Hero />
