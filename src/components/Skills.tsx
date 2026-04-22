@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { SKILLS } from '../data/portfolio';
+import { SKILLS } from '../constants/portfolio.constants';
 
 export const Skills: React.FC = () => {
   return (

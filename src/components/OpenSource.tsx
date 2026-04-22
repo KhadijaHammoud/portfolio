@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Github, Star } from 'lucide-react';
 import React from 'react';
-import { OPEN_SOURCE } from '../data/portfolio';
+import { OPEN_SOURCE } from '../constants/portfolio.constants';
 import { Section } from './Section';
 
 export const OpenSource: React.FC = () => {

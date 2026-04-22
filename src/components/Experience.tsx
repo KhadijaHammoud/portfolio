@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { EXPERIENCES } from '../data/portfolio';
+import { EXPERIENCES } from '../constants/portfolio.constants';
 import { Section } from './Section';
 
 export const Experience: React.FC = () => {

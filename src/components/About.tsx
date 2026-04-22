@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from './Section';
-import { PROFILE, LANGUAGES } from '../data/portfolio';
+import { PROFILE, LANGUAGES } from '../constants/portfolio.constants';
 
 export const About: React.FC = () => {
   return (

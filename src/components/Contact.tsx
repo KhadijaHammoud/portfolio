@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Github, Linkedin, Mail, Phone } from 'lucide-react';
-import { PROFILE } from '../data/portfolio';
+import { PROFILE } from '../constants/portfolio.constants';
 
 export const Contact: React.FC = () => {
   return (

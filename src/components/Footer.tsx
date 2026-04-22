@@ -1,5 +1,5 @@
 import React from 'react';
-import { PROFILE } from '../data/portfolio';
+import { PROFILE } from '../constants/portfolio.constants';
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear();

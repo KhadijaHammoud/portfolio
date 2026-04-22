@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
 import { Section } from './Section';
-import { EDUCATION } from '../data/portfolio';
+import { EDUCATION } from '../constants/portfolio.constants';
 
 export const Education: React.FC = () => {
   return (

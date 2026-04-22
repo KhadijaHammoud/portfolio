@@ -1,7 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
 import React from 'react';
-import { PROFILE } from '../data/portfolio';
+import { PROFILE } from '../constants/portfolio.constants';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
