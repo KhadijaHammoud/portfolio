@@ -55,6 +55,7 @@ body {
     'Helvetica Neue',
     Arial,
     sans-serif;
+  overflow-x: hidden;
   transition:
     background-color 200ms ease,
     color 200ms ease;
