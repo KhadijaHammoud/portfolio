@@ -88,10 +88,10 @@ export const Navbar: React.FC = () => {
             alt='Khadija Hammoud'
             className='h-8 w-8 rounded-full object-cover ring-1 ring-line/10 ring-offset-2 ring-offset-bg'
           />
-          <span className='hidden sm:block'>Khadija Hammoud</span>
+          <span className='hidden whitespace-nowrap sm:block'>Khadija Hammoud</span>
         </a>
 
-        <ul className='hidden items-center gap-8 md:flex'>
+        <ul className='hidden items-center gap-8 lg:flex'>
           {LINKS.map((l) => {
             const isActive = activeId === l.href.slice(1);
             return (
@@ -99,7 +99,7 @@ export const Navbar: React.FC = () => {
                 <a
                   href={l.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`link-hover relative text-sm transition-colors ${
+                  className={`link-hover relative whitespace-nowrap text-sm transition-colors ${
                     isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'
                   }`}
                 >
@@ -125,7 +125,7 @@ export const Navbar: React.FC = () => {
           <ThemeToggle />
           <a
             href='#contact'
-            className='group hidden items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink transition-all hover:border-accent/60 hover:bg-accent/10 sm:inline-flex'
+            className='group hidden items-center gap-2 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink transition-all hover:border-accent/60 hover:bg-accent/10 sm:inline-flex'
           >
             <span className='relative flex h-2 w-2'>
               <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70' />

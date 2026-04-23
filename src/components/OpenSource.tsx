@@ -8,10 +8,10 @@ import { Section } from './Section';
 export const OpenSource: React.FC = () => {
   return (
     <Section
-      id='open-source'
       eyebrow='Open Source'
       title={<>Contributing back to the community.</>}
       description='A closer look at the open-source work I’m most proud of.'
+      id='open-source'
     >
       <motion.article
         initial={{ opacity: 0, y: 16 }}

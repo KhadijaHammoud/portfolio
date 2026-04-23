@@ -7,9 +7,9 @@ import { EDUCATION } from '../constants/portfolio.constants';
 export const Education: React.FC = () => {
   return (
     <Section
-      id='education'
       eyebrow='Education'
       title={<>Academic background.</>}
+      id='education'
     >
       <div className='grid gap-5 md:grid-cols-2'>
         {EDUCATION.map((e, i) => (

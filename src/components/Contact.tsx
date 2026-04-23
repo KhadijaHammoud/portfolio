@@ -1,9 +1,10 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 import { PROFILE } from '../constants/portfolio.constants';
 import { LinkedInIcon } from './icons/LinkedInIcon';
+import { TextButton, TextButtonVariant } from './shared';
 
 export const Contact: React.FC = () => {
   return (
@@ -34,53 +35,41 @@ export const Contact: React.FC = () => {
           </p>
 
           <div className='mt-10 flex flex-wrap items-center justify-center gap-3'>
-            <a
+            <TextButton
               href={`mailto:${PROFILE.email}`}
-              className='group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-white shadow-glow transition-all hover:bg-accent-soft'
+              leadingIcon={<Mail className='h-4 w-4' />}
+              showArrow
+              variant={TextButtonVariant.Primary}
             >
-              <Mail className='h-4 w-4' />
               {PROFILE.email}
-              <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
-            </a>
-            <a
+            </TextButton>
+            <TextButton
               href={`tel:${PROFILE.phone.replace(/\s+/g, '')}`}
-              className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-line/30'
+              leadingIcon={<Phone className='h-4 w-4' />}
+              variant={TextButtonVariant.Secondary}
             >
-              <Phone className='h-4 w-4' />
               {PROFILE.phone}
-            </a>
+            </TextButton>
           </div>
 
           <div className='mt-8 flex items-center justify-center gap-3'>
-            <SocialLink
+            <TextButton
               href={PROFILE.github}
-              label='GitHub'
-              icon={<SiGithub className='h-4 w-4' color='currentColor' />}
-            />
-            <SocialLink
+              leadingIcon={<SiGithub className='h-4 w-4' color='currentColor' />}
+              variant={TextButtonVariant.Ghost}
+            >
+              GitHub
+            </TextButton>
+            <TextButton
               href={PROFILE.linkedin}
-              label='LinkedIn'
-              icon={<LinkedInIcon className='h-4 w-4' />}
-            />
+              leadingIcon={<LinkedInIcon className='h-4 w-4' />}
+              variant={TextButtonVariant.Ghost}
+            >
+              LinkedIn
+            </TextButton>
           </div>
         </motion.div>
       </div>
     </section>
   );
 };
-
-const SocialLink: React.FC<{
-  href: string;
-  label: string;
-  icon: React.ReactNode;
-}> = ({ href, label, icon }) => (
-  <a
-    href={href}
-    target='_blank'
-    rel='noreferrer'
-    className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
-  >
-    {icon}
-    {label}
-  </a>
-);

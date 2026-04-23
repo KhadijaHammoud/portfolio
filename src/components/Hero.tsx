@@ -1,9 +1,10 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion, type Variants } from 'framer-motion';
-import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import React from 'react';
 import { PROFILE } from '../constants/portfolio.constants';
 import { LinkedInIcon } from './icons/LinkedInIcon';
+import { IconButton, TextButton, TextButtonVariant } from './shared';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -82,35 +83,35 @@ export const Hero: React.FC = () => {
           custom={3}
           className='mt-10 flex flex-wrap items-center gap-3'
         >
-          <a
+          <TextButton
             href='#contact'
-            className='group inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3 text-sm font-medium text-white shadow-glow transition-all hover:bg-accent-soft'
+            showArrow
+            variant={TextButtonVariant.Primary}
           >
             Get in touch
-            <ArrowUpRight className='h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5' />
-          </a>
-          <a
+          </TextButton>
+          <TextButton
             href='#experience'
-            className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-5 py-3 text-sm font-medium text-ink transition-all hover:border-line/30'
+            variant={TextButtonVariant.Secondary}
           >
             View experience
-          </a>
+          </TextButton>
 
           <div className='ml-0 mt-4 flex items-center gap-2 sm:ml-2 sm:mt-0'>
-            <IconLink
+            <IconButton
               href={PROFILE.github}
-              label='GitHub'
               icon={<SiGithub className='h-4 w-4' color='currentColor' />}
+              label='GitHub'
             />
-            <IconLink
+            <IconButton
               href={PROFILE.linkedin}
-              label='LinkedIn'
               icon={<LinkedInIcon className='h-4 w-4' />}
+              label='LinkedIn'
             />
-            <IconLink
+            <IconButton
               href={`mailto:${PROFILE.email}`}
-              label='Email'
               icon={<Mail className='h-4 w-4' />}
+              label='Email'
             />
           </div>
         </motion.div>
@@ -129,22 +130,6 @@ export const Hero: React.FC = () => {
     </section>
   );
 };
-
-const IconLink: React.FC<{
-  href: string;
-  label: string;
-  icon: React.ReactNode;
-}> = ({ href, label, icon }) => (
-  <a
-    href={href}
-    target={href.startsWith('http') ? '_blank' : undefined}
-    rel='noreferrer'
-    aria-label={label}
-    className='grid h-10 w-10 place-items-center rounded-full border border-line/10 bg-line/[0.03] text-ink-muted transition-all hover:border-accent/60 hover:text-ink'
-  >
-    {icon}
-  </a>
-);
 
 const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
   <div className='flex-1 bg-bg-soft/70 px-5 py-6'>

@@ -6,10 +6,10 @@ import { Section } from './Section';
 export const Experience: React.FC = () => {
   return (
     <Section
-      id='experience'
       eyebrow='Experience'
       title={<>Places I've helped build.</>}
       description="Zero-to-one products, end-to-end encrypted suites, blockchain-backed platforms — a few of the teams and problems I've worked on over the years."
+      id='experience'
     >
       <ol className='relative space-y-10 border-l border-line/5 pl-6 md:pl-10'>
         {EXPERIENCES.map((exp, i) => (

@@ -5,7 +5,7 @@ import { PROFILE, LANGUAGES } from '../constants/portfolio.constants';
 
 export const About: React.FC = () => {
   return (
-    <Section id='about' eyebrow='About' title={<>A little about how I work.</>}>
+    <Section eyebrow='About' title={<>A little about how I work.</>} id='about'>
       <div className='grid gap-10 md:grid-cols-[1.6fr_1fr]'>
         <motion.div
           initial={{ opacity: 0, y: 16 }}

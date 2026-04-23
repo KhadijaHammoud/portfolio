@@ -6,10 +6,10 @@ import { SKILLS } from '../constants/portfolio.constants';
 export const Skills: React.FC = () => {
   return (
     <Section
-      id='skills'
       eyebrow='Skills'
       title={<>Tools I reach for.</>}
       description="A snapshot of the stack I use day-to-day. I'm biased toward strongly-typed, composable systems and a pragmatic, product-first approach."
+      id='skills'
     >
       <div className='grid gap-5 md:grid-cols-3'>
         {SKILLS.map((group, idx) => (
