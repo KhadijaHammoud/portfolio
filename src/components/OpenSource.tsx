@@ -1,5 +1,6 @@
+import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Star } from 'lucide-react';
+import { ArrowUpRight, Star } from 'lucide-react';
 import React from 'react';
 import { OPEN_SOURCE } from '../constants/portfolio.constants';
 import { Section } from './Section';
@@ -27,7 +28,7 @@ export const OpenSource: React.FC = () => {
         <div className='relative flex flex-wrap items-start justify-between gap-6'>
           <div className='min-w-0 flex-1'>
             <div className='flex items-center gap-2 text-sm text-ink-muted'>
-              <Github className='h-4 w-4' />
+              <SiGithub className='h-4 w-4' color='currentColor' />
               <span>Open-Source Contribution · {OPEN_SOURCE.organization}</span>
             </div>
             <h3 className='mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl'>

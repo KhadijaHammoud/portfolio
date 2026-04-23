@@ -1,7 +1,9 @@
+import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion, type Variants } from 'framer-motion';
-import { ArrowUpRight, Github, Linkedin, Mail, MapPin } from 'lucide-react';
+import { ArrowUpRight, Mail, MapPin } from 'lucide-react';
 import React from 'react';
 import { PROFILE } from '../constants/portfolio.constants';
+import { LinkedInIcon } from './icons/LinkedInIcon';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -98,12 +100,12 @@ export const Hero: React.FC = () => {
             <IconLink
               href={PROFILE.github}
               label='GitHub'
-              icon={<Github className='h-4 w-4' />}
+              icon={<SiGithub className='h-4 w-4' color='currentColor' />}
             />
             <IconLink
               href={PROFILE.linkedin}
               label='LinkedIn'
-              icon={<Linkedin className='h-4 w-4' />}
+              icon={<LinkedInIcon className='h-4 w-4' />}
             />
             <IconLink
               href={`mailto:${PROFILE.email}`}

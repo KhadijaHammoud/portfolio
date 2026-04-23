@@ -1,7 +1,9 @@
+import { SiGithub } from '@icons-pack/react-simple-icons';
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Linkedin, Mail, Phone } from 'lucide-react';
+import { ArrowUpRight, Mail, Phone } from 'lucide-react';
 import { PROFILE } from '../constants/portfolio.constants';
+import { LinkedInIcon } from './icons/LinkedInIcon';
 
 export const Contact: React.FC = () => {
   return (
@@ -53,12 +55,12 @@ export const Contact: React.FC = () => {
             <SocialLink
               href={PROFILE.github}
               label='GitHub'
-              icon={<Github className='h-4 w-4' />}
+              icon={<SiGithub className='h-4 w-4' color='currentColor' />}
             />
             <SocialLink
               href={PROFILE.linkedin}
               label='LinkedIn'
-              icon={<Linkedin className='h-4 w-4' />}
+              icon={<LinkedInIcon className='h-4 w-4' />}
             />
           </div>
         </motion.div>
