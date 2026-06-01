@@ -13,6 +13,8 @@ type TextButtonProps = {
   leadingIcon?: React.ReactNode;
   showArrow?: boolean;
   variant?: TextButtonVariant;
+  /** Suggested filename when downloading same-origin files (e.g. CV PDF). */
+  download?: string;
 };
 
 const VARIANT_CLASSES: Record<TextButtonVariant, string> = {
@@ -30,12 +32,14 @@ export const TextButton: React.FC<TextButtonProps> = ({
   leadingIcon,
   showArrow = false,
   variant = TextButtonVariant.Primary,
+  download,
 }) => {
-  const isExternal = href.startsWith('http');
+  const isExternal = href.startsWith('http') && !download;
 
   return (
     <a
       href={href}
+      download={download}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noreferrer' : undefined}
       className={VARIANT_CLASSES[variant]}

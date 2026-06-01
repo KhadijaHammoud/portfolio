@@ -1,10 +1,8 @@
-import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion, type Variants } from 'framer-motion';
-import { Mail, MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import React from 'react';
 import { PROFILE } from '../constants/portfolio.constants';
-import { LinkedInIcon } from './icons/LinkedInIcon';
-import { IconButton, TextButton, TextButtonVariant } from './shared';
+import { TextButton, TextButtonVariant } from './shared';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -96,24 +94,6 @@ export const Hero: React.FC = () => {
           <TextButton href='#experience' variant={TextButtonVariant.Secondary}>
             View experience
           </TextButton>
-
-          <div className='ml-0 mt-4 flex items-center gap-2 sm:ml-2 sm:mt-0'>
-            <IconButton
-              href={PROFILE.github}
-              icon={<SiGithub className='h-4 w-4' color='currentColor' />}
-              label='GitHub'
-            />
-            <IconButton
-              href={PROFILE.linkedin}
-              icon={<LinkedInIcon className='h-4 w-4' />}
-              label='LinkedIn'
-            />
-            <IconButton
-              href={`mailto:${PROFILE.email}`}
-              icon={<Mail className='h-4 w-4' />}
-              label='Email'
-            />
-          </div>
         </motion.div>
 
         <motion.div

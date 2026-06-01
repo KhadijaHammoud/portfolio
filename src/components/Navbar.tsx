@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
+import { FileDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
+import { PROFILE } from '../constants/portfolio.constants';
 import { ThemeToggle } from './ThemeToggle';
 
 const LINKS = [
@@ -122,6 +124,14 @@ export const Navbar: React.FC = () => {
         </ul>
 
         <div className='flex items-center gap-2 sm:gap-3'>
+          <a
+            href={PROFILE.cv}
+            download={PROFILE.cvFileName}
+            className='hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-3 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink sm:inline-flex'
+          >
+            <FileDown className='h-4 w-4' />
+            CV
+          </a>
           <ThemeToggle />
           <a
             href='#contact'

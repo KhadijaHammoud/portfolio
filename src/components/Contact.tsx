@@ -1,6 +1,6 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
-import { Mail, Phone } from 'lucide-react';
+import { FileDown, Mail, Phone } from 'lucide-react';
 import React from 'react';
 import { PROFILE } from '../constants/portfolio.constants';
 import { LinkedInIcon } from './icons/LinkedInIcon';
@@ -68,6 +68,17 @@ export const Contact: React.FC = () => {
               variant={TextButtonVariant.Ghost}
             >
               LinkedIn
+            </TextButton>
+          </div>
+
+          <div className='mt-6 flex justify-center'>
+            <TextButton
+              href={PROFILE.cv}
+              download={PROFILE.cvFileName}
+              leadingIcon={<FileDown className='h-4 w-4' />}
+              variant={TextButtonVariant.Ghost}
+            >
+              Download CV
             </TextButton>
           </div>
         </motion.div>

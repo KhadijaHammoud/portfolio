@@ -9,6 +9,8 @@ export const PROFILE = {
   phone: '+20 122 890 4320',
   github: 'https://github.com/KhadijaHammoud',
   linkedin: 'https://linkedin.com/in/khadijahammoud',
+  cv: '/Khadija_Hammoud_CV_2026.pdf',
+  cvFileName: 'Khadija_Hammoud_CV_2026.pdf',
   bio: [
     "I'm a frontend engineer with 5+ years of experience building scalable, high-performance, pixel-perfect web applications.",
     'Currently a founding engineer at an AI startup where I lead frontend development — taking products from zero to one, owning architecture, and shipping core features alongside a tight founding team.',
