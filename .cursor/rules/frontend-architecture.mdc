@@ -1,0 +1,47 @@
+---
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: false
+---
+
+# Frontend Architecture — Portfolio
+
+> Read `TECH_CONVENTIONS.md` for the full reference. This rule covers structure and reuse patterns.
+
+## Directory structure
+
+```
+src/
+├── components/           # Hero, About, Experience, Section, …
+│   ├── shared/           # TextButton, IconButton
+│   └── icons/            # Brand icons
+├── constants/            # portfolio.constants.ts
+├── theme/                # ThemeProvider
+├── App.tsx
+└── index.css             # CSS variables, .card, global utilities
+```
+
+## Component rules
+
+1. **Reuse `components/shared/`** before creating new buttons or controls. Extend via props; export from `components/shared/index.ts`.
+2. **Use `Section`** for new page blocks: pass `eyebrow`, `title`, `id` for navbar anchors.
+3. **Keep `App.tsx` thin** — compose sections only.
+4. **Content in constants** — import `PROFILE`, `EXPERIENCES`, `EDUCATION`, etc. from `src/constants/portfolio.constants.ts`; avoid long hardcoded strings in section components.
+
+## Styling
+
+- Tailwind utilities + theme tokens (`ink`, `bg`, `accent`, `line`).
+- Dark mode: `class` on `html` via `ThemeProvider`.
+- Prefer `.card` and existing layout patterns over new global CSS.
+
+## Icons
+
+- UI: `lucide-react`
+- Brands: `components/icons/` or `@icons-pack/react-simple-icons`
+
+## New section checklist
+
+- [ ] Data in `portfolio.constants.ts`
+- [ ] `Section` wrapper + unique `id`
+- [ ] Navbar link in `Navbar.tsx` if the section should be reachable
+- [ ] Framer Motion entrance consistent with sibling sections
+- [ ] Light/dark theme verified

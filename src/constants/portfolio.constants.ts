@@ -2,16 +2,17 @@ export const PROFILE = {
   name: 'Khadija Hammoud',
   title: 'Senior Software Engineer',
   tagline:
-    'Frontend engineer building fast, scalable, product-driven web apps.',
+    'Frontend engineer building fast, scalable, product-driven web apps — polished to the last pixel.',
   location: 'Cairo, Egypt',
   email: 'kkhammoud@gmail.com',
   phone: '+20 122 890 4320',
   github: 'https://github.com/KhadijaHammoud',
   linkedin: 'https://linkedin.com/in/khadijahammoud',
   bio: [
-    "I'm a frontend engineer with 5+ years of experience building scalable, high-performance web applications.",
+    "I'm a frontend engineer with 5+ years of experience building scalable, high-performance, pixel-perfect web applications.",
     'Currently a founding engineer at an AI startup where I lead frontend development — taking products from zero to one, owning architecture, and shipping core features alongside a tight founding team.',
     'I care deeply about system design, performance, and the craft of product engineering in fast-moving environments.',
+    'Above all, I obsess over the details that make a product feel truly polished without letting any of it slow down shipping velocity.',
   ],
 };
 
@@ -161,6 +162,12 @@ export const EDUCATION = [
     degree: 'BSc Computer Science & Engineering',
     period: '2015 – 2020',
     note: 'GPA 1.09 (A equivalent — German 1.0–5.0 scale, where 1.0 is highest).',
+  },
+  {
+    school: 'Ulm University',
+    degree: 'Machine Learning Intern · Bachelor project',
+    period: 'Mar 2019 – Aug 2019 · Ulm, Germany',
+    note: 'Conducted machine learning research: built and trained a neural network to recognize Arabic Sign Language, then developed an iOS app that integrated the model for real-world sign language recognition.',
   },
 ];
 

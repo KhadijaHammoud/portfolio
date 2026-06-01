@@ -1,0 +1,50 @@
+---
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: false
+---
+
+# Frontend Coding Standards — Portfolio
+
+> Read `TECH_CONVENTIONS.md` for the full reference.
+
+## TypeScript
+
+- **No `any`.** Use interfaces for props; `interface` for object shapes; `type` for unions.
+- Prop interfaces: `ComponentNameProps` (or local `type` for small components).
+- Enums: `PascalCase` members (`TextButtonVariant.Primary`).
+- Data constants: `SCREAMING_SNAKE_CASE` (`PROFILE`, `EXPERIENCES`).
+
+## Imports and exports
+
+- Order: external → internal → relative → assets.
+- **Named exports** for components; default export only where established (`App.tsx`).
+- Barrel imports from `components/shared` when possible.
+
+## Naming
+
+- **camelCase** — variables, functions (`handleClick`, `isExternal`).
+- **PascalCase** — components, enums, interfaces.
+- **UPPER_SNAKE_CASE** — module-level constants.
+
+## Components
+
+- Match the export/style pattern of the file you edit (`React.FC` vs function declaration).
+- Single responsibility; extract repeated logic to hooks or utils.
+- No `console.log` in committed code.
+
+## Styling
+
+- Tailwind + semantic tokens; avoid custom CSS unless necessary.
+- No hardcoded magic strings for copy—use `portfolio.constants.ts`.
+
+## Performance
+
+- `useCallback` / `useMemo` only when justified (child callbacks, expensive work).
+
+## Quality checklist
+
+- [ ] No `any`
+- [ ] Copy in constants when reusable
+- [ ] Shared components reused
+- [ ] `npm run build` passes
+- [ ] Prettier-friendly formatting (single quotes, trailing commas)

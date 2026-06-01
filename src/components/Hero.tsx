@@ -55,7 +55,7 @@ export const Hero: React.FC = () => {
             I build{' '}
           </span>
           <span className='bg-gradient-to-r from-accent-soft via-accent to-accent-glow bg-clip-text text-transparent'>
-            fast, thoughtful
+            fast, polished
           </span>
           <span className='bg-gradient-to-r from-ink via-ink to-ink-muted bg-clip-text text-transparent'>
             {' '}
@@ -90,10 +90,7 @@ export const Hero: React.FC = () => {
           >
             Get in touch
           </TextButton>
-          <TextButton
-            href='#experience'
-            variant={TextButtonVariant.Secondary}
-          >
+          <TextButton href='#experience' variant={TextButtonVariant.Secondary}>
             View experience
           </TextButton>
 
