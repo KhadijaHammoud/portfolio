@@ -4,6 +4,7 @@ export const PROFILE = {
   tagline:
     'Frontend engineer building fast, scalable, product-driven web apps — polished to the last pixel.',
   location: 'Cairo, Egypt',
+  openToRemote: 'Open to remote work',
   email: 'kkhammoud@gmail.com',
   phone: '+20 122 890 4320',
   github: 'https://github.com/KhadijaHammoud',

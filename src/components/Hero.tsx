@@ -35,10 +35,14 @@ export const Hero: React.FC = () => {
           initial='hidden'
           animate='show'
           custom={0}
-          className='inline-flex items-center gap-2 rounded-full border border-line/10 bg-line/[0.03] px-3 py-1.5 text-sm text-ink-muted'
+          className='inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-line/10 bg-line/[0.03] px-3 py-1.5 text-sm text-ink-muted'
         >
-          <MapPin className='h-3.5 w-3.5 text-accent' />
-          {PROFILE.location}
+          <MapPin className='h-3.5 w-3.5 shrink-0 text-accent' />
+          <span>{PROFILE.location}</span>
+          <span className='text-ink-faint' aria-hidden>
+            ·
+          </span>
+          <span>{PROFILE.openToRemote}</span>
         </motion.div>
 
         <motion.h1
