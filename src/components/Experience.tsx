@@ -36,7 +36,14 @@ export const Experience: React.FC = () => {
                   {exp.start} — {exp.end}
                 </span>
               </div>
-              <div className='mt-1 text-base text-ink-muted'>{exp.location}</div>
+              <div className='mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-ink-muted'>
+                <span>{exp.location}</span>
+                {exp.impact && (
+                  <span className='font-mono text-sm text-accent'>
+                    {exp.impact}
+                  </span>
+                )}
+              </div>
 
               <p className='mt-4 text-base leading-relaxed text-ink-muted'>
                 {exp.summary}

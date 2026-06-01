@@ -87,6 +87,7 @@ export const EXPERIENCES = [
     location: 'San Francisco (Remote)',
     start: 'Apr 2024',
     end: 'Present',
+    impact: '$1M+ ARR',
     summary:
       'Leading frontend development for an AI-powered sales training and role-play platform. Owning architecture and core product decisions from zero to one.',
     highlights: [
@@ -116,9 +117,11 @@ export const EXPERIENCES = [
     location: 'San Francisco (Remote)',
     start: 'Aug 2022',
     end: 'Apr 2024',
+    impact: '2M+ users',
     summary:
       'Product engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
     highlights: [
+      'Built responsive React experiences for web and mobile across the productivity suite.',
       'Built and scaled core product features across the suite, contributing to product adoption and reliability.',
       'Drove architecture decisions and resolved performance bottlenecks across key product areas.',
       'Collaborated closely with design and backend teams to deliver high-quality user experiences.',
