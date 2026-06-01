@@ -135,7 +135,7 @@ Order: external → internal → relative → assets. Prefer barrel imports from
 
 ### Tailwind and theme
 
-- **Primary:** Tailwind utility classes with design tokens from `tailwind.config.js` (`bg`, `ink`, `accent`, `line`, …).
+- **Primary:** Tailwind utility classes with design tokens from `tailwind.config.js` (`bg`, `ink`, `accent`, `secondary`, `line`, …).
 - **Theme:** CSS variables in `index.css`; dark mode via `class` on `html` (`ThemeProvider`).
 - **Utilities:** Use existing patterns (e.g. `.card`) before inventing new layout wrappers.
 - **Avoid** custom CSS unless necessary; keep one-off styles in the component’s `className`.
@@ -145,8 +145,11 @@ Order: external → internal → relative → assets. Prefer barrel imports from
 ```tsx
 className = 'text-ink bg-bg';
 className = 'text-ink-muted border-line/10';
-className = 'bg-accent text-white';
+className = 'bg-accent text-white'; // primary — CTAs, links, nav
+className = 'text-secondary bg-secondary/20'; // ambient — paws, spotlight, blurs
 ```
+
+**Color roles:** `accent` (terracotta) is primary UI; `secondary` (ginger sand) is decorative motion/background only — do not use `secondary` for buttons or nav active states.
 
 ### Icons
 
@@ -178,7 +181,7 @@ All portfolio copy and structured data live in **`src/constants/portfolio.consta
 
 - **Framer Motion** for section entrance and hero stagger (`motion.*`, shared variants like `FADE_UP`).
 - Prefer `whileInView` with `viewport={{ once: true }}` for scroll reveals.
-- Respect `prefers-reduced-motion` where animations are added or extended (match `BackgroundBubbles` / existing patterns).
+- Respect `prefers-reduced-motion` where animations are added or extended (match `BackgroundPawPrints` / existing patterns).
 
 ---
 

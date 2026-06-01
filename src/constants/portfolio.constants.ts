@@ -116,7 +116,7 @@ export const EXPERIENCES = [
     start: 'Aug 2022',
     end: 'Apr 2024',
     summary:
-      'Founding engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
+      'Product engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
     highlights: [
       'Built and scaled core product features across the suite, contributing to product adoption and reliability.',
       'Drove architecture decisions and resolved performance bottlenecks across key product areas.',

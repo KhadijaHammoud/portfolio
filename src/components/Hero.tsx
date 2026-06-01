@@ -26,7 +26,6 @@ export const Hero: React.FC = () => {
       className='relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-32'
     >
       <div className='pointer-events-none absolute inset-0 -z-10'>
-        <div className='absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 bg-accent/20 blur-[140px] opacity-60' />
         <div className='absolute inset-0 bg-grid-faint bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]' />
       </div>
 
@@ -71,7 +70,7 @@ export const Hero: React.FC = () => {
           className='mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted'
         >
           {PROFILE.tagline} Currently a founding engineer at{' '}
-          <span className='text-ink'>FullyRamped</span>, previously founding
+          <span className='text-ink'>FullyRamped</span>, previously product
           engineer at <span className='text-ink'>Skiff</span> (acquired by
           Notion).
         </motion.p>

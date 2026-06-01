@@ -6,6 +6,7 @@
 
 :root,
 html.dark {
+  --color-secondary: 221 184 146;
   --color-bg: 7 8 11;
   --color-bg-soft: 11 13 18;
   --color-bg-card: 16 19 26;
@@ -16,13 +17,16 @@ html.dark {
   --color-scrollbar-track: 7 8 11;
   --color-scrollbar-thumb: 26 30 39;
   --color-scrollbar-thumb-hover: 39 44 57;
-  --bubble-strength: 1;
+  --paw-strength: 1;
+  --spotlight-bg-alpha: 0.2;
+  --spotlight-peak: 0.6;
   color-scheme: dark;
 }
 
 html.light {
+  --color-secondary: 196 160 115;
   --color-bg: 255 255 255;
-  --color-bg-soft: 246 247 250;
+  --color-bg-soft: 250 247 242;
   --color-bg-card: 255 255 255;
   --color-ink: 15 23 42;
   --color-ink-muted: 71 85 105;
@@ -31,7 +35,9 @@ html.light {
   --color-scrollbar-track: 246 247 250;
   --color-scrollbar-thumb: 203 213 225;
   --color-scrollbar-thumb-hover: 148 163 184;
-  --bubble-strength: 0.6;
+  --paw-strength: 0.85;
+  --spotlight-bg-alpha: 0.48;
+  --spotlight-peak: 0.95;
   color-scheme: light;
 }
 
@@ -66,7 +72,7 @@ body {
 }
 
 ::selection {
-  background-color: rgba(124, 92, 255, 0.35);
+  background-color: rgba(196, 92, 66, 0.35);
   color: #ffffff;
 }
 
@@ -109,5 +115,47 @@ body {
 
   .link-hover {
     @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:after:scale-x-100;
+  }
+}
+
+@keyframes paw-print-step {
+  0% {
+    opacity: 0;
+    transform: scale(0.76);
+  }
+  22% {
+    opacity: 0.62;
+    transform: scale(1);
+  }
+  58% {
+    opacity: 0.38;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.86);
+  }
+}
+
+.animate-paw-print-step {
+  opacity: 0;
+  animation-name: paw-print-step;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+}
+
+.paw-print-filled {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.spotlight-blob {
+  background-color: rgb(var(--color-secondary) / var(--spotlight-bg-alpha, 0.2));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-paw-print-step {
+    animation: none !important;
   }
 }

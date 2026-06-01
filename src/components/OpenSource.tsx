@@ -22,7 +22,7 @@ export const OpenSource: React.FC = () => {
       >
         <div
           aria-hidden
-          className='pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-accent/20 blur-3xl'
+          className='pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-secondary/25 blur-3xl'
         />
 
         <div className='relative flex flex-wrap items-start justify-between gap-6'>

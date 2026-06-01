@@ -35,15 +35,23 @@ module.exports = {
           muted: 'rgb(var(--color-ink-muted) / <alpha-value>)',
           faint: 'rgb(var(--color-ink-faint) / <alpha-value>)',
         },
+        // Primary — buttons, links, nav, hero emphasis (terracotta)
         accent: {
-          DEFAULT: '#7c5cff',
-          soft: '#a58bff',
-          glow: '#5b3dff',
+          DEFAULT: '#c45c42',
+          soft: '#e08f7a',
+          glow: '#9a452f',
+        },
+        // Secondary — paw prints, spotlight, ambient blurs (ginger sand)
+        secondary: {
+          DEFAULT: '#ddb892',
+          soft: '#edd9c4',
+          glow: '#c49a62',
         },
         line: 'rgb(var(--color-line) / <alpha-value>)',
       },
       boxShadow: {
-        glow: '0 0 60px -20px rgba(124, 92, 255, 0.55)',
+        glow: '0 0 60px -20px rgba(196, 92, 66, 0.45)',
+        'glow-secondary': '0 0 60px -20px rgba(221, 184, 146, 0.5)',
         card: '0 1px 0 rgb(var(--color-line) / 0.04) inset, 0 0 0 1px rgb(var(--color-line) / 0.04)',
       },
       backgroundImage: {

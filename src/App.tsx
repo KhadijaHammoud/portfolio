@@ -1,6 +1,6 @@
 import React from 'react';
 import { About } from './components/About';
-import { BackgroundBubbles } from './components/BackgroundBubbles';
+import { BackgroundPawPrints } from './components/BackgroundPawPrints';
 import { Contact } from './components/Contact';
 import { Education } from './components/Education';
 import { Experience } from './components/Experience';
@@ -12,19 +12,21 @@ import { Skills } from './components/Skills';
 
 const App: React.FC = () => {
   return (
-    <div className='relative isolate min-h-screen text-ink'>
-      <BackgroundBubbles />
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <OpenSource />
-        <Education />
-        <Contact />
-      </main>
-      <Footer />
+    <div className='relative min-h-screen text-ink'>
+      <BackgroundPawPrints />
+      <div className='relative z-10'>
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Experience />
+          <OpenSource />
+          <Education />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 };

@@ -29,7 +29,7 @@ src/
 
 ## Styling
 
-- Tailwind utilities + theme tokens (`ink`, `bg`, `accent`, `line`).
+- Tailwind utilities + theme tokens (`ink`, `bg`, `accent`, `secondary`, `line`).
 - Dark mode: `class` on `html` via `ThemeProvider`.
 - Prefer `.card` and existing layout patterns over new global CSS.
 

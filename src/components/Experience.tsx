@@ -23,7 +23,7 @@ export const Experience: React.FC = () => {
           >
             <span className='absolute -left-[34px] top-2 grid h-3.5 w-3.5 place-items-center md:-left-[46px]'>
               <span className='absolute h-3.5 w-3.5 rounded-full bg-accent/20' />
-              <span className='h-2 w-2 rounded-full bg-accent shadow-[0_0_16px_2px_rgba(124,92,255,0.65)]' />
+              <span className='h-2 w-2 rounded-full bg-accent shadow-[0_0_16px_2px_rgba(196,92,66,0.55)]' />
             </span>
 
             <div className='card p-6 transition-colors hover:border-line/10 md:p-8'>
