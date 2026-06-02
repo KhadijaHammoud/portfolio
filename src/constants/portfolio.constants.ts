@@ -1,3 +1,122 @@
+import { FULLYRAMPED_SHOTS } from './fullyramped-shots';
+
+export const NOTION_SKIFF_ACQUISITION_URL =
+  'https://www.notion.com/blog/meet-skiff-the-newest-member-of-the-notion-family';
+
+export type EngagementBadge = {
+  label: string;
+  href?: string;
+};
+
+export type WorkShot = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
+export type WorkProject = {
+  slug: string;
+  company: string;
+  title: string;
+  role: string;
+  period: string;
+  impacts?: readonly string[];
+  /** Short contextual labels (e.g. acquisition); optional link per badge. */
+  badges?: readonly EngagementBadge[];
+  summary: string;
+  highlights: string[];
+  stack: string[];
+  shots?: readonly WorkShot[];
+};
+
+export type Experience = {
+  company: string;
+  role: string;
+  location: string;
+  start: string;
+  end: string;
+  impacts?: readonly string[];
+  badges?: readonly EngagementBadge[];
+  summary: string;
+  workSlug: string;
+};
+
+/** Shared employer / role metadata — single source for Work and Experience. */
+const SAN_FRANCISCO_REMOTE = 'San Francisco (Remote)';
+
+const ENGAGEMENT_CORE = {
+  fullyramped: {
+    slug: 'fullyramped',
+    company: 'FullyRamped',
+    role: 'Founding Engineer',
+    location: SAN_FRANCISCO_REMOTE,
+    start: 'Apr 2024',
+    end: 'Present',
+    period: '2024 — Present',
+    impacts: ['$1M+ ARR', '2,500+ users', '200+ DAU'],
+  },
+  skiff: {
+    slug: 'skiff',
+    company: 'Skiff via Nodogoro',
+    badges: [
+      {
+        label: 'Acquired by Notion',
+        href: NOTION_SKIFF_ACQUISITION_URL,
+      },
+    ],
+    role: 'Senior Software Engineer',
+    location: SAN_FRANCISCO_REMOTE,
+    start: 'Aug 2022',
+    end: 'Apr 2024',
+    period: 'Aug 2022 — Apr 2024',
+    impacts: ['2M+ users'],
+  },
+  loanos: {
+    slug: 'loanos',
+    company: 'Forest Park Group via Nodogoro',
+    role: 'Software Engineer',
+    location: SAN_FRANCISCO_REMOTE,
+    start: 'Aug 2020',
+    end: 'Jul 2022',
+    period: 'Aug 2020 — Jul 2022',
+  },
+} as const;
+
+function toExperience(
+  core: (typeof ENGAGEMENT_CORE)[keyof typeof ENGAGEMENT_CORE],
+  summary: string,
+): Experience {
+  return {
+    company: core.company,
+    role: core.role,
+    location: core.location,
+    start: core.start,
+    end: core.end,
+    ...('impacts' in core && core.impacts ? { impacts: core.impacts } : {}),
+    ...('badges' in core && core.badges ? { badges: core.badges } : {}),
+    summary,
+    workSlug: core.slug,
+  };
+}
+
+function toWorkProject(
+  core: (typeof ENGAGEMENT_CORE)[keyof typeof ENGAGEMENT_CORE],
+  details: Omit<
+    WorkProject,
+    'slug' | 'company' | 'role' | 'period' | 'impacts' | 'badges'
+  >,
+): WorkProject {
+  return {
+    slug: core.slug,
+    company: core.company,
+    role: core.role,
+    period: core.period,
+    ...('impacts' in core && core.impacts ? { impacts: core.impacts } : {}),
+    ...('badges' in core && core.badges ? { badges: core.badges } : {}),
+    ...details,
+  };
+}
+
 export const PROFILE = {
   name: 'Khadija Hammoud',
   title: 'Senior Software Engineer',
@@ -82,51 +201,38 @@ export const OPEN_SOURCE = {
   url: 'https://github.com/skiff-org/skiff-ui',
 };
 
-export const EXPERIENCES = [
-  {
-    company: 'FullyRamped',
-    role: 'Founding Engineer, Frontend',
-    location: 'San Francisco (Remote)',
-    start: 'Apr 2024',
-    end: 'Present',
-    impact: '$1M+ ARR',
+export const FEATURED_WORK: WorkProject[] = [
+  toWorkProject(ENGAGEMENT_CORE.fullyramped, {
+    title: 'AI sales training platform',
     summary:
-      'Leading frontend development for an AI-powered sales training and role-play platform. Owning architecture and core product decisions from zero to one.',
+      'Zero-to-one web app for AI-powered sales simulations — library navigation, scenario builder, live practice review, analytics, and org admin at enterprise scale.',
     highlights: [
-      'Built the web application from the ground up in a zero-to-one environment.',
-      'Designed a scalable, resilient state-management and data-fetching architecture with offline-aware caching.',
-      'Integrated real-time video and audio to power interactive AI-driven sales simulations.',
-      'Developed a reusable component system to speed up development and keep UI consistent.',
-      'Partnered closely with founders, design, and backend teams to shape product direction and deliver high-impact features.',
+      'Built the product UI from scratch: simulations library, builder, review, analytics, and settings.',
+      'Designed scalable, offline-aware state and data-fetching architecture for enterprise orgs.',
+      'Integrated real-time video and audio with AI scoring, coaching rubrics, and synced transcripts.',
+      'Developed a reusable component system; partnered with founders, design, and backend on product direction.',
     ],
     stack: [
       'React',
       'TypeScript',
       'Redux',
       'RTK Query',
-      'WebRTC (Daily.co)',
-      'WebSockets (Socket.io)',
-      'Tailwind CSS',
+      'WebRTC',
+      'WebSockets',
       'Radix UI',
-      'Framer Motion',
       'Recharts',
-      'Node.js',
     ],
-  },
-  {
-    company: 'Skiff (acquired by Notion) via Nodogoro',
-    role: 'Senior Software Engineer, Frontend',
-    location: 'San Francisco (Remote)',
-    start: 'Aug 2022',
-    end: 'Apr 2024',
-    impact: '2M+ users',
+    shots: FULLYRAMPED_SHOTS,
+  }),
+  toWorkProject(ENGAGEMENT_CORE.skiff, {
+    title: 'End-to-end encrypted productivity suite',
     summary:
-      'Product engineer across Skiff Mail, Calendar, Drive, and Pages — an end-to-end encrypted productivity suite built on a complex client-side encryption architecture.',
+      'Product engineer across Skiff Mail, Calendar, Drive, and Pages — end-to-end encrypted suite acquired by Notion in early 2024; I stayed through the transition.',
     highlights: [
       'Built responsive React experiences for web and mobile across the productivity suite.',
-      'Built and scaled core product features across the suite, contributing to product adoption and reliability.',
+      'Shipped and scaled core product features, contributing to adoption across millions of users.',
       'Drove architecture decisions and resolved performance bottlenecks across key product areas.',
-      'Collaborated closely with design and backend teams to deliver high-quality user experiences.',
+      'Led engineering on Skiff UI toward open source — see Open Source for the public design system work.',
     ],
     stack: [
       'React',
@@ -136,13 +242,9 @@ export const EXPERIENCES = [
       'GraphQL',
       'E2E Encryption',
     ],
-  },
-  {
-    company: 'Forest Park Group via Nodogoro',
-    role: 'Software Engineer',
-    location: 'San Francisco (Remote)',
-    start: 'Aug 2020',
-    end: 'Jul 2022',
+  }),
+  toWorkProject(ENGAGEMENT_CORE.loanos, {
+    title: 'LoanOS loan digitization platform',
     summary:
       'Developed full-stack features for LoanOS, a loan digitization platform using blockchain-based smart contracts to automate lending workflows.',
     highlights: [
@@ -159,7 +261,22 @@ export const EXPERIENCES = [
       'Rust',
       'Blockchain',
     ],
-  },
+  }),
+];
+
+export const EXPERIENCES: Experience[] = [
+  toExperience(
+    ENGAGEMENT_CORE.fullyramped,
+    'Founding frontend engineer for an AI sales training platform. Built the complete frontend architecture from zero-to-one; launched the product in just 4 months.',
+  ),
+  toExperience(
+    ENGAGEMENT_CORE.skiff,
+    "Frontend engineer for Skiff's end-to-end encrypted productivity suite. Joined when the product was just Pages, helped build Drive, Mail, and Calendar across web and mobile, and stayed through Skiff's acquisition by Notion in early 2024.",
+  ),
+  toExperience(
+    ENGAGEMENT_CORE.loanos,
+    'Full-stack engineer for LoanOS, a loan digitization platform using blockchain-based smart contracts to automate lending workflows.',
+  ),
 ];
 
 export const EDUCATION = [

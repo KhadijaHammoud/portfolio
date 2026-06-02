@@ -4,6 +4,7 @@ import { BackgroundPawPrints } from './components/BackgroundPawPrints';
 import { Contact } from './components/Contact';
 import { Education } from './components/Education';
 import { Experience } from './components/Experience';
+import { FeaturedWork } from './components/FeaturedWork';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { Navbar } from './components/Navbar';
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <About />
           <Skills />
           <Experience />
+          <FeaturedWork />
           <OpenSource />
           <Education />
           <Contact />

@@ -2,13 +2,19 @@ import { motion } from 'framer-motion';
 import React from 'react';
 import { EXPERIENCES } from '../constants/portfolio.constants';
 import { Section } from './Section';
+import {
+  EngagementBadges,
+  ImpactTags,
+  TextButton,
+  TextButtonVariant,
+} from './shared';
 
 export const Experience: React.FC = () => {
   return (
     <Section
       eyebrow='Experience'
       title={<>Places I've helped build.</>}
-      description="Zero-to-one products, end-to-end encrypted suites, blockchain-backed platforms — a few of the teams and problems I've worked on over the years."
+      description='Roles and timelines — product deep-dives and UI walkthroughs live in Work.'
       id='experience'
     >
       <ol className='relative space-y-10 border-l border-line/5 pl-6 md:pl-10'>
@@ -27,47 +33,38 @@ export const Experience: React.FC = () => {
             </span>
 
             <div className='card p-6 transition-colors hover:border-line/10 md:p-8'>
-              <div className='flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1'>
-                <h3 className='text-lg font-semibold text-ink md:text-xl'>
-                  {exp.role}{' '}
-                  <span className='text-ink-muted'>· {exp.company}</span>
-                </h3>
-                <span className='font-mono text-sm text-ink-muted'>
+              <div className='flex flex-wrap items-start justify-between gap-x-6 gap-y-2'>
+                <div className='min-w-0'>
+                  <p className='text-lg font-semibold leading-snug text-ink md:text-xl'>
+                    {exp.role}
+                  </p>
+                  <div className='mt-1 flex flex-wrap items-center gap-x-2 gap-y-1.5'>
+                    <p className='text-base text-ink-muted'>{exp.company}</p>
+                    <EngagementBadges badges={exp.badges} />
+                    <ImpactTags tags={exp.impacts} />
+                  </div>
+                </div>
+                <span className='shrink-0 font-mono text-sm leading-snug text-ink-muted'>
                   {exp.start} — {exp.end}
                 </span>
               </div>
-              <div className='mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-ink-muted'>
-                <span>{exp.location}</span>
-                {exp.impact && (
-                  <span className='font-mono text-sm text-accent'>
-                    {exp.impact}
-                  </span>
-                )}
-              </div>
+              <p className='mt-2 text-base text-ink-muted'>{exp.location}</p>
 
               <p className='mt-4 text-base leading-relaxed text-ink-muted'>
                 {exp.summary}
               </p>
 
-              <ul className='mt-5 space-y-2.5'>
-                {exp.highlights.map((h) => (
-                  <li
-                    key={h}
-                    className='relative pl-5 text-base leading-relaxed text-ink-muted'
+              {'workSlug' in exp && exp.workSlug ? (
+                <div className='mt-5'>
+                  <TextButton
+                    href={`#work-${exp.workSlug}`}
+                    variant={TextButtonVariant.Ghost}
+                    showArrow
                   >
-                    <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
-                    {h}
-                  </li>
-                ))}
-              </ul>
-
-              <div className='mt-5 flex flex-wrap gap-2'>
-                {exp.stack.map((s) => (
-                  <span key={s} className='chip'>
-                    {s}
-                  </span>
-                ))}
-              </div>
+                    View product work
+                  </TextButton>
+                </div>
+              ) : null}
             </div>
           </motion.li>
         ))}
