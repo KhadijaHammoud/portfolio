@@ -90,7 +90,9 @@ export const Navbar: React.FC = () => {
             alt='Khadija Hammoud'
             className='h-8 w-8 rounded-full object-cover ring-1 ring-line/10 ring-offset-2 ring-offset-bg'
           />
-          <span className='hidden whitespace-nowrap sm:block'>Khadija Hammoud</span>
+          <span className='hidden whitespace-nowrap sm:block'>
+            Khadija Hammoud
+          </span>
         </a>
 
         <ul className='hidden items-center gap-8 lg:flex'>
@@ -130,19 +132,9 @@ export const Navbar: React.FC = () => {
             className='hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-3 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink sm:inline-flex'
           >
             <FileDown className='h-4 w-4' />
-            CV
+            Download CV
           </a>
           <ThemeToggle />
-          <a
-            href='#contact'
-            className='group hidden items-center gap-2 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink transition-all hover:border-accent/60 hover:bg-accent/10 sm:inline-flex'
-          >
-            <span className='relative flex h-2 w-2'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70' />
-              <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-400' />
-            </span>
-            Available for work
-          </a>
         </div>
       </nav>
     </motion.header>
