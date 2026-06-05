@@ -8,11 +8,14 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { FEATURED_WORK } from '../constants';
+import type { WorkProject } from '../types';
 import {
-  FEATURED_WORK,
-  type WorkProject,
-} from '../constants/portfolio.constants';
-import { EngagementBadges, ImpactTags } from './shared';
+  EngagementBadges,
+  ImageViewer,
+  ImpactTags,
+  LinkedText,
+} from './shared';
 
 const AUTO_ADVANCE_MS = 4500;
 const SLIDE_MS = 0.55;
@@ -48,11 +51,10 @@ export const FeaturedWork: React.FC = () => {
         >
           <div className='section-heading'>Work</div>
           <h2 className='mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-ink md:text-4xl'>
-            Products I've helped ship.
+            Products I've helped ship<span className='text-accent'>.</span>
           </h2>
           <p className='mt-4 max-w-2xl text-base leading-relaxed text-ink-muted'>
-            Scope, impact, and stack for each product — plus production UI where
-            I'm able to share screenshots.
+            Scope, impact, and stack for each product.
           </p>
         </motion.div>
       </div>
@@ -98,9 +100,9 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
           <h3 className='mt-3 text-2xl font-semibold tracking-tight text-ink md:text-3xl'>
             {project.title}
           </h3>
-          <p className='mt-1 text-base text-ink-muted'>{project.role}</p>
+          <p className='mt-1 text-base text-ink-muted'>{project.scope}</p>
           <p className='mt-4 max-w-3xl text-base leading-relaxed text-ink-muted'>
-            {project.summary}
+            <LinkedText>{project.summary}</LinkedText>
           </p>
           <ul className='mt-5 space-y-2.5'>
             {project.highlights.map((h) => (
@@ -109,7 +111,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
                 className='relative max-w-3xl pl-5 text-base leading-relaxed text-ink-muted'
               >
                 <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
-                {h}
+                <LinkedText>{h}</LinkedText>
               </li>
             ))}
           </ul>
@@ -123,9 +125,9 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
         </motion.article>
       </div>
 
-      {hasShots ? (
+      {hasShots && (
         <FeaturedThumbnailCarousel project={project} index={index} />
-      ) : null}
+      )}
     </div>
   );
 };
@@ -143,6 +145,7 @@ const FeaturedThumbnailCarousel: React.FC<FeaturedThumbnailCarouselProps> = ({
   const [hovering, setHovering] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [instantTrack, setInstantTrack] = useState(false);
+  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   const viewportRef = useRef<HTMLDivElement>(null);
   const shots = project.shots!;
@@ -150,10 +153,7 @@ const FeaturedThumbnailCarousel: React.FC<FeaturedThumbnailCarouselProps> = ({
   /** Middle copy of a 3× buffer — end slides sit to the left at start. */
   const [positionIndex, setPositionIndex] = useState<number>(shotCount);
 
-  const extendedShots = useMemo(
-    () => [...shots, ...shots, ...shots],
-    [shots],
-  );
+  const extendedShots = useMemo(() => [...shots, ...shots, ...shots], [shots]);
 
   const trackOffset = offsetForIndex(positionIndex, viewportWidth);
 
@@ -217,13 +217,21 @@ const FeaturedThumbnailCarousel: React.FC<FeaturedThumbnailCarouselProps> = ({
     };
   }, [measureViewport]);
 
+  const openViewer = useCallback(
+    (shotIndex: number) => {
+      setViewerIndex(shotIndex);
+      setPositionIndex(shotCount + shotIndex);
+    },
+    [shotCount],
+  );
+
   useEffect(() => {
-    if (reduceMotion || hovering) return;
+    if (reduceMotion || hovering || viewerIndex !== null) return;
 
     const id = window.setInterval(() => moveBy(1), AUTO_ADVANCE_MS);
 
     return () => window.clearInterval(id);
-  }, [reduceMotion, hovering, moveBy]);
+  }, [reduceMotion, hovering, moveBy, viewerIndex]);
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -243,125 +251,137 @@ const FeaturedThumbnailCarousel: React.FC<FeaturedThumbnailCarouselProps> = ({
   }`;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.55, delay: 0.08 }}
-      className='relative mt-10 w-full'
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-    >
-      <div className='relative left-1/2 w-screen -translate-x-1/2 py-4 md:py-6'>
-        <div
-          ref={viewportRef}
-          tabIndex={0}
-          onKeyDown={onKeyDown}
-          className={`relative py-10 outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-4 focus-visible:ring-offset-bg md:py-12 ${
-            reduceMotion ? 'overflow-x-auto' : 'overflow-visible'
-          }`}
-          role='region'
-          aria-roledescription='carousel'
-          aria-label={`${project.company} product screenshots`}
-        >
-          <button
-            type='button'
-            onClick={goPrev}
-            className={`${arrowClass} left-4 md:left-10`}
-            aria-label='Previous screenshot'
-            tabIndex={hovering ? 0 : -1}
-          >
-            <ChevronLeft className='h-5 w-5' />
-          </button>
-          <button
-            type='button'
-            onClick={goNext}
-            className={`${arrowClass} right-4 md:right-10`}
-            aria-label='Next screenshot'
-            tabIndex={hovering ? 0 : -1}
-          >
-            <ChevronRight className='h-5 w-5' />
-          </button>
+    <>
+      {viewerIndex !== null && (
+        <ImageViewer
+          images={shots}
+          index={viewerIndex}
+          onIndexChange={(i) => {
+            setViewerIndex(i);
+            setPositionIndex(shotCount + i);
+          }}
+          onClose={() => setViewerIndex(null)}
+          title={project.company}
+        />
+      )}
 
-          <motion.div
-            className='flex w-max items-center gap-7'
-            animate={{ x: -trackOffset }}
-            transition={
-              reduceMotion || instantTrack
-                ? { duration: 0 }
-                : { duration: SLIDE_MS, ease: SLIDE_EASE }
-            }
-            onAnimationComplete={() => {
-              if (!reduceMotion) normalizePosition();
-            }}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.55, delay: 0.08 }}
+        className='relative mt-10 w-full'
+        onMouseEnter={() => setHovering(true)}
+        onMouseLeave={() => setHovering(false)}
+      >
+        <div className='relative left-1/2 w-screen -translate-x-1/2 py-4 md:py-6'>
+          <div
+            ref={viewportRef}
+            tabIndex={0}
+            onKeyDown={onKeyDown}
+            className={`relative py-10 outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-4 focus-visible:ring-offset-bg md:py-12 ${
+              reduceMotion ? 'overflow-x-auto' : 'overflow-visible'
+            }`}
+            role='region'
+            aria-roledescription='carousel'
+            aria-label={`${project.company} product screenshots`}
           >
-            {extendedShots.map((shot, slideIndex) => {
-              const shotIndex = slideIndex % shotCount;
-              const distance = Math.abs(slideIndex - positionIndex);
-              const isActive = slideIndex === positionIndex;
-              const scale = scaleForDistance(distance);
+            <button
+              type='button'
+              onClick={goPrev}
+              className={`${arrowClass} left-4 md:left-10`}
+              aria-label='Previous screenshot'
+              tabIndex={hovering ? 0 : -1}
+            >
+              <ChevronLeft className='h-5 w-5' />
+            </button>
+            <button
+              type='button'
+              onClick={goNext}
+              className={`${arrowClass} right-4 md:right-10`}
+              aria-label='Next screenshot'
+              tabIndex={hovering ? 0 : -1}
+            >
+              <ChevronRight className='h-5 w-5' />
+            </button>
 
-              return (
-                <div
-                  key={`${shot.src}-${slideIndex}`}
-                  className='flex w-[28rem] shrink-0 items-center justify-center md:w-[29rem]'
-                >
-                  <button
-                    type='button'
-                    onClick={() => goTo(shotIndex)}
-                    disabled={isActive}
-                    aria-label={
-                      isActive
-                        ? `Screenshot ${shotIndex + 1} of ${shotCount}, centered`
-                        : `Show screenshot ${shotIndex + 1} of ${shotCount}`
-                    }
-                    aria-current={isActive ? 'true' : undefined}
-                    aria-hidden={!isActive && distance > 2}
-                    className={`rounded-xl bg-transparent p-0 transition-opacity ${
-                      isActive
-                        ? 'cursor-default'
-                        : 'cursor-pointer hover:opacity-95'
-                    }`}
+            <motion.div
+              className='flex w-max items-center gap-7'
+              animate={{ x: -trackOffset }}
+              transition={
+                reduceMotion || instantTrack
+                  ? { duration: 0 }
+                  : { duration: SLIDE_MS, ease: SLIDE_EASE }
+              }
+              onAnimationComplete={() => {
+                if (!reduceMotion) normalizePosition();
+              }}
+            >
+              {extendedShots.map((shot, slideIndex) => {
+                const shotIndex = slideIndex % shotCount;
+                const distance = Math.abs(slideIndex - positionIndex);
+                const isActive = slideIndex === positionIndex;
+                const scale = scaleForDistance(distance);
+
+                return (
+                  <div
+                    key={`${shot.src}-${slideIndex}`}
+                    className='flex w-[28rem] shrink-0 items-center justify-center md:w-[29rem]'
                   >
-                    <motion.figure
-                      className={`overflow-visible rounded-xl shadow-[0_28px_56px_-12px_rgba(0,0,0,0.22)] ${
-                        isActive
-                          ? 'border border-line/10'
-                          : 'border border-transparent'
-                      }`}
-                      animate={{ scale }}
-                      transition={
-                        reduceMotion || instantTrack
-                          ? { duration: 0 }
-                          : { duration: SLIDE_MS, ease: SLIDE_EASE }
+                    <button
+                      type='button'
+                      onClick={() =>
+                        isActive ? openViewer(shotIndex) : goTo(shotIndex)
                       }
-                      style={{ zIndex: isActive ? 20 : 10 - distance }}
+                      aria-label={
+                        isActive
+                          ? `View screenshot ${shotIndex + 1} of ${shotCount} full size`
+                          : `Show screenshot ${shotIndex + 1} of ${shotCount}`
+                      }
+                      aria-current={isActive ? 'true' : undefined}
+                      aria-hidden={!isActive && distance > 2}
+                      className='cursor-pointer rounded-xl bg-transparent p-0 transition-opacity hover:opacity-95'
                     >
-                      <div className='h-[15rem] w-[24rem] overflow-hidden rounded-[11px] md:h-[17rem] md:w-[27rem]'>
-                        <img
-                          src={shot.src}
-                          alt={isActive ? shot.alt : ''}
-                          width={432}
-                          height={272}
-                          draggable={false}
-                          className='h-full w-full object-cover object-top'
-                          loading={
-                            index === 0 &&
-                            slideIndex >= shotCount &&
-                            slideIndex < shotCount + 3
-                              ? 'eager'
-                              : 'lazy'
-                          }
-                        />
-                      </div>
-                    </motion.figure>
-                  </button>
-                </div>
-              );
-            })}
-          </motion.div>
+                      <motion.figure
+                        className={`overflow-visible rounded-xl shadow-[0_28px_56px_-12px_rgba(0,0,0,0.22)] ${
+                          isActive
+                            ? 'border border-line/10'
+                            : 'border border-transparent'
+                        }`}
+                        animate={{ scale }}
+                        transition={
+                          reduceMotion || instantTrack
+                            ? { duration: 0 }
+                            : { duration: SLIDE_MS, ease: SLIDE_EASE }
+                        }
+                        style={{ zIndex: isActive ? 20 : 10 - distance }}
+                      >
+                        <div className='h-[15rem] w-[24rem] overflow-hidden rounded-[11px] md:h-[17rem] md:w-[27rem]'>
+                          <img
+                            src={shot.src}
+                            alt={isActive ? shot.alt : ''}
+                            width={432}
+                            height={272}
+                            draggable={false}
+                            className='h-full w-full object-cover object-top'
+                            loading={
+                              index === 0 &&
+                              slideIndex >= shotCount &&
+                              slideIndex < shotCount + 3
+                                ? 'eager'
+                                : 'lazy'
+                            }
+                          />
+                        </div>
+                      </motion.figure>
+                    </button>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </>
   );
 };

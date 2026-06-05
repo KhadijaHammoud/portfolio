@@ -5,10 +5,7 @@ type ImpactTagsProps = {
   className?: string;
 };
 
-export const ImpactTags: React.FC<ImpactTagsProps> = ({
-  tags,
-  className = '',
-}) => {
+const ImpactTags: React.FC<ImpactTagsProps> = ({ tags, className = '' }) => {
   if (!tags?.length) return null;
 
   return (
@@ -24,3 +21,5 @@ export const ImpactTags: React.FC<ImpactTagsProps> = ({
     </ul>
   );
 };
+
+export default ImpactTags;

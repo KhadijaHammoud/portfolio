@@ -6,11 +6,7 @@ type IconButtonProps = {
   label: string;
 };
 
-export const IconButton: React.FC<IconButtonProps> = ({
-  href,
-  icon,
-  label,
-}) => {
+const IconButton: React.FC<IconButtonProps> = ({ href, icon, label }) => {
   const isExternal = href.startsWith('http');
 
   return (
@@ -25,3 +21,5 @@ export const IconButton: React.FC<IconButtonProps> = ({
     </a>
   );
 };
+
+export default IconButton;

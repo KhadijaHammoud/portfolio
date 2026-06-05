@@ -1,9 +1,9 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
-import { Mail, Phone } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import React from 'react';
-import { PROFILE } from '../constants/portfolio.constants';
-import { LinkedInIcon } from './icons/LinkedInIcon';
+import { PROFILE } from '../constants';
+import { LinkedInIcon } from './icons';
 import { TextButton, TextButtonVariant } from './shared';
 
 export const Contact: React.FC = () => {
@@ -18,13 +18,13 @@ export const Contact: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6 }}
-          className='mx-auto max-w-3xl text-center flex flex-col gap-4'
+          className='mx-auto max-w-3xl text-center flex flex-col gap-4 items-center'
         >
           <div className='section-heading justify-center'>Contact</div>
           <h2 className='text-4xl font-semibold tracking-tight text-ink md:text-5xl'>
             Let's build something{' '}
             <span className='bg-gradient-to-r from-accent-soft via-accent to-accent-glow bg-clip-text text-transparent'>
-              beautiful
+              together
             </span>
             .
           </h2>
@@ -34,23 +34,14 @@ export const Contact: React.FC = () => {
             reach me is email.
           </p>
 
-          <div className='flex flex-wrap items-center justify-center gap-3'>
-            <TextButton
-              href={`mailto:${PROFILE.email}`}
-              leadingIcon={<Mail className='h-4 w-4' />}
-              showArrow
-              variant={TextButtonVariant.Primary}
-            >
-              {PROFILE.email}
-            </TextButton>
-            <TextButton
-              href={`tel:${PROFILE.phone.replace(/\s+/g, '')}`}
-              leadingIcon={<Phone className='h-4 w-4' />}
-              variant={TextButtonVariant.Secondary}
-            >
-              {PROFILE.phone}
-            </TextButton>
-          </div>
+          <TextButton
+            href={`mailto:${PROFILE.email}`}
+            leadingIcon={<Mail className='h-4 w-4' />}
+            showArrow
+            variant={TextButtonVariant.Primary}
+          >
+            {PROFILE.email}
+          </TextButton>
 
           <div className='flex items-center justify-center gap-3'>
             <TextButton

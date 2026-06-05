@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { EXPERIENCES } from '../constants/portfolio.constants';
+import { EXPERIENCES } from '../constants';
 import { Section } from './Section';
 import {
   EngagementBadges,
   ImpactTags,
+  LinkedText,
   TextButton,
   TextButtonVariant,
 } from './shared';
@@ -13,8 +14,12 @@ export const Experience: React.FC = () => {
   return (
     <Section
       eyebrow='Experience'
-      title={<>Places I've helped build.</>}
-      description='Roles and timelines — product deep-dives and UI walkthroughs live in Work.'
+      title={
+        <>
+          Places I've helped build<span className='text-accent'>.</span>
+        </>
+      }
+      description='Roles and timelines.'
       id='experience'
     >
       <ol className='relative space-y-10 border-l border-line/5 pl-6 md:pl-10'>
@@ -51,10 +56,10 @@ export const Experience: React.FC = () => {
               <p className='mt-2 text-base text-ink-muted'>{exp.location}</p>
 
               <p className='mt-4 text-base leading-relaxed text-ink-muted'>
-                {exp.summary}
+                <LinkedText>{exp.summary}</LinkedText>
               </p>
 
-              {'workSlug' in exp && exp.workSlug ? (
+              {'workSlug' in exp && exp.workSlug && (
                 <div className='mt-5'>
                   <TextButton
                     href={`#work-${exp.workSlug}`}
@@ -64,7 +69,7 @@ export const Experience: React.FC = () => {
                     View product work
                   </TextButton>
                 </div>
-              ) : null}
+              )}
             </div>
           </motion.li>
         ))}

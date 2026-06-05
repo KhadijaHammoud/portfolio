@@ -1,11 +1,21 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
+import { LANGUAGES, PROFILE } from '../constants';
 import { Section } from './Section';
-import { PROFILE, LANGUAGES } from '../constants/portfolio.constants';
+import { LinkedText } from './shared';
 
 export const About: React.FC = () => {
   return (
-    <Section eyebrow='About' title={<>A little about how I work.</>} id='about'>
+    <Section
+      eyebrow='About'
+      title={
+        <>
+          Nice to meet you<span className='text-accent'>.</span>
+        </>
+      }
+      description='A little about me.'
+      id='about'
+    >
       <div className='grid gap-10 md:grid-cols-[1.6fr_1fr]'>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -15,7 +25,9 @@ export const About: React.FC = () => {
           className='space-y-5 text-lg leading-relaxed text-ink-muted'
         >
           {PROFILE.bio.map((p, i) => (
-            <p key={i}>{p}</p>
+            <p key={i}>
+              <LinkedText>{p}</LinkedText>
+            </p>
           ))}
         </motion.div>
 

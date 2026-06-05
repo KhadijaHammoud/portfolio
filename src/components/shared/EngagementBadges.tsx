@@ -1,14 +1,12 @@
 import { ArrowUpRight } from 'lucide-react';
 import React from 'react';
-import type { EngagementBadge } from '../../constants/portfolio.constants';
+import type { EngagementBadge } from '../../types';
 
 type EngagementBadgesProps = {
   badges?: readonly EngagementBadge[];
 };
 
-export const EngagementBadges: React.FC<EngagementBadgesProps> = ({
-  badges,
-}) => {
+const EngagementBadges: React.FC<EngagementBadgesProps> = ({ badges }) => {
   if (!badges?.length) return null;
 
   return (
@@ -37,3 +35,5 @@ export const EngagementBadges: React.FC<EngagementBadgesProps> = ({
     </>
   );
 };
+
+export default EngagementBadges;

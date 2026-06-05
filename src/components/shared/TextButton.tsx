@@ -26,7 +26,7 @@ const VARIANT_CLASSES: Record<TextButtonVariant, string> = {
     'inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-4 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink',
 };
 
-export const TextButton: React.FC<TextButtonProps> = ({
+const TextButton: React.FC<TextButtonProps> = ({
   children,
   href,
   leadingIcon,
@@ -52,3 +52,5 @@ export const TextButton: React.FC<TextButtonProps> = ({
     </a>
   );
 };
+
+export default TextButton;

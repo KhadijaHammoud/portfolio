@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FileDown } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
-import { PROFILE } from '../constants/portfolio.constants';
+import { PROFILE } from '../constants';
 import { ThemeToggle } from './ThemeToggle';
 
 const LINKS = [

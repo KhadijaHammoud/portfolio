@@ -1,14 +1,18 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
+import React from 'react';
+import { EDUCATION } from '../constants';
 import { Section } from './Section';
-import { EDUCATION } from '../constants/portfolio.constants';
 
 export const Education: React.FC = () => {
   return (
     <Section
       eyebrow='Education'
-      title={<>Academic background.</>}
+      title={
+        <>
+          Academic background<span className='text-accent'>.</span>
+        </>
+      }
       id='education'
     >
       <div className='grid gap-5 md:grid-cols-2'>

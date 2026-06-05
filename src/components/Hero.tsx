@@ -1,8 +1,8 @@
 import { motion, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import React from 'react';
-import { PROFILE } from '../constants/portfolio.constants';
-import { TextButton, TextButtonVariant } from './shared';
+import { PROFILE, YEARS_OF_EXPERIENCE } from '../constants';
+import { LinkedText, TextButton, TextButtonVariant } from './shared';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -48,20 +48,15 @@ export const Hero: React.FC = () => {
           initial='hidden'
           animate='show'
           custom={1}
-          className='mt-6 max-w-4xl text-4xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-5xl md:text-7xl'
+          className='mt-6 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight text-ink sm:text-5xl md:text-6xl md:leading-[1.05]'
         >
-          Hi, I'm {PROFILE.name.split(' ')[0]}.
+          Hi, my
           <br />
-          <span className='bg-gradient-to-r from-ink via-ink to-ink-muted bg-clip-text text-transparent'>
-            I build{' '}
-          </span>
+          name is{' '}
           <span className='bg-gradient-to-r from-accent-soft via-accent to-accent-glow bg-clip-text text-transparent'>
-            fast, polished
+            {PROFILE.firstName}
           </span>
-          <span className='bg-gradient-to-r from-ink via-ink to-ink-muted bg-clip-text text-transparent'>
-            {' '}
-            web products.
-          </span>
+          .
         </motion.h1>
 
         <motion.p
@@ -69,19 +64,28 @@ export const Hero: React.FC = () => {
           initial='hidden'
           animate='show'
           custom={2}
-          className='mt-6 max-w-2xl text-lg leading-relaxed text-ink-muted'
+          className='mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted md:text-2xl md:leading-relaxed'
         >
-          {PROFILE.tagline} Currently a founding engineer at{' '}
-          <span className='text-ink'>FullyRamped</span>, previously product
-          engineer at <span className='text-ink'>Skiff</span> (acquired by
-          Notion).
+          I&apos;m a{' '}
+          <span className='font-bold text-ink'>{PROFILE.heroTaglineRole}</span>{' '}
+          {PROFILE.heroTagline}
+        </motion.p>
+
+        <motion.p
+          variants={FADE_UP}
+          initial='hidden'
+          animate='show'
+          custom={3}
+          className='mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted'
+        >
+          <LinkedText>{PROFILE.heroLead}</LinkedText>
         </motion.p>
 
         <motion.div
           variants={FADE_UP}
           initial='hidden'
           animate='show'
-          custom={3}
+          custom={4}
           className='mt-10 flex flex-wrap items-center gap-3'
         >
           <TextButton
@@ -89,10 +93,10 @@ export const Hero: React.FC = () => {
             showArrow
             variant={TextButtonVariant.Primary}
           >
-            Get in touch
+            Say hello
           </TextButton>
-          <TextButton href='#experience' variant={TextButtonVariant.Secondary}>
-            View experience
+          <TextButton href='#work' variant={TextButtonVariant.Secondary}>
+            See my work
           </TextButton>
         </motion.div>
 
@@ -102,8 +106,9 @@ export const Hero: React.FC = () => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
         >
-          <Stat label='Years of experience' value='5+' />
-          <Stat label='Zero-to-one products' value='5' />
+          <Stat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
+          <Stat label='Zero-to-one products' value='2' />
+          <Stat label='ARR from zero' value='$1M+' />
           <Stat label='Open-source stars' value='420+' />
         </motion.div>
       </div>
@@ -116,8 +121,6 @@ const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
     <div className='font-mono text-2xl font-semibold text-ink md:text-3xl'>
       {value}
     </div>
-    <div className='mt-1 text-xs uppercase tracking-wider text-ink-muted'>
-      {label}
-    </div>
+    <div className='mt-1 text-sm text-ink-muted'>{label}</div>
   </div>
 );

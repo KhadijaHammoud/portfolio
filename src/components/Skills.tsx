@@ -1,14 +1,18 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
+import { SKILLS } from '../constants';
 import { Section } from './Section';
-import { SKILLS } from '../constants/portfolio.constants';
 
 export const Skills: React.FC = () => {
   return (
     <Section
       eyebrow='Skills'
-      title={<>Tools I reach for.</>}
-      description="A snapshot of the stack I use day-to-day. I'm biased toward strongly-typed, composable systems and a pragmatic, product-first approach."
+      title={
+        <>
+          Tools I reach for<span className='text-accent'>.</span>
+        </>
+      }
+      description='A snapshot of the stack I use day-to-day.'
       id='skills'
     >
       <div className='grid gap-5 md:grid-cols-3'>
@@ -25,7 +29,9 @@ export const Skills: React.FC = () => {
               <span className='grid h-8 w-8 place-items-center rounded-lg bg-accent/15 text-sm font-semibold text-accent-soft'>
                 {idx + 1}
               </span>
-              <h3 className='text-base font-semibold text-ink'>{group.group}</h3>
+              <h3 className='text-base font-semibold text-ink'>
+                {group.group}
+              </h3>
             </div>
             <ul className='mt-5 flex flex-wrap gap-2'>
               {group.items.map((item) => (
