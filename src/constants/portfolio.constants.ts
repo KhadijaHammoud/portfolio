@@ -1,5 +1,6 @@
 import type { Experience, WorkProject } from '../types';
 import { FULLYRAMPED_SHOTS } from './fullyramped-shots';
+import { SKIFF_CALENDAR_SHOTS } from './skiff-calendar-shots';
 
 /** Shared employer / role metadata — single source for Work and Experience. */
 const SAN_FRANCISCO_REMOTE = 'San Francisco (Remote)';
@@ -294,6 +295,7 @@ export const FEATURED_WORK: WorkProject[] = [
           'Improved calendar rendering performance across the monthly and weekly views.',
           'Contributed to the Skiff Calendar iOS and Android apps, including mobile monthly and week views.',
         ],
+        shots: SKIFF_CALENDAR_SHOTS,
       },
     ],
     highlights: [

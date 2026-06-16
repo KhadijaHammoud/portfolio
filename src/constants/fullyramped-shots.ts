@@ -1,224 +1,45 @@
-/** Auto-generated from public/featured/fullyramped — 54 screenshots */
+/** Curated FullyRamped product screenshots for the Work carousel. */
 export const FULLYRAMPED_SHOTS = [
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.08.20%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (1 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.09.00%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (2 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.09.22%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (3 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.09.33%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (4 of 54)',
+    src: '/featured/fullyramped/create-simulation-modal-screenshot.png',
+    alt: 'Choose how to build',
     caption:
-      'The simulations tab on the review page displays every simulation call made by users in the organization.',
+      'Start from scratch, generate with AI, or create an AI Twin from a real sales call.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.09.49%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (5 of 54)',
+    src: '/featured/fullyramped/simulation-builder-scenario-screenshot.png',
+    alt: 'Shape the conversation',
     caption:
-      'The real calls tab on the review page shows all calls made by users in the organization that were imported from integrations.',
+      'Configure priorities, objections, and questions — with reusable Knowledge Hub snippets on the side.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.10.08%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (6 of 54)',
-    caption: 'The leaderboard shows the top performers in the organization.',
+    src: '/featured/fullyramped/simulations-library-with-open-sim-screenshot.png',
+    alt: 'Browse and launch',
+    caption:
+      'Folder-based library to find simulations, preview goals and scorecards, and start a role-play.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.10.21%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (7 of 54)',
+    src: '/featured/fullyramped/post-call-processing-screenshot.png',
+    alt: 'Review & improve',
+    caption:
+      'Post-call AI scorecards and coaching feedback with call metrics and playback.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.10.45%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (8 of 54)',
+    src: '/featured/fullyramped/analytics-leaderboard-screenshot.png',
+    alt: 'Track team progress',
+    caption:
+      'Leaderboard and filters to compare rep performance across simulations and talk time.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.11.09%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (9 of 54)',
+    src: '/featured/fullyramped/integrations-screenshot.png',
+    alt: 'Connect your stack',
+    caption:
+      'Integrations with Gong, Salesloft, and Clari to bring real calls into training workflows.',
   },
   {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.13.57%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (10 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.14.13%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (11 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.14.20%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (12 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.14.27%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (13 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.14.35%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (14 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.15.41%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (15 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.15.50%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (16 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.00%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (17 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.06%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (18 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.13%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (19 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.26%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (20 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.41%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (21 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.16.51%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (22 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.17.06%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (23 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.19.40%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (24 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.19.53%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (25 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%201.20.37%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (26 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.07.27%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (27 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.07.42%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (28 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.08.48%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (29 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.09.06%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (30 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.09.28%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (31 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.09.58%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (32 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.10.09%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (33 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.10.35%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (34 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.10.44%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (35 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.10.54%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (36 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.11.08%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (37 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.11.19%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (38 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.11.31%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (39 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.11.38%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (40 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.11.45%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (41 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.12.07%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (42 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.12.22%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (43 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.12.29%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (44 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.12.40%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (45 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.12.49%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (46 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.08%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (47 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.15%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (48 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.24%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (49 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.34%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (50 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.46%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (51 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.13.57%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (52 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.14.15%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (53 of 54)',
-  },
-  {
-    src: '/featured/fullyramped/Screenshot%202026-04-29%20at%202.14.22%E2%80%AFPM.png',
-    alt: 'FullyRamped product UI (54 of 54)',
+    src: '/featured/fullyramped/people-management-screenshot.png',
+    alt: 'Scale across the org',
+    caption:
+      'Admin tooling to invite users, assign teams, and manage access for hundreds of reps.',
   },
 ] as const;

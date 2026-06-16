@@ -3,12 +3,20 @@ export type EngagementBadge = {
   href?: string;
 };
 
+export type WorkShot = {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant?: 'mobile';
+};
+
 /** Product area within a multi-app work card (e.g. Skiff Mail). */
 export type WorkAppSection = {
   title: string;
   scope: string;
   summary?: string;
   highlights: string[];
+  shots?: readonly WorkShot[];
 };
 
 export type WorkProject = {
@@ -27,7 +35,8 @@ export type WorkProject = {
   apps?: readonly WorkAppSection[];
   /** Omit when highlights and the Skills section already cover the stack. */
   stack?: string[];
-  shots?: readonly { src: string; alt: string }[];
+  shots?: readonly WorkShot[];
+  walkthroughTitle?: string;
 };
 
 export type Experience = {

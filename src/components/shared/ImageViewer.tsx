@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 export type ViewerImage = {
   src: string;
   alt: string;
+  caption?: string;
 };
 
 type ImageViewerProps = {
@@ -81,12 +82,17 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
       <div className='relative z-10 flex w-full max-w-6xl flex-col gap-4'>
         <div className='flex items-start justify-between gap-4'>
-          <p className='min-w-0 text-sm text-ink-muted'>
-            {title}
-            <span className='mt-1 block font-mono text-xs text-ink-faint'>
+          <div className='min-w-0'>
+            <p className='text-sm font-medium text-ink'>{current.alt}</p>
+            {current.caption && (
+              <p className='mt-1 text-sm leading-relaxed text-ink-muted'>
+                {current.caption}
+              </p>
+            )}
+            <p className='mt-2 font-mono text-xs text-ink-faint'>
               {index + 1} of {count}
-            </span>
-          </p>
+            </p>
+          </div>
           <button
             type='button'
             onClick={onClose}
