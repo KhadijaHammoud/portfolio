@@ -1,7 +1,13 @@
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { motion, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
-import { PROFILE, YEARS_OF_EXPERIENCE } from '../constants';
+import { EXPERIENCES, PROFILE } from '../constants';
 import { LinkedText, TextButton, TextButtonVariant } from './shared';
+
+dayjs.extend(customParseFormat);
+
+const EXPERIENCE_START_FORMAT = 'MMM YYYY';
 
 const FADE_UP: Variants = {
   hidden: { opacity: 0, y: 16 },
@@ -15,6 +21,24 @@ const FADE_UP: Variants = {
     },
   }),
 };
+
+/** Full years since earliest role start — e.g. `"5+"` for hero stats. */
+const YEARS_OF_EXPERIENCE = (() => {
+  const earliestStart = EXPERIENCES.reduce(
+    (earliest, exp) =>
+      dayjs(exp.start, EXPERIENCE_START_FORMAT).isBefore(
+        dayjs(earliest, EXPERIENCE_START_FORMAT),
+      )
+        ? exp.start
+        : earliest,
+    EXPERIENCES[0].start,
+  );
+  const years = dayjs().diff(
+    dayjs(earliestStart, EXPERIENCE_START_FORMAT),
+    'year',
+  );
+  return `${years}+`;
+})();
 
 const Hero = () => {
   return (

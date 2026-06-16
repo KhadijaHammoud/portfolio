@@ -31,7 +31,7 @@ const Experience = () => {
             transition={{ duration: 0.55, delay: i * 0.06 }}
             className='group relative'
           >
-            <span className='absolute left-0 top-8 z-10 -translate-x-6 md:-translate-x-10'>
+            <span className='absolute left-0 top-8 z-10 flex w-0 -translate-x-6 justify-center md:-translate-x-10'>
               <span className='grid h-3.5 w-3.5 place-items-center'>
                 <span className='absolute h-3.5 w-3.5 rounded-full bg-accent/20' />
                 <span className='h-2 w-2 rounded-full bg-accent shadow-[0_0_16px_2px_rgba(196,92,66,0.55)]' />

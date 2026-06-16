@@ -350,21 +350,6 @@ export const EXPERIENCES: Experience[] = [
   ),
 ];
 
-/** Full years since earliest role start — e.g. `"5+"` for hero stats. */
-export const YEARS_OF_EXPERIENCE = (() => {
-  const earliestStart = EXPERIENCES.reduce(
-    (earliest, exp) =>
-      new Date(exp.start) < new Date(earliest) ? exp.start : earliest,
-    EXPERIENCES[0].start,
-  );
-  const start = new Date(earliestStart);
-  const now = new Date();
-  const months =
-    (now.getFullYear() - start.getFullYear()) * 12 +
-    (now.getMonth() - start.getMonth());
-  return `${Math.floor(months / 12)}+`;
-})();
-
 export const EDUCATION = [
   {
     school: 'German University in Cairo',

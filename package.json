@@ -12,6 +12,7 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "dayjs": "^1.11.21",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.460.0",
     "react": "^19.2.5",
