@@ -64,14 +64,14 @@ export const OpenSource: React.FC = () => {
               <ArrowUpRight className='h-4 w-4' />
             </a>
           </div>
-          <p className='mt-4 max-w-3xl text-base leading-relaxed text-ink-muted'>
+          <p className='mt-4 text-base leading-relaxed text-ink-muted'>
             <LinkedText>{OPEN_SOURCE.summary}</LinkedText>
           </p>
           <ul className='mt-5 space-y-2.5'>
             {OPEN_SOURCE.highlights.map((h) => (
               <li
                 key={h}
-                className='relative max-w-3xl pl-5 text-base leading-relaxed text-ink-muted'
+                className='relative pl-5 text-base leading-relaxed text-ink-muted'
               >
                 <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
                 <LinkedText>{h}</LinkedText>

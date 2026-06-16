@@ -3,9 +3,12 @@ export type EngagementBadge = {
   href?: string;
 };
 
-export type WorkShot = {
-  src: string;
-  alt: string;
+/** Product area within a multi-app work card (e.g. Skiff Mail). */
+export type WorkAppSection = {
+  title: string;
+  scope: string;
+  summary?: string;
+  highlights: string[];
 };
 
 export type WorkProject = {
@@ -18,9 +21,13 @@ export type WorkProject = {
   /** Short contextual labels (e.g. acquisition); optional link per badge. */
   badges?: readonly EngagementBadge[];
   summary: string;
-  highlights: string[];
-  stack: string[];
-  shots?: readonly WorkShot[];
+  /** Flat bullets for single-product cards. */
+  highlights?: string[];
+  /** Grouped bullets when one employer card covers multiple apps. */
+  apps?: readonly WorkAppSection[];
+  /** Omit when highlights and the Skills section already cover the stack. */
+  stack?: string[];
+  shots?: readonly { src: string; alt: string }[];
 };
 
 export type Experience = {

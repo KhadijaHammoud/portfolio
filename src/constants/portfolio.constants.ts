@@ -64,17 +64,27 @@ function toWorkProject(
   details: Omit<
     WorkProject,
     'slug' | 'company' | 'scope' | 'period' | 'impacts' | 'badges'
-  >,
+  > & {
+    slug: string;
+    scope: string;
+  },
 ): WorkProject {
+  const { slug, scope, ...rest } = details;
   return {
-    slug: core.slug,
+    slug,
     company: core.company,
-    scope: core.scope,
+    scope,
     period: core.start + ' - ' + core.end,
     ...('impacts' in core && core.impacts ? { impacts: core.impacts } : {}),
     ...('badges' in core && core.badges ? { badges: core.badges } : {}),
-    ...details,
+    ...rest,
   };
+}
+
+function toSkiffWorkProject(
+  details: Parameters<typeof toWorkProject>[1],
+): WorkProject {
+  return toWorkProject(ENGAGEMENT_CORE.skiff, details);
 }
 
 export const PROFILE = {
@@ -123,6 +133,8 @@ enum Skill {
   DaisyUI = 'DaisyUI',
   StyledComponents = 'styled-components',
   RadixUI = 'Radix UI',
+  ProseMirror = 'ProseMirror',
+  Yjs = 'Yjs',
   FramerMotion = 'Framer Motion',
   Recharts = 'Recharts',
   WebRTC = 'WebRTC (Daily.co)',
@@ -165,6 +177,8 @@ export const SKILLS = [
       Skill.DaisyUI,
       Skill.StyledComponents,
       Skill.RadixUI,
+      Skill.ProseMirror,
+      Skill.Yjs,
       Skill.FramerMotion,
       Skill.Recharts,
     ],
@@ -206,14 +220,20 @@ export const OPEN_SOURCE = {
 
 export const FEATURED_WORK: WorkProject[] = [
   toWorkProject(ENGAGEMENT_CORE.fullyramped, {
+    slug: ENGAGEMENT_CORE.fullyramped.slug,
+    scope: ENGAGEMENT_CORE.fullyramped.scope,
     title: 'FullyRamped',
     summary:
-      'FullyRamped helps revenue teams rehearse real conversations before they hit the pipeline — AI role-plays, scored practice calls, and org-wide visibility into who is ready to sell.',
+      'FullyRamped is an AI sales enablement platform where reps practice live calls against AI prospects, review real game tape, and close skill gaps with coaching and analytics.',
     highlights: [
-      'Built the product UI from scratch: simulations library, builder, review, analytics, and settings.',
-      'Designed scalable, offline-aware state and data-fetching architecture for enterprise orgs.',
-      'Integrated real-time video and audio with AI scoring, coaching rubrics, and synced transcripts.',
-      'Developed a reusable component system; partnered with founders, design, and backend on product direction.',
+      'Built the customer-facing web app from 0→1 as the founding frontend engineer on a greenfield React/TypeScript codebase.',
+      'Integrated real-time audio and video web calls with Daily.co for live AI role-plays.',
+      'Implemented real-time AI scoring and coaching for role-plays, with feedback surfaced in the post-call review flow.',
+      'Created CRM integration UIs for Gong, Salesloft, and Clari to browse and import calls into practice and review workflows.',
+      'Built the simulation designer, a multi-step flow builder for creating and configuring AI prospects.',
+      'Developed the sales content library (Knowledge Hub) — internal tooling for managing sales content and evaluation templates.',
+      'Built a reusable component system that powers layouts, tables, filters, and modals across the product.',
+      'Partnered with product on direction from early prototype through launch — shaping core flows and UX decisions.',
     ],
     stack: [
       Skill.React,
@@ -232,14 +252,51 @@ export const FEATURED_WORK: WorkProject[] = [
     ],
     shots: FULLYRAMPED_SHOTS,
   }),
-  toWorkProject(ENGAGEMENT_CORE.skiff, {
-    title: 'Skiff Pages, Mail, Calendar, and Drive',
+  toSkiffWorkProject({
+    slug: ENGAGEMENT_CORE.skiff.slug,
+    scope: ENGAGEMENT_CORE.skiff.scope,
+    title: 'Skiff',
     summary:
-      'Skiff was a privacy-first productivity suite whose mission was to bring freedom to the internet using the latest in privacy, cryptography, and decentralization technologies.',
+      'Skiff was a privacy-first productivity suite built in a React/TypeScript monorepo with zero-knowledge client-side encryption.',
+    apps: [
+      {
+        title: 'Skiff Pages / Drive',
+        scope: 'Encrypted collaborative documents & file storage',
+        summary:
+          'Users create and edit rich-text pages in a ProseMirror-based editor with real-time collaboration (Yjs), organize files in a folder dashboard, share with granular permissions, and export content — with document data encrypted end-to-end on the client.',
+        highlights: [
+          'Worked on rich document editing features, including tables, code blocks, comments, and Markdown/PDF export.',
+          'Built the document version history manager, letting users browse snapshots, compare versions, and restore prior document states.',
+          'Contributed to the Skiff Drive file dashboard, including folder navigation, sharing permissions, and public link flows.',
+          'Contributed to the Skiff Pages and Drive iOS and Android apps, including the native WebView editor integration.',
+        ],
+      },
+      {
+        title: 'Skiff Mail',
+        scope: 'End-to-end encrypted email client',
+        summary:
+          'Users read and manage threads in a virtualized inbox, compose rich-text mail with client-side encryption, search locally over decrypted content, and configure aliases, forwarding, filters, and security settings — all without plaintext leaving the browser.',
+        highlights: [
+          'Contributed to the mail compose and inbox experience, including rich-text editing, thread reading, labels, and bulk actions.',
+          'Worked on power-user mail workflows, including keyboard shortcuts, schedule send, and mail import from Gmail and Outlook.',
+          'Contributed to the Skiff Mail iOS and Android apps, including mobile-optimized inbox, thread, and settings flows.',
+        ],
+      },
+      {
+        title: 'Skiff Calendar',
+        scope: 'Local-first encrypted calendar',
+        summary:
+          'Users view and manage events in weekly and monthly layouts, create and edit recurring events, invite attendees, and sync scheduling over encrypted Skiff Mail (ICS). Events are stored encrypted in IndexedDB and decrypted in a Web Worker, with bidirectional sync to keep devices consistent.',
+        highlights: [
+          'Built the monthly calendar view, including day cells, event cards, and multi-day event rendering across the grid.',
+          'Worked on drag-to-create/resize events, recurring events, attendee management, and reminders.',
+          'Fixed timezone handling across the calendar, including ICS parsing, timezone picker UX, and correct day highlighting across timezones.',
+          'Improved calendar rendering performance across the monthly and weekly views.',
+          'Contributed to the Skiff Calendar iOS and Android apps, including mobile monthly and week views.',
+        ],
+      },
+    ],
     highlights: [
-      'Built responsive React features for web and mobile across the productivity suite.',
-      'Scaled core product features for millions of users.',
-      'Resolved performance bottlenecks and led key architectural improvements.',
       'Led engineering on Skiff UI toward open-source — see the [Open Source](#open-source) section for public design system work.',
     ],
     stack: [
@@ -248,10 +305,14 @@ export const FEATURED_WORK: WorkProject[] = [
       Skill.StyledComponents,
       Skill.ApolloClient,
       Skill.GraphQL,
+      Skill.ProseMirror,
+      Skill.Yjs,
       Skill.E2EEncryption,
     ],
   }),
   toWorkProject(ENGAGEMENT_CORE.loanos, {
+    slug: ENGAGEMENT_CORE.loanos.slug,
+    scope: ENGAGEMENT_CORE.loanos.scope,
     title: 'LoanOS',
     summary:
       'LoanOS is a blockchain-based platform that automates manual loan processing and trade approvals, reducing settlement times for institutional lenders.',

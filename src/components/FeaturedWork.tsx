@@ -1,5 +1,5 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import React, {
   useCallback,
   useEffect,
@@ -9,7 +9,7 @@ import React, {
   useState,
 } from 'react';
 import { FEATURED_WORK } from '../constants';
-import type { WorkProject } from '../types';
+import type { WorkAppSection, WorkProject } from '../types';
 import {
   EngagementBadges,
   ImageViewer,
@@ -101,27 +101,31 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             {project.title}
           </h3>
           <p className='mt-1 text-base text-ink-muted'>{project.scope}</p>
-          <p className='mt-4 max-w-3xl text-base leading-relaxed text-ink-muted'>
+          <p className='mt-4 text-base leading-relaxed text-ink-muted'>
             <LinkedText>{project.summary}</LinkedText>
           </p>
-          <ul className='mt-5 space-y-2.5'>
-            {project.highlights.map((h) => (
-              <li
-                key={h}
-                className='relative max-w-3xl pl-5 text-base leading-relaxed text-ink-muted'
-              >
-                <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
-                <LinkedText>{h}</LinkedText>
-              </li>
-            ))}
-          </ul>
-          <div className='mt-5 flex flex-wrap gap-2'>
-            {project.stack.map((s) => (
-              <span key={s} className='chip'>
-                {s}
-              </span>
-            ))}
-          </div>
+          {project.apps && project.apps.length > 0 && (
+            <WorkAppSections apps={project.apps} projectSlug={project.slug} />
+          )}
+          {project.highlights && project.highlights.length > 0 && (
+            <WorkHighlightList
+              items={project.highlights}
+              className={
+                project.apps && project.apps.length > 0
+                  ? 'mt-8 border-t border-line/5 pt-8'
+                  : 'mt-5'
+              }
+            />
+          )}
+          {project.stack && project.stack.length > 0 && (
+            <div className='mt-5 flex flex-wrap gap-2'>
+              {project.stack.map((s) => (
+                <span key={s} className='chip'>
+                  {s}
+                </span>
+              ))}
+            </div>
+          )}
         </motion.article>
       </div>
 
@@ -131,6 +135,109 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
     </div>
   );
 };
+
+const WorkAppSections: React.FC<{
+  apps: readonly WorkAppSection[];
+  projectSlug: string;
+}> = ({ apps, projectSlug }) => {
+  const reduceMotion = useReducedMotion();
+  const [openIndexes, setOpenIndexes] = useState<Set<number>>(
+    () => new Set([]),
+  );
+
+  const toggle = (index: number) => {
+    setOpenIndexes((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+      return next;
+    });
+  };
+
+  return (
+    <div className='mt-8 space-y-2 border-t border-line/5 pt-8'>
+      {apps.map((app, i) => {
+        const isOpen = openIndexes.has(i);
+        const panelId = `work-${projectSlug}-app-${i}`;
+
+        return (
+          <div
+            key={app.title}
+            className='overflow-hidden rounded-xl border border-line/5 bg-line/[0.02]'
+          >
+            <button
+              type='button'
+              id={`${panelId}-trigger`}
+              onClick={() => toggle(i)}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
+              className='flex w-full items-start justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-line/[0.03] md:px-5 md:py-5'
+            >
+              <div className='min-w-0'>
+                <h4 className='text-lg font-semibold tracking-tight text-ink md:text-xl'>
+                  {app.title}
+                </h4>
+                <p className='mt-1 text-sm text-ink-muted'>{app.scope}</p>
+              </div>
+              <ChevronDown
+                aria-hidden
+                className={`mt-0.5 h-5 w-5 shrink-0 text-ink-muted transition-transform duration-200 ${
+                  isOpen ? 'rotate-180' : ''
+                }`}
+              />
+            </button>
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  id={panelId}
+                  role='region'
+                  aria-labelledby={`${panelId}-trigger`}
+                  initial={reduceMotion ? false : { height: 0, opacity: 0 }}
+                  animate={{ height: 'auto', opacity: 1 }}
+                  exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  className='overflow-hidden'
+                >
+                  <div className='border-t border-line/5 px-4 pb-5 pt-4 md:px-5 md:pb-6'>
+                    {app.summary && (
+                      <p className='text-base leading-relaxed text-ink-muted'>
+                        <LinkedText>{app.summary}</LinkedText>
+                      </p>
+                    )}
+                    <WorkHighlightList
+                      items={app.highlights}
+                      className={app.summary ? 'mt-4' : ''}
+                    />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const WorkHighlightList: React.FC<{
+  items: readonly string[];
+  className?: string;
+}> = ({ items, className = '' }) => (
+  <ul className={`space-y-2.5 ${className}`}>
+    {items.map((h) => (
+      <li
+        key={h}
+        className='relative pl-5 text-base leading-relaxed text-ink-muted'
+      >
+        <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
+        <LinkedText>{h}</LinkedText>
+      </li>
+    ))}
+  </ul>
+);
 
 type FeaturedThumbnailCarouselProps = {
   project: WorkProject;
