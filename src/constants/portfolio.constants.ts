@@ -209,10 +209,11 @@ export const OPEN_SOURCE = {
   summary:
     'Led the engineering revamp that prepared Skiff UI, a React component library, for open-sourcing, turning an internal component library into a polished, public project adopted by the community.',
   highlights: [
-    'Served as a main contributor on the open-source project.',
-    'Built and refactored core components, improved public APIs, and enhanced code quality.',
-    'Worked closely with design to align every component with the Skiff UI design system.',
-    'Shipped foundational features that improved usability, developer experience, and community adoption.',
+    'Led engineering on the open-source release of Skiff UI.',
+    'Built missing components alongside design to round out the library ahead of release.',
+    'Reshaped core components around cleaner APIs and a more intentional developer experience.',
+    'Prepared the codebase for the public by cutting internal-only complexity from the library.',
+    'Collaborated with design to turn the Skiff UI system into a cohesive, production-ready component set.',
   ],
   stack: [Skill.React, Skill.TypeScript, Skill.StyledComponents],
   stars: '420+',
