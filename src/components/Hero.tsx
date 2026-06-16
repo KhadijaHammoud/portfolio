@@ -106,7 +106,7 @@ const Hero = () => {
           className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
         >
           <Stat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
-          <Stat label='Zero-to-one products' value='2' />
+          <Stat label='Users at scale' value='2M+' />
           <Stat label='ARR from zero' value='$1M+' />
           <Stat label='Open-source stars' value='420+' />
         </motion.div>
