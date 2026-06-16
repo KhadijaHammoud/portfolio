@@ -95,8 +95,8 @@ export const Hero: React.FC = () => {
           >
             Say hello
           </TextButton>
-          <TextButton href='#work' variant={TextButtonVariant.Secondary}>
-            See my work
+          <TextButton href='#experience' variant={TextButtonVariant.Secondary}>
+            See my experience
           </TextButton>
         </motion.div>
 
