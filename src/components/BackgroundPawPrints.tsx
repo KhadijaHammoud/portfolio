@@ -1,6 +1,12 @@
 import { useReducedMotion } from 'framer-motion';
 import { PawPrint } from 'lucide-react';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 interface Point {
   x: number;
@@ -156,7 +162,7 @@ interface SpotlightState {
   opacity: number;
 }
 
-export const BackgroundPawPrints: React.FC = () => {
+const BackgroundPawPrints = () => {
   const reduceMotion = useReducedMotion();
   const [path, setPath] = useState(generateRandomPath);
   const [walkId, setWalkId] = useState(0);
@@ -212,11 +218,7 @@ export const BackgroundPawPrints: React.FC = () => {
   useEffect(() => {
     if (reduceMotion) return;
 
-    const dropPaw = (
-      point: Point,
-      angleDeg: number,
-      speedPxPerMs: number,
-    ) => {
+    const dropPaw = (point: Point, angleDeg: number, speedPxPerMs: number) => {
       const perpRad = ((angleDeg + 90) * Math.PI) / 180;
       const side = pawSideRef.current;
       pawSideRef.current *= -1;
@@ -332,21 +334,36 @@ export const BackgroundPawPrints: React.FC = () => {
   useEffect(() => {
     if (reduceMotion || followsCursor) return;
 
-    const id = window.setInterval(() => {
-      const nextPath = generateRandomPath();
-      const nextWalk = buildCrossingWalk(nextPath);
-      beginAutonomousSpotlight(nextPath, nextWalk.crossingDuration);
-      setPath(nextPath);
-      setWalkId((walk) => walk + 1);
-    }, cycleSecondsForStepCount(walk.steps.length) * 1000);
+    const id = window.setInterval(
+      () => {
+        const nextPath = generateRandomPath();
+        const nextWalk = buildCrossingWalk(nextPath);
+        beginAutonomousSpotlight(nextPath, nextWalk.crossingDuration);
+        setPath(nextPath);
+        setWalkId((walk) => walk + 1);
+      },
+      cycleSecondsForStepCount(walk.steps.length) * 1000,
+    );
 
     return () => window.clearInterval(id);
-  }, [reduceMotion, followsCursor, walk.steps.length, beginAutonomousSpotlight]);
+  }, [
+    reduceMotion,
+    followsCursor,
+    walk.steps.length,
+    beginAutonomousSpotlight,
+  ]);
 
   useEffect(() => {
     if (reduceMotion || followsCursor) return;
     beginAutonomousSpotlight(path, walk.crossingDuration);
-  }, [walkId, path, walk.crossingDuration, reduceMotion, followsCursor, beginAutonomousSpotlight]);
+  }, [
+    walkId,
+    path,
+    walk.crossingDuration,
+    reduceMotion,
+    followsCursor,
+    beginAutonomousSpotlight,
+  ]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -366,8 +383,11 @@ export const BackgroundPawPrints: React.FC = () => {
           opacity: 1,
         }));
       } else if (spotlightModeRef.current === 'autonomous') {
-        const { path: autoPath, crossingDuration, startedAt } =
-          autonomousWalkRef.current;
+        const {
+          path: autoPath,
+          crossingDuration,
+          startedAt,
+        } = autonomousWalkRef.current;
         const elapsed = (now - startedAt) / 1000;
 
         if (elapsed >= crossingDuration) {
@@ -445,10 +465,7 @@ const DroppedPawMarker: React.FC<{
 }> = ({ paw, reduceMotion, onComplete }) => {
   useEffect(() => {
     if (reduceMotion) return;
-    const id = window.setTimeout(
-      () => onComplete(paw.id),
-      paw.duration * 1000,
-    );
+    const id = window.setTimeout(() => onComplete(paw.id), paw.duration * 1000);
     return () => window.clearTimeout(id);
   }, [paw.id, paw.duration, onComplete, reduceMotion]);
 
@@ -463,9 +480,7 @@ const DroppedPawMarker: React.FC<{
             reduceMotion ? 'opacity-[0.12]' : 'animate-paw-print-step'
           }`}
           style={
-            reduceMotion
-              ? undefined
-              : { animationDuration: `${paw.duration}s` }
+            reduceMotion ? undefined : { animationDuration: `${paw.duration}s` }
           }
         >
           <PawPrint
@@ -515,3 +530,5 @@ const AutonomousPawMarker: React.FC<{
     </div>
   </div>
 );
+
+export default BackgroundPawPrints;

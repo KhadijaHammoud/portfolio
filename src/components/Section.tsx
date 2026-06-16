@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import React from 'react';
 
-type Props = {
+type SectionProps = {
   children: React.ReactNode;
   eyebrow: string;
   title: React.ReactNode;
@@ -9,13 +9,13 @@ type Props = {
   id?: string;
 };
 
-export const Section: React.FC<Props> = ({
+const Section = ({
   children,
   eyebrow,
   title,
   description,
   id,
-}) => {
+}: SectionProps) => {
   return (
     <section id={id} className='relative py-24 md:py-32'>
       <div className='container-page'>
@@ -41,3 +41,5 @@ export const Section: React.FC<Props> = ({
     </section>
   );
 };
+
+export default Section;

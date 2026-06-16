@@ -1,1 +1,1 @@
-export { default as FeaturedWork } from './FeaturedWork';
+export { default } from './FeaturedWork';

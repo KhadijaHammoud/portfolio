@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { FileDown } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PROFILE } from '../constants';
-import { ThemeToggle } from './ThemeToggle';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { href: '#about', label: 'About' },
@@ -14,7 +14,7 @@ const LINKS = [
   { href: '#contact', label: 'Contact' },
 ];
 
-export const Navbar: React.FC = () => {
+const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeId, setActiveId] = useState<string>('');
 
@@ -141,3 +141,5 @@ export const Navbar: React.FC = () => {
     </motion.header>
   );
 };
+
+export default Navbar;

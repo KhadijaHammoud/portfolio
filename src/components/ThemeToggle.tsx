@@ -1,9 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
-import React from 'react';
 import { useTheme } from '../theme';
 
-export const ThemeToggle: React.FC = () => {
+const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === 'dark';
 
@@ -34,3 +33,5 @@ export const ThemeToggle: React.FC = () => {
     </button>
   );
 };
+
+export default ThemeToggle;

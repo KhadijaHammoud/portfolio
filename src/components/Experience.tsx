@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import { EXPERIENCES } from '../constants';
-import { Section } from './Section';
+import Section from './Section';
 import {
   EngagementBadges,
   ImpactTags,
@@ -10,7 +9,7 @@ import {
   TextButtonVariant,
 } from './shared';
 
-export const Experience: React.FC = () => {
+const Experience = () => {
   return (
     <Section
       eyebrow='Experience'
@@ -79,3 +78,5 @@ export const Experience: React.FC = () => {
     </Section>
   );
 };
+
+export default Experience;

@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import { LANGUAGES, PROFILE } from '../constants';
-import { Section } from './Section';
+import Section from './Section';
 import { LinkedText } from './shared';
 
-export const About: React.FC = () => {
+const About = () => {
   return (
     <Section
       eyebrow='About'
@@ -69,10 +68,7 @@ export const About: React.FC = () => {
   );
 };
 
-const InfoRow: React.FC<{ label: string; value: string }> = ({
-  label,
-  value,
-}) => (
+const InfoRow = ({ label, value }: { label: string; value: string }) => (
   <div>
     <div className='text-xs uppercase tracking-wider text-ink-muted'>
       {label}
@@ -80,3 +76,5 @@ const InfoRow: React.FC<{ label: string; value: string }> = ({
     <div className='mt-1 text-base text-ink'>{value}</div>
   </div>
 );
+
+export default About;

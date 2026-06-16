@@ -1,12 +1,11 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
-import React from 'react';
 import { PROFILE } from '../constants';
 import { LinkedInIcon } from './icons';
 import { TextButton, TextButtonVariant } from './shared';
 
-export const Contact: React.FC = () => {
+const Contact = () => {
   return (
     <section id='contact' className='relative py-24 md:py-36'>
       <div className='pointer-events-none absolute inset-0 -z-10'>
@@ -66,3 +65,5 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
+
+export default Contact;

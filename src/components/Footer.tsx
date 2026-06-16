@@ -1,7 +1,6 @@
-import React from 'react';
 import { PROFILE } from '../constants';
 
-export const Footer: React.FC = () => {
+const Footer = () => {
   const year = new Date().getFullYear();
   return (
     <footer className='border-t border-line/5 py-10'>
@@ -15,3 +14,5 @@ export const Footer: React.FC = () => {
     </footer>
   );
 };
+
+export default Footer;

@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import { SKILLS } from '../constants';
-import { Section } from './Section';
+import Section from './Section';
 
-export const Skills: React.FC = () => {
+const Skills = () => {
   return (
     <Section
       eyebrow='Skills'
@@ -46,3 +45,5 @@ export const Skills: React.FC = () => {
     </Section>
   );
 };
+
+export default Skills;

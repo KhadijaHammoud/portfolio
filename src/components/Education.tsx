@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { GraduationCap } from 'lucide-react';
-import React from 'react';
 import { EDUCATION } from '../constants';
-import { Section } from './Section';
+import Section from './Section';
 
-export const Education: React.FC = () => {
+const Education = () => {
   return (
     <Section
       eyebrow='Education'
@@ -44,3 +43,5 @@ export const Education: React.FC = () => {
     </Section>
   );
 };
+
+export default Education;

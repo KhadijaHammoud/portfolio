@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Star } from 'lucide-react';
-import React from 'react';
 import { OPEN_SOURCE } from '../constants';
 import { EngagementBadges, ImpactTags, LinkedText } from './shared';
 
-export const OpenSource: React.FC = () => {
+const OpenSource = () => {
   return (
     <section id='open-source' className='relative py-24 md:py-32'>
       <div className='container-page mb-12 md:mb-16'>
@@ -90,3 +89,5 @@ export const OpenSource: React.FC = () => {
     </section>
   );
 };
+
+export default OpenSource;

@@ -1,6 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
-import React from 'react';
 import { PROFILE, YEARS_OF_EXPERIENCE } from '../constants';
 import { LinkedText, TextButton, TextButtonVariant } from './shared';
 
@@ -17,7 +16,7 @@ const FADE_UP: Variants = {
   }),
 };
 
-export const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <section
       id='top'
@@ -116,7 +115,7 @@ export const Hero: React.FC = () => {
   );
 };
 
-const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
+const Stat = ({ label, value }: { label: string; value: string }) => (
   <div className='flex-1 bg-bg-soft/70 px-5 py-6'>
     <div className='font-mono text-2xl font-semibold text-ink md:text-3xl'>
       {value}
@@ -124,3 +123,5 @@ const Stat: React.FC<{ label: string; value: string }> = ({ label, value }) => (
     <div className='mt-1 text-sm text-ink-muted'>{label}</div>
   </div>
 );
+
+export default Hero;

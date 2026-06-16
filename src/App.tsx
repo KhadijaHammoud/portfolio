@@ -1,17 +1,16 @@
-import React from 'react';
-import { About } from './components/About';
-import { BackgroundPawPrints } from './components/BackgroundPawPrints';
-import { Contact } from './components/Contact';
-import { Education } from './components/Education';
-import { Experience } from './components/Experience';
-import { FeaturedWork } from './components/FeaturedWork';
-import { Footer } from './components/Footer';
-import { Hero } from './components/Hero';
-import { Navbar } from './components/Navbar';
-import { OpenSource } from './components/OpenSource';
-import { Skills } from './components/Skills';
+import About from './components/About';
+import BackgroundPawPrints from './components/BackgroundPawPrints';
+import Contact from './components/Contact';
+import Education from './components/Education';
+import Experience from './components/Experience';
+import FeaturedWork from './components/FeaturedWork';
+import Footer from './components/Footer';
+import Hero from './components/Hero';
+import Navbar from './components/Navbar';
+import OpenSource from './components/OpenSource';
+import Skills from './components/Skills';
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <div className='relative min-h-screen text-ink'>
       <BackgroundPawPrints />
