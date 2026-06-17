@@ -20,17 +20,14 @@ const ThemeContext = createContext<ThemeContextValue | null>(null);
 const STORAGE_KEY = 'theme';
 
 function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark';
+  if (typeof window === 'undefined') return 'light';
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'light' || stored === 'dark') return stored;
   } catch {
     // ignore storage access failures (e.g. privacy mode)
   }
-  const prefersLight = window.matchMedia(
-    '(prefers-color-scheme: light)',
-  ).matches;
-  return prefersLight ? 'light' : 'dark';
+  return 'light';
 }
 
 interface ThemeProviderProps {
@@ -50,23 +47,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
       // ignore storage access failures
     }
   }, [theme]);
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-color-scheme: light)');
-    const onChange = (e: MediaQueryListEvent) => {
-      let stored: string | null = null;
-      try {
-        stored = window.localStorage.getItem(STORAGE_KEY);
-      } catch {
-        // ignore
-      }
-      if (stored !== 'light' && stored !== 'dark') {
-        setThemeState(e.matches ? 'light' : 'dark');
-      }
-    };
-    media.addEventListener('change', onChange);
-    return () => media.removeEventListener('change', onChange);
-  }, []);
 
   const setTheme = useCallback((t: Theme) => setThemeState(t), []);
   const toggleTheme = useCallback(
