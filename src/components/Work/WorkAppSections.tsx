@@ -3,20 +3,20 @@ import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { WorkAppSection } from '../../types';
 import { LinkedText } from '../shared';
-import FeaturedWorkWalkthroughSection from './FeaturedWalkthroughSection';
-import WorkHighlightList from './WorkHighlights';
+import WorkHighlightList from './WorkHighlightList';
+import WorkWalkthroughSection from './WorkWalkthroughSection';
 
-type FeaturedAppSectionsProps = {
+type WorkAppSectionsProps = {
   apps: readonly WorkAppSection[];
   projectSlug: string;
   company: string;
 };
 
-const FeaturedAppSections: React.FC<FeaturedAppSectionsProps> = ({
+const WorkAppSections = ({
   apps,
   projectSlug,
   company,
-}) => {
+}: WorkAppSectionsProps) => {
   const reduceMotion = useReducedMotion();
   const [openIndexes, setOpenIndexes] = useState<Set<number>>(
     () => new Set([]),
@@ -106,7 +106,7 @@ const FeaturedAppSections: React.FC<FeaturedAppSectionsProps> = ({
                       className={app.summary ? 'mt-4' : ''}
                     />
                     {hasShots && (
-                      <FeaturedWorkWalkthroughSection
+                      <WorkWalkthroughSection
                         shots={app.shots!}
                         viewerTitle={`${company} — ${app.title}`}
                         panelId={`${panelId}-walkthrough`}
@@ -127,4 +127,4 @@ const FeaturedAppSections: React.FC<FeaturedAppSectionsProps> = ({
   );
 };
 
-export default FeaturedAppSections;
+export default WorkAppSections;

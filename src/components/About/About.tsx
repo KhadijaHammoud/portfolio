@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { LANGUAGES, PROFILE } from '../constants';
-import Section from './Section';
-import { LinkedText } from './shared';
+import { LANGUAGES, PROFILE } from '../../constants';
+import Section from '../Section';
+import { LinkedText } from '../shared';
+import AboutInfoRow from './AboutInfoRow';
 
 const About = () => {
   return (
@@ -37,12 +38,12 @@ const About = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className='card space-y-6 p-6'
         >
-          <InfoRow label='Based in' value={PROFILE.location} />
-          <InfoRow
+          <AboutInfoRow label='Based in' value={PROFILE.location} />
+          <AboutInfoRow
             label='Current role'
             value='Founding Engineer at FullyRamped'
           />
-          <InfoRow
+          <AboutInfoRow
             label='Focus'
             value='Frontend · Architecture · Performance'
           />
@@ -67,14 +68,5 @@ const About = () => {
     </Section>
   );
 };
-
-const InfoRow = ({ label, value }: { label: string; value: string }) => (
-  <div>
-    <div className='text-xs uppercase tracking-wider text-ink-muted'>
-      {label}
-    </div>
-    <div className='mt-1 text-base text-ink'>{value}</div>
-  </div>
-);
 
 export default About;

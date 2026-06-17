@@ -2,8 +2,9 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { motion, type Variants } from 'framer-motion';
 import { MapPin } from 'lucide-react';
-import { EXPERIENCES, PROFILE } from '../constants';
-import { LinkedText, TextButton, TextButtonVariant } from './shared';
+import { EXPERIENCES, PROFILE } from '../../constants';
+import { LinkedText, TextButton, TextButtonVariant } from '../shared';
+import HeroStat from './HeroStat';
 
 dayjs.extend(customParseFormat);
 
@@ -129,23 +130,14 @@ const Hero = () => {
           transition={{ delay: 0.9, duration: 0.8 }}
           className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
         >
-          <Stat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
-          <Stat label='Users at scale' value='2M+' />
-          <Stat label='ARR from zero' value='$1M+' />
-          <Stat label='Open-source stars' value='420+' />
+          <HeroStat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
+          <HeroStat label='Users at scale' value='2M+' />
+          <HeroStat label='ARR from zero' value='$1M+' />
+          <HeroStat label='Open-source stars' value='420+' />
         </motion.div>
       </div>
     </section>
   );
 };
-
-const Stat = ({ label, value }: { label: string; value: string }) => (
-  <div className='flex-1 bg-bg-soft/70 px-5 py-6'>
-    <div className='font-mono text-2xl font-semibold text-ink md:text-3xl'>
-      {value}
-    </div>
-    <div className='mt-1 text-sm text-ink-muted'>{label}</div>
-  </div>
-);
 
 export default Hero;

@@ -1,14 +1,14 @@
 import { LinkedText } from '../shared';
 
-interface WorkHighlightListProps {
+type WorkHighlightListProps = {
   items: readonly string[];
   className?: string;
-}
+};
 
-const WorkHighlightList: React.FC<WorkHighlightListProps> = ({
+const WorkHighlightList = ({
   items,
   className = '',
-}) => (
+}: WorkHighlightListProps) => (
   <ul className={`space-y-2.5 ${className}`}>
     {items.map((h) => (
       <li

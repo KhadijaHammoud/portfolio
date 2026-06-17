@@ -1,9 +1,9 @@
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { WorkShot } from '../../types';
-import FeaturedShotList from './FeaturedShotList';
+import WorkShotList from './WorkShotList';
 
-type FeaturedWalkthroughSectionProps = {
+type WorkWalkthroughSectionProps = {
   shots: readonly WorkShot[];
   viewerTitle: string;
   panelId: string;
@@ -13,7 +13,7 @@ type FeaturedWalkthroughSectionProps = {
   className?: string;
 };
 
-const FeaturedWalkthroughSection: React.FC<FeaturedWalkthroughSectionProps> = ({
+const WorkWalkthroughSection = ({
   shots,
   viewerTitle,
   panelId,
@@ -21,7 +21,7 @@ const FeaturedWalkthroughSection: React.FC<FeaturedWalkthroughSectionProps> = ({
   isOpen,
   onToggle,
   className = 'mt-8 border-t border-line/5 pt-8',
-}) => {
+}: WorkWalkthroughSectionProps) => {
   const reduceMotion = useReducedMotion();
 
   return (
@@ -63,7 +63,7 @@ const FeaturedWalkthroughSection: React.FC<FeaturedWalkthroughSectionProps> = ({
             className='overflow-hidden'
           >
             <div className='pt-8'>
-              <FeaturedShotList
+              <WorkShotList
                 shots={shots}
                 viewerTitle={viewerTitle}
                 projectIndex={index}
@@ -76,4 +76,4 @@ const FeaturedWalkthroughSection: React.FC<FeaturedWalkthroughSectionProps> = ({
   );
 };
 
-export default FeaturedWalkthroughSection;
+export default WorkWalkthroughSection;

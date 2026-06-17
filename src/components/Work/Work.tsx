@@ -1,9 +1,8 @@
 import { motion } from 'framer-motion';
-import React from 'react';
 import { FEATURED_WORK } from '../../constants';
-import FeaturedProject from './FeaturedProject';
+import WorkProject from './WorkProject';
 
-const FeaturedWork: React.FC = () => {
+const Work = () => {
   return (
     <section id='work' className='relative py-24 md:py-32'>
       <div className='container-page mb-12 md:mb-16'>
@@ -25,11 +24,11 @@ const FeaturedWork: React.FC = () => {
 
       <div className='space-y-16 md:space-y-24'>
         {FEATURED_WORK.map((project, i) => (
-          <FeaturedProject key={project.slug} project={project} index={i} />
+          <WorkProject key={project.slug} project={project} index={i} />
         ))}
       </div>
     </section>
   );
 };
 
-export default FeaturedWork;
+export default Work;

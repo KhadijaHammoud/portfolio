@@ -1,19 +1,19 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { WorkShot } from '../../types/portfolio.types';
+import { WorkShot } from '../../types';
 import ImageViewer from '../shared/ImageViewer';
 
-type FeaturedShotListProps = {
+type WorkShotListProps = {
   shots: readonly WorkShot[];
   viewerTitle: string;
   projectIndex?: number;
 };
 
-const FeaturedShotList: React.FC<FeaturedShotListProps> = ({
+const WorkShotList = ({
   shots,
   viewerTitle,
   projectIndex = 0,
-}) => {
+}: WorkShotListProps) => {
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
   return (
@@ -98,4 +98,4 @@ const FeaturedShotList: React.FC<FeaturedShotListProps> = ({
   );
 };
 
-export default FeaturedShotList;
+export default WorkShotList;

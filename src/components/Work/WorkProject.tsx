@@ -1,20 +1,17 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { WorkProject } from '../../types';
+import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
-import FeaturedAppSections from './FeaturedAppSections';
-import FeaturedWalkthroughSection from './FeaturedWalkthroughSection';
-import WorkHighlightList from './WorkHighlights';
+import WorkAppSections from './WorkAppSections';
+import WorkHighlightList from './WorkHighlightList';
+import WorkWalkthroughSection from './WorkWalkthroughSection';
 
-type FeaturedProjectProps = {
-  project: WorkProject;
+type WorkProjectProps = {
+  project: WorkProjectType;
   index: number;
 };
 
-const FeaturedProject: React.FC<FeaturedProjectProps> = ({
-  project,
-  index,
-}) => {
+const WorkProject = ({ project, index }: WorkProjectProps) => {
   const shots = project.shots ?? [];
   const hasProjectShots = shots.length > 0 && !project.apps?.length;
   const [isWalkthroughOpen, setIsWalkthroughOpen] = useState(false);
@@ -44,7 +41,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             <LinkedText>{project.summary}</LinkedText>
           </p>
           {project.apps && project.apps.length > 0 && (
-            <FeaturedAppSections
+            <WorkAppSections
               apps={project.apps}
               projectSlug={project.slug}
               company={project.company}
@@ -70,7 +67,7 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
             </div>
           )}
           {hasProjectShots && (
-            <FeaturedWalkthroughSection
+            <WorkWalkthroughSection
               shots={shots}
               viewerTitle={project.company}
               panelId={`work-${project.slug}-walkthrough`}
@@ -85,4 +82,4 @@ const FeaturedProject: React.FC<FeaturedProjectProps> = ({
   );
 };
 
-export default FeaturedProject;
+export default WorkProject;
