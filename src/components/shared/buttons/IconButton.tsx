@@ -1,4 +1,5 @@
 import React from 'react';
+import Tooltip, { type TooltipPlacement } from '../Tooltip';
 import ButtonLink, { ButtonVariant } from './ButtonLink';
 
 type IconButtonProps = {
@@ -7,6 +8,9 @@ type IconButtonProps = {
   href?: string;
   onClick?: () => void;
   variant?: ButtonVariant;
+  disabled?: boolean;
+  tooltipPlacement?: TooltipPlacement;
+  className?: string;
 };
 
 const IconButton: React.FC<IconButtonProps> = ({
@@ -15,24 +19,23 @@ const IconButton: React.FC<IconButtonProps> = ({
   href,
   onClick,
   variant = ButtonVariant.Ghost,
+  disabled = false,
+  tooltipPlacement = 'bottom',
+  className,
 }) => (
-  <span className='group/icon relative inline-flex'>
+  <Tooltip label={label} placement={tooltipPlacement} className='inline-flex'>
     <ButtonLink
       href={href}
       onClick={onClick}
       variant={variant}
       iconOnly
+      disabled={disabled}
       ariaLabel={label}
+      className={className}
     >
       {icon}
     </ButtonLink>
-    <span
-      role='tooltip'
-      className='pointer-events-none absolute left-1/2 top-[calc(100%+0.5rem)] z-50 -translate-x-1/2 whitespace-nowrap rounded-lg border border-line/10 bg-bg/95 px-2.5 py-1 text-xs font-medium text-ink opacity-0 shadow-card backdrop-blur-sm transition-opacity duration-150 group-hover/icon:opacity-100 group-focus-within/icon:opacity-100'
-    >
-      {label}
-    </span>
-  </span>
+  </Tooltip>
 );
 
 export default IconButton;

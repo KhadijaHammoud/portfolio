@@ -13,13 +13,13 @@ Open [http://localhost:3000](http://localhost:3000). The dev server reloads on s
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `npm start` | Development server |
-| `npm run build` | Production build to `build/` — run before merging |
-| `npm test` | CRA test runner (optional) |
-| `npm run format` | Format source with Prettier |
-| `npm run format:check` | Verify formatting |
+| Script                 | Description                                       |
+| ---------------------- | ------------------------------------------------- |
+| `npm start`            | Development server                                |
+| `npm run build`        | Production build to `build/` — run before merging |
+| `npm test`             | CRA test runner (optional)                        |
+| `npm run format`       | Format source with Prettier                       |
+| `npm run format:check` | Verify formatting                                 |
 
 ## Conventions
 
@@ -36,12 +36,20 @@ Cursor agents load summarized rules from `.cursor/rules/`.
 
 ```
 src/
+├── alignment/      # Crooked-card mini-game (desktop/tablet)
 ├── components/     # Sections + shared UI
 ├── constants/      # Site copy and structured data
+├── motion/         # Shared scroll-in animation helpers
 ├── theme/          # Light/dark theme
 ├── App.tsx
-└── index.css       # Theme variables and utilities
+└── index.css       # Theme variables, utilities, and game styles
 ```
+
+### Alignment mini-game
+
+On viewports `md` and up, section cards and skill chips start slightly crooked. Visitors drag cards into place and hover chips to straighten them. State lives in `src/alignment/` (`AlignmentProvider`, `useAlignable`, HUD, celebration). Sections wire it up via `AlignableCard`, `AlignChipField`, and `SkillChip`.
+
+Inspired by [_A Little to the Left_](https://www.alittletotheleft.com/) — not affiliated.
 
 ## Deploy
 

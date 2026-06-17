@@ -1,10 +1,15 @@
 import { motion } from 'framer-motion';
+import { AlignableCard } from '../../alignment';
 import { LANGUAGES, PROFILE } from '../../constants';
+import { useSettleMotion } from '../../motion/settle';
 import Section from '../Section';
 import { LinkedText } from '../shared';
 import AboutInfoRow from './AboutInfoRow';
 
 const About = () => {
+  const bioSettle = useSettleMotion();
+  const asideSettle = useSettleMotion(0.1);
+
   return (
     <Section
       eyebrow='About'
@@ -18,10 +23,7 @@ const About = () => {
     >
       <div className='grid gap-10 md:grid-cols-[1.6fr_1fr]'>
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
+          {...bioSettle}
           className='space-y-5 text-lg leading-relaxed text-ink-muted'
         >
           {PROFILE.bio.map((p, i) => (
@@ -31,12 +33,12 @@ const About = () => {
           ))}
         </motion.div>
 
-        <motion.aside
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className='card space-y-6 p-6'
+        <AlignableCard
+          id='about-sidebar'
+          index={1}
+          settle={asideSettle}
+          as='aside'
+          className='space-y-6 p-6'
         >
           <AboutInfoRow label='Based in' value={PROFILE.location} />
           <AboutInfoRow
@@ -63,7 +65,7 @@ const About = () => {
               ))}
             </ul>
           </div>
-        </motion.aside>
+        </AlignableCard>
       </div>
     </Section>
   );

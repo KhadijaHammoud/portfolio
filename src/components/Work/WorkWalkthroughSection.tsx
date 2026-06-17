@@ -1,5 +1,6 @@
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import { WorkShot } from '../../types';
 import WorkShotList from './WorkShotList';
 
@@ -23,6 +24,26 @@ const WorkWalkthroughSection = ({
   className = 'mt-8 border-t border-line/5 pt-8',
 }: WorkWalkthroughSectionProps) => {
   const reduceMotion = useReducedMotion();
+  const contentRef = useRef<HTMLDivElement>(null);
+  const prevIsOpenRef = useRef(isOpen);
+  const [contentHeight, setContentHeight] = useState(0);
+  const isToggling = prevIsOpenRef.current !== isOpen;
+
+  useEffect(() => {
+    prevIsOpenRef.current = isOpen;
+  }, [isOpen]);
+
+  useEffect(() => {
+    const node = contentRef.current;
+    if (!node) return;
+
+    const measure = () => setContentHeight(node.offsetHeight);
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [shots]);
 
   return (
     <div className={className}>
@@ -50,28 +71,31 @@ const WorkWalkthroughSection = ({
         />
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            id={panelId}
-            role='region'
-            aria-labelledby={`${panelId}-trigger`}
-            initial={reduceMotion ? false : { height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className='overflow-hidden'
-          >
-            <div className='pt-8'>
-              <WorkShotList
-                shots={shots}
-                viewerTitle={viewerTitle}
-                projectIndex={index}
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        id={panelId}
+        role='region'
+        aria-labelledby={`${panelId}-trigger`}
+        aria-hidden={!isOpen}
+        initial={false}
+        animate={{ height: isOpen ? contentHeight : 0 }}
+        transition={{
+          height: {
+            duration: reduceMotion || !isToggling ? 0 : 0.28,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }}
+        className='overflow-hidden'
+        style={{ pointerEvents: isOpen ? undefined : 'none' }}
+      >
+        <div ref={contentRef} className='pt-8'>
+          <WorkShotList
+            shots={shots}
+            viewerTitle={viewerTitle}
+            projectIndex={index}
+            revealOnMount
+          />
+        </div>
+      </motion.div>
     </div>
   );
 };

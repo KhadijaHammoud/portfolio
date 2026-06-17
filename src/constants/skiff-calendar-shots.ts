@@ -28,7 +28,7 @@ export const SKIFF_CALENDAR_SHOTS = [
     src: '/featured/skiff/web/Screenshot%202024-01-24%20at%205.11.07%20PM.png',
     alt: 'Event composer (web)',
     caption:
-      'Inline event composer with attendees, conferencing, reminders, and recurrence — without leaving the calendar.',
+      'Inline event composer with attendees, conferencing, reminders, and recurrence without leaving the calendar.',
   },
   {
     src: '/featured/skiff/mobile/Screenshot%202024-01-24%20at%205.12.56%20PM.png',

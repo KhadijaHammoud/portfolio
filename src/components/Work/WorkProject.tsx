@@ -1,5 +1,7 @@
-import { motion } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 import { useState } from 'react';
+import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
+import { getSettleMotion } from '../../motion/settle';
 import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 import WorkAppSections from './WorkAppSections';
@@ -12,6 +14,7 @@ type WorkProjectProps = {
 };
 
 const WorkProject = ({ project, index }: WorkProjectProps) => {
+  const reduceMotion = useReducedMotion();
   const shots = project.shots ?? [];
   const hasProjectShots = shots.length > 0 && !project.apps?.length;
   const [isWalkthroughOpen, setIsWalkthroughOpen] = useState(false);
@@ -19,12 +22,12 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
   return (
     <div id={`work-${project.slug}`} className='scroll-mt-28'>
       <div className='container-page'>
-        <motion.article
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.55, delay: index * 0.05 }}
-          className='card p-6 md:p-10'
+        <AlignableCard
+          id={`work-${project.slug}`}
+          index={index}
+          as='article'
+          settle={getSettleMotion(reduceMotion, index * 0.05)}
+          className='p-6 md:p-10'
         >
           <div className='flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-ink-muted'>
             <span className='font-medium text-ink'>{project.company}</span>
@@ -58,13 +61,16 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
             />
           )}
           {project.stack && project.stack.length > 0 && (
-            <div className='mt-5 flex flex-wrap gap-2'>
-              {project.stack.map((s) => (
-                <span key={s} className='chip'>
-                  {s}
-                </span>
+            <AlignChipField id={`work-${project.slug}-chips`} className='mt-5 flex flex-wrap gap-2'>
+              {project.stack.map((s, chipIdx) => (
+                <SkillChip
+                  key={s}
+                  id={`work-${project.slug}-chip-${s}`}
+                  label={s}
+                  index={chipIdx + index * 4}
+                />
               ))}
-            </div>
+            </AlignChipField>
           )}
           {hasProjectShots && (
             <WorkWalkthroughSection
@@ -76,7 +82,7 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
               onToggle={() => setIsWalkthroughOpen((open) => !open)}
             />
           )}
-        </motion.article>
+        </AlignableCard>
       </div>
     </div>
   );

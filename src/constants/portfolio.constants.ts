@@ -3,7 +3,7 @@ import { FULLYRAMPED_SHOTS } from './fullyramped-shots';
 import { SKIFF_CALENDAR_SHOTS } from './skiff-calendar-shots';
 
 /** Shared employer / role metadata — single source for Work and Experience. */
-const SAN_FRANCISCO_REMOTE = 'San Francisco (Remote)';
+const SAN_FRANCISCO_REMOTE = 'San Francisco, CA (Remote)';
 
 const ENGAGEMENT_CORE = {
   fullyramped: {
@@ -37,7 +37,7 @@ const ENGAGEMENT_CORE = {
     company: 'Forest Park Group via Nodogoro',
     scope: 'Loan digitization platform',
     role: 'Software Engineer',
-    location: SAN_FRANCISCO_REMOTE,
+    location: 'San Mateo, CA (Remote)',
     start: 'Aug 2020',
     end: 'Jul 2022',
   },
@@ -94,10 +94,10 @@ export const PROFILE = {
   /** Emphasized role in the hero tagline (rendered bold in Hero). */
   heroTaglineRole: 'software engineer',
   /** Rest of the hero tagline after the role. */
-  heroTagline: 'who ships zero-to-one products.',
+  heroTagline: 'who ships polished, zero-to-one products.',
   /** Longer hero detail below the tagline. */
   heroLead:
-    'With a strong focus on frontend development, I help teams build scalable, high-performance, pixel-perfect applications from sketch to production.',
+    'With a strong focus on frontend development, I help teams build scalable, high-performance applications from sketch to production, clean and pixel-perfect. I care about the details most people only feel, like when something needs to go just a little to the left.',
   location: 'Cairo, Egypt',
   openToRemote: 'Open to remote work',
   email: 'kkhammoud@gmail.com',
@@ -107,8 +107,8 @@ export const PROFILE = {
   cvFileName: 'Khadija_Hammoud_CV_2026.pdf',
   bio: [
     "I'm a frontend-focused engineer based in Cairo, working remotely with teams across the globe to plan, build, and improve great user experiences.",
-    'I thrive on turning ideas into intuitive and delightful interfaces, collaborating closely with both design and product from the earliest stages.',
-    'I care deeply about architecture and performance, but my top priority is always delivering features that genuinely make an impact.',
+    'I thrive on turning ideas into intuitive, delightful interfaces, collaborating closely with design and product from the earliest stages.',
+    'I care deeply about architecture and performance, but polish is never an afterthought. I like interfaces that feel clean, intentional, and exactly right.',
   ],
 };
 
@@ -233,9 +233,9 @@ export const FEATURED_WORK: WorkProject[] = [
       'Implemented real-time AI scoring and coaching for role-plays, with feedback surfaced in the post-call review flow.',
       'Created CRM integration UIs for Gong, Salesloft, and Clari to browse and import calls into practice and review workflows.',
       'Built the simulation designer, a multi-step flow builder for creating and configuring AI prospects.',
-      'Developed the sales content library (Knowledge Hub) — internal tooling for managing sales content and evaluation templates.',
+      'Developed the sales content library (Knowledge Hub), internal tooling for managing sales content and evaluation templates.',
       'Built a reusable component system that powers layouts, tables, filters, and modals across the product.',
-      'Partnered with product on direction from early prototype through launch — shaping core flows and UX decisions.',
+      'Partnered with product on direction from early prototype through launch, shaping core flows and UX decisions.',
     ],
     stack: [
       Skill.React,
@@ -265,7 +265,7 @@ export const FEATURED_WORK: WorkProject[] = [
         title: 'Skiff Pages / Drive',
         scope: 'Encrypted collaborative documents & file storage',
         summary:
-          'Users create and edit rich-text pages in a ProseMirror-based editor with real-time collaboration (Yjs), organize files in a folder dashboard, share with granular permissions, and export content — with document data encrypted end-to-end on the client.',
+          'Users create and edit rich-text pages in a ProseMirror-based editor with real-time collaboration (Yjs), organize files in a folder dashboard, share with granular permissions, and export content with document data encrypted end-to-end on the client.',
         highlights: [
           'Worked on rich document editing features, including tables, code blocks, comments, and Markdown/PDF export.',
           'Built the document version history manager, letting users browse snapshots, compare versions, and restore prior document states.',
@@ -277,7 +277,7 @@ export const FEATURED_WORK: WorkProject[] = [
         title: 'Skiff Mail',
         scope: 'End-to-end encrypted email client',
         summary:
-          'Users read and manage threads in a virtualized inbox, compose rich-text mail with client-side encryption, search locally over decrypted content, and configure aliases, forwarding, filters, and security settings — all without plaintext leaving the browser.',
+          'Users read and manage threads in a virtualized inbox, compose rich-text mail with client-side encryption, search locally over decrypted content, and configure aliases, forwarding, filters, and security settings, all without plaintext leaving the browser.',
         highlights: [
           'Contributed to the mail compose and inbox experience, including rich-text editing, thread reading, labels, and bulk actions.',
           'Worked on power-user mail workflows, including keyboard shortcuts, schedule send, and mail import from Gmail and Outlook.',
@@ -300,7 +300,7 @@ export const FEATURED_WORK: WorkProject[] = [
       },
     ],
     highlights: [
-      'Led engineering on Skiff UI toward open-source — see the [Open Source](#open-source) section for public design system work.',
+      'Led engineering on Skiff UI toward open-source. See the [Open Source](#open-source) section for public design system work.',
     ],
     stack: [
       Skill.React,
@@ -354,18 +354,18 @@ export const EDUCATION = [
   {
     school: 'German University in Cairo',
     degree: 'BSc Computer Science & Engineering',
-    period: 'Sep 2015 – Jul 2020',
+    period: 'Sep 2015 - Jul 2020',
     note: 'GPA 1.09 (A on the German scale 0.7 - 6.0, where 0.7 is highest).',
   },
   {
     school: 'Ulm University',
     degree: 'Machine Learning Intern · Bachelor project',
-    period: 'Mar 2019 – Aug 2019',
+    period: 'Mar 2019 - Aug 2019',
     note: 'Conducted machine learning research: built and trained a neural network to recognize Arabic Sign Language, then developed an iOS app that integrated the model for real-world sign language recognition.',
   },
 ];
 
 export const LANGUAGES = [
-  { name: 'English', level: 'Fluent' },
+  { name: 'English', level: 'Bilingual' },
   { name: 'Arabic', level: 'Native' },
 ];

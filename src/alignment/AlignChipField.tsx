@@ -1,0 +1,52 @@
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  type ElementType,
+  type ReactNode,
+} from 'react';
+import { useAlignment } from './AlignmentContext';
+
+const AlignChipFieldContext = createContext<string | null>(null);
+
+export function useAlignChipFieldId() {
+  return useContext(AlignChipFieldContext);
+}
+
+type AlignChipFieldProps = {
+  id: string;
+  children: ReactNode;
+  className?: string;
+  as?: 'div' | 'ul';
+};
+
+const AlignChipField = ({
+  id,
+  children,
+  className = '',
+  as = 'div',
+}: AlignChipFieldProps) => {
+  const { isGameEnabled, registerChipGroup, unregisterChipGroup } =
+    useAlignment();
+  const Tag = as as ElementType;
+
+  useLayoutEffect(() => {
+    if (!isGameEnabled) return;
+    registerChipGroup(id);
+    return () => unregisterChipGroup(id);
+  }, [id, isGameEnabled, registerChipGroup, unregisterChipGroup]);
+
+  return (
+    <AlignChipFieldContext.Provider value={id}>
+      <Tag
+        className={[className, isGameEnabled ? 'align-chip-field' : '']
+          .filter(Boolean)
+          .join(' ')}
+      >
+        {children}
+      </Tag>
+    </AlignChipFieldContext.Provider>
+  );
+};
+
+export default AlignChipField;

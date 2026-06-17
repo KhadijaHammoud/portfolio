@@ -1,0 +1,25 @@
+import { EDUCATION } from '../../constants';
+import Section from '../Section';
+import EducationCard from './EducationCard';
+
+const Education = () => {
+  return (
+    <Section
+      eyebrow='Education'
+      title={
+        <>
+          Academic background<span className='text-accent'>.</span>
+        </>
+      }
+      id='education'
+    >
+      <div className='grid gap-5 md:grid-cols-2'>
+        {EDUCATION.map((e, i) => (
+          <EducationCard key={e.school} school={e} index={i} />
+        ))}
+      </div>
+    </Section>
+  );
+};
+
+export default Education;

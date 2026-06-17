@@ -10,7 +10,7 @@ export const FULLYRAMPED_SHOTS = [
     src: '/featured/fullyramped/simulation-builder-scenario-screenshot.png',
     alt: 'Shape the conversation',
     caption:
-      'Configure priorities, objections, and questions — with reusable Knowledge Hub snippets on the side.',
+      'Configure priorities, objections, and questions, with reusable Knowledge Hub snippets on the side.',
   },
   {
     src: '/featured/fullyramped/simulations-library-with-open-sim-screenshot.png',

@@ -7,12 +7,15 @@ type WorkShotListProps = {
   shots: readonly WorkShot[];
   viewerTitle: string;
   projectIndex?: number;
+  /** Skip scroll-triggered reveal — use when shots mount inside an expanding panel. */
+  revealOnMount?: boolean;
 };
 
 const WorkShotList = ({
   shots,
   viewerTitle,
   projectIndex = 0,
+  revealOnMount = false,
 }: WorkShotListProps) => {
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
 
@@ -40,10 +43,14 @@ const WorkShotList = ({
           return (
             <motion.div
               key={shot.src}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, delay: i * 0.04 }}
+              {...(revealOnMount
+                ? { initial: false }
+                : {
+                    initial: { opacity: 0, y: 16 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true, margin: '-60px' },
+                    transition: { duration: 0.5, delay: i * 0.04 },
+                  })}
               className='grid items-center gap-6 md:grid-cols-2 md:gap-12'
             >
               <button

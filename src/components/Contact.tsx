@@ -2,10 +2,13 @@ import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { PROFILE } from '../constants';
+import { useSettleMotion } from '../motion/settle';
 import { LinkedInIcon } from './icons';
 import { TextButton, TextButtonVariant } from './shared';
 
 const Contact = () => {
+  const settle = useSettleMotion();
+
   return (
     <section id='contact' className='relative py-24 md:py-36'>
       <div className='pointer-events-none absolute inset-0 -z-10'>
@@ -13,19 +16,16 @@ const Contact = () => {
       </div>
       <div className='container-page'>
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.6 }}
-          className='mx-auto max-w-3xl text-center flex flex-col gap-4 items-center'
+          {...settle}
+          className='mx-auto flex max-w-2xl flex-col items-center gap-4 text-center'
         >
           <div className='section-heading justify-center'>Contact</div>
           <h2 className='text-4xl font-semibold tracking-tight text-ink md:text-5xl'>
             Let's build something{' '}
             <span className='bg-gradient-to-r from-accent-soft via-accent to-accent-glow bg-clip-text text-transparent'>
-              together
+              polished{' '}
             </span>
-            .
+            together.
           </h2>
           <p className='text-lg leading-relaxed text-ink-muted'>
             I'm always open to talking about ambitious product work, founding

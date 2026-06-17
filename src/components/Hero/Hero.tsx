@@ -1,9 +1,19 @@
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { motion, type Variants } from 'framer-motion';
-import { MapPin } from 'lucide-react';
+import { AlignHorizontalJustifyCenter, MapPin, RotateCcw } from 'lucide-react';
+import {
+  AlignCardFrame,
+  useAlignable,
+  useAlignment,
+} from '../../alignment';
 import { EXPERIENCES, PROFILE } from '../../constants';
-import { LinkedText, TextButton, TextButtonVariant } from '../shared';
+import {
+  ButtonLink,
+  LinkedText,
+  TextButton,
+  TextButtonVariant,
+} from '../shared';
 import HeroStat from './HeroStat';
 
 dayjs.extend(customParseFormat);
@@ -11,10 +21,11 @@ dayjs.extend(customParseFormat);
 const EXPERIENCE_START_FORMAT = 'MMM YYYY';
 
 const FADE_UP: Variants = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: { opacity: 0, y: 16, x: 10 },
   show: (i: number = 0) => ({
     opacity: 1,
     y: 0,
+    x: 0,
     transition: {
       delay: 0.1 + i * 0.08,
       duration: 0.6,
@@ -41,7 +52,34 @@ const YEARS_OF_EXPERIENCE = (() => {
   return `${years}+`;
 })();
 
+function scrollToFirstCrooked() {
+  const target = document.querySelector('[data-aligned="false"]');
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+  });
+}
+
 const Hero = () => {
+  const { isGameEnabled, isComplete, showHint, resetGame } = useAlignment();
+  const { alignProps, dragging } = useAlignable({
+    id: 'hero-stats',
+    index: 0,
+    variant: 'card',
+  });
+
+  const goToFirstCrooked = () => {
+    showHint();
+    scrollToFirstCrooked();
+  };
+
+  const scrambleAgain = () => {
+    resetGame();
+    goToFirstCrooked();
+  };
+
   return (
     <section
       id='top'
@@ -124,16 +162,71 @@ const Hero = () => {
           </TextButton>
         </motion.div>
 
+        {isGameEnabled && (
+          <motion.div
+            variants={FADE_UP}
+            initial='hidden'
+            animate='show'
+            custom={5}
+          >
+            <ButtonLink
+              unstyled
+              onClick={isComplete ? scrambleAgain : goToFirstCrooked}
+              className='chip-tagline mt-6 inline-flex items-center gap-2 transition-colors hover:border-accent/40 hover:bg-accent/[0.12]'
+            >
+              {isComplete ? (
+                <RotateCcw className='h-3.5 w-3.5' aria-hidden />
+              ) : (
+                <AlignHorizontalJustifyCenter
+                  className='h-3.5 w-3.5'
+                  aria-hidden
+                />
+              )}
+              {isComplete
+                ? 'Things got tidy. Scramble again?'
+                : "Something's crooked. Drag cards, hover chips."}
+            </ButtonLink>
+          </motion.div>
+        )}
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
-          className='mt-20 flex flex-col gap-px overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04] sm:flex-row'
+          className='align-card-root relative mt-12'
         >
-          <HeroStat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
-          <HeroStat label='Users at scale' value='2M+' />
-          <HeroStat label='ARR from zero' value='$1M+' />
-          <HeroStat label='Open-source stars' value='420+' />
+          {isGameEnabled ? (
+            <AlignCardFrame dragging={dragging}>
+              <div
+                {...alignProps}
+                className={`relative rounded-2xl border border-line/5 bg-line/[0.04] ${alignProps.className}`}
+              >
+                <div className='overflow-hidden rounded-2xl'>
+                  <div className='flex flex-col gap-px sm:flex-row'>
+                    <HeroStat
+                      label='Years of experience'
+                      value={YEARS_OF_EXPERIENCE}
+                    />
+                    <HeroStat label='Users at scale' value='2M+' />
+                    <HeroStat label='ARR from zero' value='$1M+' />
+                    <HeroStat label='Open-source stars' value='420+' />
+                  </div>
+                </div>
+              </div>
+            </AlignCardFrame>
+          ) : (
+            <div className='overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04]'>
+              <div className='flex flex-col gap-px sm:flex-row'>
+                <HeroStat
+                  label='Years of experience'
+                  value={YEARS_OF_EXPERIENCE}
+                />
+                <HeroStat label='Users at scale' value='2M+' />
+                <HeroStat label='ARR from zero' value='$1M+' />
+                <HeroStat label='Open-source stars' value='420+' />
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </section>

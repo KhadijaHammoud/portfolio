@@ -108,7 +108,7 @@ const WorkAppSections = ({
                     {hasShots && (
                       <WorkWalkthroughSection
                         shots={app.shots!}
-                        viewerTitle={`${company} — ${app.title}`}
+                        viewerTitle={`${company}: ${app.title}`}
                         panelId={`${panelId}-walkthrough`}
                         index={i}
                         isOpen={isWalkthroughOpen}
