@@ -20,6 +20,7 @@ html.dark {
   --paw-strength: 1;
   --spotlight-bg-alpha: 0.2;
   --spotlight-peak: 0.6;
+  --paper-texture-opacity: 0.55;
   color-scheme: dark;
 }
 
@@ -38,6 +39,7 @@ html.light {
   --paw-strength: 0.85;
   --spotlight-bg-alpha: 0.48;
   --spotlight-peak: 0.95;
+  --paper-texture-opacity: 0.72;
   color-scheme: light;
 }
 
@@ -68,21 +70,42 @@ body {
 }
 
 .page-paper {
+  opacity: var(--paper-texture-opacity);
   background-image:
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 31px,
-      rgb(var(--color-line) / 0.035) 32px
+    radial-gradient(
+      ellipse 100% 80% at 12% 6%,
+      rgb(var(--color-secondary) / 0.07),
+      transparent 68%
     ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 31px,
-      rgb(var(--color-line) / 0.02) 32px
+    radial-gradient(
+      ellipse 85% 70% at 90% 18%,
+      rgb(var(--color-line) / 0.028),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 115% 90% at 50% 108%,
+      rgb(var(--color-secondary) / 0.045),
+      transparent 58%
     );
-  opacity: 0.45;
-  mask-image: radial-gradient(ellipse at 30% 20%, black 20%, transparent 72%);
+}
+
+html.dark .page-paper {
+  background-image:
+    radial-gradient(
+      ellipse 100% 80% at 12% 6%,
+      rgb(var(--color-secondary) / 0.04),
+      transparent 68%
+    ),
+    radial-gradient(
+      ellipse 85% 70% at 90% 18%,
+      rgb(var(--color-line) / 0.02),
+      transparent 62%
+    ),
+    radial-gradient(
+      ellipse 115% 90% at 50% 108%,
+      rgb(var(--color-secondary) / 0.028),
+      transparent 58%
+    );
 }
 
 * {

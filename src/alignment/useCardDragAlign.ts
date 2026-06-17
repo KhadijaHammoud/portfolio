@@ -82,7 +82,9 @@ export function useCardDragAlign({
       return;
     }
 
-    resetDrag();
+    setDragging(false);
+    pointerIdRef.current = null;
+    setDelta({ x: 0, y: 0 });
   }, [dragging, onSnap, resetDrag, totalX, totalY]);
 
   const handlePointerDown = useCallback(

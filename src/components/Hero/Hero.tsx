@@ -2,11 +2,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { motion, type Variants } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin, RotateCcw } from 'lucide-react';
-import {
-  AlignCardFrame,
-  useAlignable,
-  useAlignment,
-} from '../../alignment';
+import { AlignCardFrame, useAlignable, useAlignment } from '../../alignment';
 import { EXPERIENCES, PROFILE } from '../../constants';
 import {
   ButtonLink,
@@ -85,10 +81,6 @@ const Hero = () => {
       id='top'
       className='relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-32'
     >
-      <div className='pointer-events-none absolute inset-0 -z-10'>
-        <div className='absolute inset-0 bg-grid-faint bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_70%)]' />
-      </div>
-
       <div className='container-page'>
         <motion.div
           variants={FADE_UP}
@@ -162,7 +154,7 @@ const Hero = () => {
           </TextButton>
         </motion.div>
 
-        {isGameEnabled && (
+        {isGameEnabled ? (
           <motion.div
             variants={FADE_UP}
             initial='hidden'
@@ -187,6 +179,17 @@ const Hero = () => {
                 : "Something's crooked. Drag cards, hover chips."}
             </ButtonLink>
           </motion.div>
+        ) : (
+          <motion.p
+            variants={FADE_UP}
+            initial='hidden'
+            animate='show'
+            custom={5}
+            className='chip-tagline mt-6 inline-flex items-center gap-2'
+          >
+            <AlignHorizontalJustifyCenter className='h-3.5 w-3.5' aria-hidden />
+            Something&apos;s crooked. Play on desktop.
+          </motion.p>
         )}
 
         <motion.div
