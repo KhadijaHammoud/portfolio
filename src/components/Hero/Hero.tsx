@@ -73,7 +73,7 @@ const Hero = () => {
 
   const scrambleAgain = () => {
     resetGame();
-    goToFirstCrooked();
+    scrollToFirstCrooked();
   };
 
   return (

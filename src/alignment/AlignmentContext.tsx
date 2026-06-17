@@ -9,8 +9,6 @@ import {
   type ReactNode,
 } from 'react';
 
-const HINT_DISMISSED_KEY = 'portfolio-align-hint-dismissed';
-
 /** Match Tailwind `md` — alignment game is desktop/tablet only. */
 const ALIGNMENT_GAME_MIN_WIDTH_PX = 768;
 const ALIGNMENT_MEDIA_QUERY = `(min-width: ${ALIGNMENT_GAME_MIN_WIDTH_PX}px)`;
@@ -86,9 +84,7 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
   );
   const [aligned, setAligned] = useState<Set<string>>(() => new Set());
   const [gameEpoch, setGameEpoch] = useState(0);
-  const [hintDismissed, setHintDismissed] = useState(
-    () => localStorage.getItem(HINT_DISMISSED_KEY) === '1',
-  );
+  const [hintDismissed, setHintDismissed] = useState(false);
   const registeredCardsRef = useRef(registeredCards);
   const chipGroupsRef = useRef(chipGroups);
 
@@ -200,17 +196,16 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
 
   const dismissHint = useCallback(() => {
     setHintDismissed(true);
-    localStorage.setItem(HINT_DISMISSED_KEY, '1');
   }, []);
 
   const showHint = useCallback(() => {
     setHintDismissed(false);
-    localStorage.removeItem(HINT_DISMISSED_KEY);
   }, []);
 
   const resetGame = useCallback(() => {
     setAligned(new Set());
     setGameEpoch((epoch) => epoch + 1);
+    setHintDismissed(true);
   }, []);
 
   const cardTotal = registeredCards.size;

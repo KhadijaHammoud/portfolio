@@ -56,13 +56,12 @@ const AlignHud = () => {
 
     setSweeping(true);
     alignAll();
-    if (!hintDismissed) dismissHint();
     document.documentElement.classList.add('align-sweep-active');
     window.setTimeout(() => {
       document.documentElement.classList.remove('align-sweep-active');
       setSweeping(false);
     }, SWEEP_MS);
-  }, [alignAll, canSweep, dismissHint, hintDismissed, sweeping]);
+  }, [alignAll, canSweep, sweeping]);
 
   const progress = total > 0 ? alignedCount / total : 0;
   const progressLabel = formatAlignProgress(
@@ -106,11 +105,11 @@ const AlignHud = () => {
               </span>
               <div className='min-w-0 flex-1'>
                 <p className='text-sm font-semibold text-ink'>
-                  A little to the left
+                  Something's crooked on purpose.
                 </p>
                 <p className='mt-1 text-sm leading-relaxed text-ink-muted'>
-                  Things are crooked on purpose. Drag cards into place and hover
-                  skill chips to straighten them.
+                  Drag cards into place and hover skill chips to straighten
+                  them.
                 </p>
                 <div className='mt-3 h-1.5 overflow-hidden rounded-full bg-line/10'>
                   <motion.div
