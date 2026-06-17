@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
-import { FileDown } from 'lucide-react';
+import { FileDown, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PROFILE } from '../constants';
+import { TextButton, TextButtonVariant } from './shared';
 import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
@@ -86,11 +87,12 @@ const Navbar = () => {
           href='#top'
           className='flex items-center gap-2 text-sm font-semibold tracking-tight text-ink'
         >
-          <img
-            src='/photo.png'
-            alt='Khadija Hammoud'
-            className='h-8 w-8 rounded-full object-cover ring-1 ring-line/10 ring-offset-2 ring-offset-bg'
-          />
+          <span
+            aria-hidden
+            className='grid h-9 w-9 shrink-0 place-items-center rounded-full border border-line/10 bg-line/[0.06]'
+          >
+            <User className='h-4 w-4 text-ink-muted' strokeWidth={1.75} />
+          </span>
           <span className='hidden whitespace-nowrap sm:block'>
             Khadija Hammoud
           </span>
@@ -127,14 +129,16 @@ const Navbar = () => {
         </ul>
 
         <div className='flex items-center gap-2 sm:gap-3'>
-          <a
-            href={PROFILE.cv}
-            download={PROFILE.cvFileName}
-            className='hidden items-center gap-1.5 whitespace-nowrap rounded-full border border-line/10 bg-line/[0.03] px-3 py-2 text-sm font-medium text-ink-muted transition-all hover:border-accent/60 hover:text-ink sm:inline-flex'
-          >
-            <FileDown className='h-4 w-4' />
-            Download CV
-          </a>
+          <div className='hidden sm:contents'>
+            <TextButton
+              href={PROFILE.cv}
+              download={PROFILE.cvFileName}
+              icon={<FileDown className='h-4 w-4' />}
+              variant={TextButtonVariant.Ghost}
+            >
+              Download CV
+            </TextButton>
+          </div>
           <ThemeToggle />
         </div>
       </nav>

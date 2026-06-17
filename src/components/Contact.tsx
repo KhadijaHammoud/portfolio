@@ -35,7 +35,7 @@ const Contact = () => {
 
           <TextButton
             href={`mailto:${PROFILE.email}`}
-            leadingIcon={<Mail className='h-4 w-4' />}
+            icon={<Mail />}
             showArrow
             variant={TextButtonVariant.Primary}
           >
@@ -45,16 +45,14 @@ const Contact = () => {
           <div className='flex items-center justify-center gap-3'>
             <TextButton
               href={PROFILE.github}
-              leadingIcon={
-                <SiGithub className='h-4 w-4' color='currentColor' />
-              }
+              icon={<SiGithub />}
               variant={TextButtonVariant.Ghost}
             >
               GitHub
             </TextButton>
             <TextButton
               href={PROFILE.linkedin}
-              leadingIcon={<LinkedInIcon className='h-4 w-4' />}
+              icon={<LinkedInIcon />}
               variant={TextButtonVariant.Ghost}
             >
               LinkedIn
