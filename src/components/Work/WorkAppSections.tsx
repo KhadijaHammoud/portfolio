@@ -21,24 +21,9 @@ const WorkAppSections = ({
   const [openIndexes, setOpenIndexes] = useState<Set<number>>(
     () => new Set([]),
   );
-  const [walkthroughOpenIndexes, setWalkthroughOpenIndexes] = useState<
-    Set<number>
-  >(() => new Set([]));
 
   const toggle = (index: number) => {
     setOpenIndexes((prev) => {
-      const next = new Set(prev);
-      if (next.has(index)) {
-        next.delete(index);
-      } else {
-        next.add(index);
-      }
-      return next;
-    });
-  };
-
-  const toggleWalkthrough = (index: number) => {
-    setWalkthroughOpenIndexes((prev) => {
       const next = new Set(prev);
       if (next.has(index)) {
         next.delete(index);
@@ -53,14 +38,13 @@ const WorkAppSections = ({
     <div className='mt-8 space-y-2 border-t border-line/5 pt-8'>
       {apps.map((app, i) => {
         const isOpen = openIndexes.has(i);
-        const isWalkthroughOpen = walkthroughOpenIndexes.has(i);
         const panelId = `work-${projectSlug}-app-${i}`;
         const hasShots = (app.shots?.length ?? 0) > 0;
 
         return (
           <div
             key={app.title}
-            className='overflow-hidden rounded-xl border border-line/5 bg-line/[0.02]'
+            className='rounded-xl border border-line/5 bg-line/[0.02]'
           >
             <button
               type='button'
@@ -93,7 +77,8 @@ const WorkAppSections = ({
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={reduceMotion ? undefined : { height: 0, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  className='overflow-hidden'
+                  className='overflow-hidden data-[state=open]:overflow-visible'
+                  data-state={isOpen ? 'open' : 'closed'}
                 >
                   <div className='border-t border-line/5 px-4 pb-5 pt-4 md:px-5 md:pb-6'>
                     {app.summary && (
@@ -109,10 +94,7 @@ const WorkAppSections = ({
                       <WorkWalkthroughSection
                         shots={app.shots!}
                         viewerTitle={`${company}: ${app.title}`}
-                        panelId={`${panelId}-walkthrough`}
                         index={i}
-                        isOpen={isWalkthroughOpen}
-                        onToggle={() => toggleWalkthrough(i)}
                         className='mt-6 border-t border-line/5 pt-6'
                       />
                     )}

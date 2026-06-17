@@ -1,5 +1,4 @@
 import { useReducedMotion } from 'framer-motion';
-import { useState } from 'react';
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
 import { getSettleMotion } from '../../motion/settle';
 import { WorkProject as WorkProjectType } from '../../types';
@@ -17,7 +16,6 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
   const reduceMotion = useReducedMotion();
   const shots = project.shots ?? [];
   const hasProjectShots = shots.length > 0 && !project.apps?.length;
-  const [isWalkthroughOpen, setIsWalkthroughOpen] = useState(false);
 
   return (
     <div id={`work-${project.slug}`} className='scroll-mt-28'>
@@ -76,10 +74,7 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
             <WorkWalkthroughSection
               shots={shots}
               viewerTitle={project.company}
-              panelId={`work-${project.slug}-walkthrough`}
               index={index}
-              isOpen={isWalkthroughOpen}
-              onToggle={() => setIsWalkthroughOpen((open) => !open)}
             />
           )}
         </AlignableCard>

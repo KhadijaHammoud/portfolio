@@ -328,6 +328,14 @@ html.dark .page-paper {
     @apply inline-flex items-center rounded-full border border-line/15 bg-bg-soft px-2.5 py-1 text-xs font-medium text-ink;
   }
 
+  .polaroid-frame {
+    @apply rounded-sm border border-line/10 bg-[rgb(250,247,242)] p-2 shadow-[0_16px_40px_-18px_rgb(0_0_0/0.45),0_0_0_1px_rgb(var(--color-line)/0.04)];
+  }
+
+  html.dark .polaroid-frame {
+    @apply bg-[rgb(34,37,46)] shadow-[0_18px_44px_-20px_rgb(0_0_0/0.65),0_0_0_1px_rgb(var(--color-line)/0.06)];
+  }
+
   .link-hover {
     @apply relative after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-accent after:transition-transform hover:after:scale-x-100;
   }
