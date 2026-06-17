@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 :root,
 html.dark {
@@ -213,23 +213,14 @@ html.dark .page-paper {
     background-color: rgb(var(--color-bg-card) / 0.78);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease;
   }
 
   .card-settle {
     position: relative;
     transform-origin: top center;
-    transform: translate(var(--settle-x, 0), var(--settle-y, 0))
-      rotate(var(--settle-rotate, -1.5deg));
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.25s ease,
-      box-shadow 0.25s ease;
-  }
-
-  .card-settle > .card {
-    transition:
-      border-color 0.25s ease,
-      box-shadow 0.25s ease;
   }
 
   .card-settle.align-crooked > .card {
@@ -314,6 +305,7 @@ html.dark .page-paper {
     border-style: dashed;
     border-color: rgb(196 92 66 / 0.4);
     box-shadow: 0 6px 16px -10px rgb(0 0 0 / 0.35);
+    animation: align-chip-wiggle 3.8s ease-in-out infinite;
   }
 
   .card-settle.is-aligned {
@@ -411,21 +403,6 @@ html.dark .page-paper {
   );
 }
 
-@keyframes align-crooked-wiggle {
-  0%,
-  100% {
-    transform: translate(var(--settle-x, 0), var(--settle-y, 0))
-      rotate(var(--settle-rotate, -1.5deg));
-  }
-  50% {
-    transform: translate(
-        calc(var(--settle-x, 0px) + 2px),
-        calc(var(--settle-y, 0px) - 2px)
-      )
-      rotate(var(--settle-rotate, -1.5deg));
-  }
-}
-
 @keyframes align-chip-wiggle {
   0%,
   100% {
@@ -451,16 +428,6 @@ html.dark .page-paper {
   100% {
     transform: translate(0, 0) rotate(0deg) scale(1);
   }
-}
-
-.card-settle.align-crooked:not(.align-draggable):not(:has(.card:hover)):not(
-    :has(.card:focus-within)
-  ) {
-  animation: align-crooked-wiggle 4.5s ease-in-out infinite;
-}
-
-.chip-nudge.align-crooked {
-  animation: align-chip-wiggle 3.8s ease-in-out infinite;
 }
 
 @keyframes broom-sweep {
