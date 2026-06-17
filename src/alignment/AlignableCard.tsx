@@ -1,6 +1,7 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import type { ReactNode } from 'react';
 import { settleWithoutOffset } from '../motion/settle';
+import { cn } from '../utils';
 import AlignCardFrame from './AlignCardFrame';
 import { useAlignment } from './AlignmentContext';
 import { useAlignable } from './useAlignable';
@@ -43,11 +44,8 @@ const AlignableCard = ({
   return (
     <Motion {...resolvedSettle} className='align-card-root relative'>
       <AlignCardFrame dragging={dragging}>
-        <div
-          {...alignProps}
-          className={`card ${className} ${alignProps.className}`.trim()}
-        >
-          {children}
+        <div {...alignProps} className={cn(alignProps.className)}>
+          <div className={cn('card', className)}>{children}</div>
         </div>
       </AlignCardFrame>
     </Motion>

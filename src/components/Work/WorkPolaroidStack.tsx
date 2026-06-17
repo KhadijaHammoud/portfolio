@@ -145,11 +145,12 @@ const WorkPolaroidStack = ({
       <div className='grid gap-10 md:grid-cols-[minmax(0,30rem)_minmax(0,1fr)] md:items-start md:gap-10 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:gap-14'>
         <div className='flex min-w-0 justify-end overflow-visible'>
           <div
-            className='relative w-full max-w-[24rem] cursor-pointer overflow-visible px-10 pb-4 sm:max-w-[26rem]'
+            className='polaroid-stack relative w-full max-w-[24rem] cursor-pointer overflow-visible px-10 pb-4 select-none sm:max-w-[26rem]'
             style={{ height: `${containerHeightRem}rem` }}
             role='button'
             tabIndex={0}
             onClick={handleStackClick}
+            onMouseDown={(event) => event.preventDefault()}
             onMouseEnter={() => setFanOpen(true)}
             onMouseLeave={() => setFanOpen(false)}
             onKeyDown={(event) => {

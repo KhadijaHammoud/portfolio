@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { FileDown, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PROFILE } from '../constants';
+import { cn } from '../utils';
 import { TextButton, TextButtonVariant } from './shared';
 import ThemeToggle from './ThemeToggle';
 
@@ -76,11 +77,12 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
         scrolled
           ? 'border-b border-line/5 bg-bg/75 backdrop-blur-xl'
-          : 'border-b border-transparent bg-bg/40 backdrop-blur-md'
-      }`}
+          : 'border-b border-transparent bg-bg/40 backdrop-blur-md',
+      )}
     >
       <nav className='container-page flex h-16 items-center justify-between'>
         <a
@@ -106,9 +108,10 @@ const Navbar = () => {
                 <a
                   href={l.href}
                   aria-current={isActive ? 'page' : undefined}
-                  className={`link-hover relative whitespace-nowrap text-sm transition-colors ${
-                    isActive ? 'text-ink' : 'text-ink-muted hover:text-ink'
-                  }`}
+                  className={cn(
+                    'link-hover relative whitespace-nowrap text-sm transition-colors',
+                    isActive ? 'text-ink' : 'text-ink-muted hover:text-ink',
+                  )}
                 >
                   {l.label}
                   {isActive && (

@@ -5,6 +5,7 @@ import {
   type ElementType,
   type ReactNode,
 } from 'react';
+import { cn } from '../utils';
 import { useAlignment } from './AlignmentContext';
 
 const AlignChipFieldContext = createContext<string | null>(null);
@@ -38,11 +39,7 @@ const AlignChipField = ({
 
   return (
     <AlignChipFieldContext.Provider value={id}>
-      <Tag
-        className={[className, isGameEnabled ? 'align-chip-field' : '']
-          .filter(Boolean)
-          .join(' ')}
-      >
+      <Tag className={cn(className, isGameEnabled && 'align-chip-field')}>
         {children}
       </Tag>
     </AlignChipFieldContext.Provider>

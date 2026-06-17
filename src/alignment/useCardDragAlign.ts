@@ -14,13 +14,28 @@ const CARD_NUDGES = [
   { rotate: 6.2, x: 28, y: -20 },
 ] as const;
 
-const CARD_SNAP_THRESHOLD_PX = 42;
+/** Rotation-only nudges for vertically stacked cards (e.g. Experience timeline). */
+const STACK_CARD_NUDGES = [
+  { rotate: -4.5, x: 0, y: 0 },
+  { rotate: 4, x: 0, y: 0 },
+  { rotate: -3.5, x: 0, y: 0 },
+  { rotate: 4.5, x: 0, y: 0 },
+] as const;
 
-type CardNudge = (typeof CARD_NUDGES)[number];
+type CardNudgeProfile = 'spread' | 'stack';
 
-function getCardNudge(index: number): CardNudge {
-  return CARD_NUDGES[index % CARD_NUDGES.length];
+type CardNudge = {
+  readonly rotate: number;
+  readonly x: number;
+  readonly y: number;
+};
+
+function getCardNudge(index: number, profile: CardNudgeProfile): CardNudge {
+  const pool = profile === 'stack' ? STACK_CARD_NUDGES : CARD_NUDGES;
+  return pool[index % pool.length];
 }
+
+const CARD_SNAP_THRESHOLD_PX = 42;
 
 function getCardDragRotation(
   nudge: CardNudge,
@@ -41,6 +56,7 @@ type UseCardDragAlignOptions = {
   aligned: boolean;
   index: number;
   gameEpoch: number;
+  nudgeProfile?: CardNudgeProfile;
   onSnap: () => void;
 };
 
@@ -49,17 +65,18 @@ export function useCardDragAlign({
   aligned,
   index,
   gameEpoch,
+  nudgeProfile = 'spread',
   onSnap,
 }: UseCardDragAlignOptions) {
-  const nudge = getCardNudge(index);
+  const nudge = getCardNudge(index, nudgeProfile);
   const [delta, setDelta] = useState({ x: 0, y: 0 });
   const [dragging, setDragging] = useState(false);
   const pointerIdRef = useRef<number | null>(null);
   const dragStartRef = useRef({ x: 0, y: 0, deltaX: 0, deltaY: 0 });
   const hasDraggedRef = useRef(false);
 
-  const totalX = nudge.x + delta.x;
-  const totalY = nudge.y + delta.y;
+  const totalX = nudgeProfile === 'stack' ? delta.x : nudge.x + delta.x;
+  const totalY = nudgeProfile === 'stack' ? delta.y : nudge.y + delta.y;
 
   const resetDrag = useCallback(() => {
     setDragging(false);
@@ -75,8 +92,12 @@ export function useCardDragAlign({
   const finishDrag = useCallback(() => {
     if (!dragging) return;
 
-    const distance = Math.hypot(totalX, totalY);
-    if (distance <= CARD_SNAP_THRESHOLD_PX) {
+    const snapDistance =
+      nudgeProfile === 'stack'
+        ? Math.hypot(delta.x, delta.y)
+        : Math.hypot(totalX, totalY);
+
+    if (snapDistance <= CARD_SNAP_THRESHOLD_PX) {
       onSnap();
       resetDrag();
       return;
@@ -85,7 +106,16 @@ export function useCardDragAlign({
     setDragging(false);
     pointerIdRef.current = null;
     setDelta({ x: 0, y: 0 });
-  }, [dragging, onSnap, resetDrag, totalX, totalY]);
+  }, [
+    delta.x,
+    delta.y,
+    dragging,
+    nudgeProfile,
+    onSnap,
+    resetDrag,
+    totalX,
+    totalY,
+  ]);
 
   const handlePointerDown = useCallback(
     (event: PointerEvent<HTMLElement>) => {
@@ -139,6 +169,7 @@ export function useCardDragAlign({
     aligned,
     dragging,
     nudge,
+    nudgeProfile,
     totalX,
     totalY,
     animateRelease: hasDraggedRef.current,
@@ -163,6 +194,7 @@ function buildDragStyle({
   aligned,
   dragging,
   nudge,
+  nudgeProfile,
   totalX,
   totalY,
   animateRelease,
@@ -171,13 +203,17 @@ function buildDragStyle({
   aligned: boolean;
   dragging: boolean;
   nudge: CardNudge;
+  nudgeProfile: CardNudgeProfile;
   totalX: number;
   totalY: number;
   animateRelease: boolean;
 }): CSSProperties | undefined {
   if (!enabled || aligned) return undefined;
 
-  const rotate = getCardDragRotation(nudge, totalX, totalY);
+  const rotate =
+    nudgeProfile === 'stack'
+      ? nudge.rotate
+      : getCardDragRotation(nudge, totalX, totalY);
 
   return {
     transform: `translate(${totalX}px, ${totalY}px) rotate(${rotate}deg)`,

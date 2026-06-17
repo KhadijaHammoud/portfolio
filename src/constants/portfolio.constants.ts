@@ -207,7 +207,7 @@ export const OPEN_SOURCE = {
   name: 'Skiff UI',
   role: 'Lead Contributor',
   summary:
-    'Led the engineering revamp that prepared Skiff UI, a React component library, for open-sourcing, turning an internal component library into a polished, public project adopted by the community.',
+    'Led the engineering revamp that prepared Skiff UI, a React component library, for open-sourcing, turning an internal component library into a polished, public project adopted by the community. Built during my work on the [Skiff](#work-skiff) productivity suite.',
   highlights: [
     'Led engineering on the open-source release of Skiff UI.',
     'Built missing components alongside design to round out the library ahead of release.',
@@ -259,7 +259,7 @@ export const FEATURED_WORK: WorkProject[] = [
     scope: ENGAGEMENT_CORE.skiff.scope,
     title: 'Skiff',
     summary:
-      'Skiff was a privacy-first productivity suite built in a React/TypeScript monorepo with zero-knowledge client-side encryption.',
+      'Skiff was a privacy-first productivity suite with Pages, Drive, Mail, and Calendar, built in a React/TypeScript monorepo with zero-knowledge client-side encryption.',
     apps: [
       {
         title: 'Skiff Pages / Drive',
@@ -298,9 +298,6 @@ export const FEATURED_WORK: WorkProject[] = [
         ],
         shots: SKIFF_CALENDAR_SHOTS,
       },
-    ],
-    highlights: [
-      'Led engineering on Skiff UI toward open-source. See the [Open Source](#open-source) section for public design system work.',
     ],
     stack: [
       Skill.React,

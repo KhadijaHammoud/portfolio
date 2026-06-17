@@ -1,4 +1,4 @@
-import { LinkedText } from '../shared';
+import { LinkedText, cn } from '../shared';
 
 type WorkHighlightListProps = {
   items: readonly string[];
@@ -9,7 +9,7 @@ const WorkHighlightList = ({
   items,
   className = '',
 }: WorkHighlightListProps) => (
-  <ul className={`space-y-2.5 ${className}`}>
+  <ul className={cn('space-y-2.5', className)}>
     {items.map((h) => (
       <li
         key={h}

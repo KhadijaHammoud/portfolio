@@ -1,5 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import React from 'react';
+import { cn } from '../../../utils';
 
 export enum ButtonVariant {
   Primary = 'primary',
@@ -75,12 +76,7 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
   showArrow = false,
   className = '',
 }) => {
-  const classes = [
-    unstyled ? '' : buttonLinkClasses(variant, iconOnly),
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  const classes = cn(!unstyled && buttonLinkClasses(variant, iconOnly), className);
   const isExternal = href?.startsWith('http') && !download;
 
   const content = (

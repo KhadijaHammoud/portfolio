@@ -5,6 +5,8 @@ import { OPEN_SOURCE } from '../constants';
 import { getSettleMotion } from '../motion/settle';
 import Section from './Section';
 import { EngagementBadges, ImpactTags, LinkedText } from './shared';
+import WorkCollapsiblePanel from './Work/WorkCollapsiblePanel';
+import WorkHighlightList from './Work/WorkHighlightList';
 
 const OpenSource = () => {
   const reduceMotion = useReducedMotion();
@@ -61,17 +63,16 @@ const OpenSource = () => {
         <p className='mt-4 text-base leading-relaxed text-ink-muted'>
           <LinkedText>{OPEN_SOURCE.summary}</LinkedText>
         </p>
-        <ul className='mt-5 space-y-2.5'>
-          {OPEN_SOURCE.highlights.map((h) => (
-            <li
-              key={h}
-              className='relative pl-5 text-base leading-relaxed text-ink-muted'
-            >
-              <span className='absolute left-0 top-[9px] h-1.5 w-1.5 rounded-full bg-accent/60' />
-              <LinkedText>{h}</LinkedText>
-            </li>
-          ))}
-        </ul>
+
+        <div className='mt-8'>
+          <WorkCollapsiblePanel
+            id='open-source-contributions'
+            title='Contributions'
+          >
+            <WorkHighlightList items={OPEN_SOURCE.highlights} />
+          </WorkCollapsiblePanel>
+        </div>
+
         <AlignChipField
           id='opensource-chips'
           className='mt-5 flex flex-wrap gap-2'

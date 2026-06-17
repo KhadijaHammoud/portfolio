@@ -4,6 +4,7 @@ import { motion, type Variants } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin, RotateCcw } from 'lucide-react';
 import { AlignCardFrame, useAlignable, useAlignment } from '../../alignment';
 import { EXPERIENCES, PROFILE } from '../../constants';
+import { cn } from '../../utils';
 import {
   ButtonLink,
   LinkedText,
@@ -79,7 +80,10 @@ const Hero = () => {
   return (
     <section
       id='top'
-      className='relative overflow-hidden pt-36 pb-24 md:pt-48 md:pb-32'
+      className={cn(
+        'relative overflow-hidden pt-28 pb-24 md:pt-36 md:pb-28',
+        isGameEnabled && 'md:pb-40',
+      )}
     >
       <div className='container-page'>
         <motion.div
@@ -202,7 +206,10 @@ const Hero = () => {
             <AlignCardFrame dragging={dragging}>
               <div
                 {...alignProps}
-                className={`relative rounded-2xl border border-line/5 bg-line/[0.04] ${alignProps.className}`}
+                className={cn(
+                  'relative rounded-2xl border border-line/5 bg-line/[0.04]',
+                  alignProps.className,
+                )}
               >
                 <div className='overflow-hidden rounded-2xl'>
                   <div className='flex flex-col gap-px sm:flex-row'>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { cn } from '../../utils';
 
 type ImpactTagsProps = {
   tags?: readonly string[];
@@ -10,7 +11,7 @@ const ImpactTags: React.FC<ImpactTagsProps> = ({ tags, className = '' }) => {
 
   return (
     <ul
-      className={`inline-flex flex-wrap items-center gap-2 ${className}`.trim()}
+      className={cn('inline-flex flex-wrap items-center gap-2', className)}
       aria-label='Impact highlights'
     >
       {tags.map((tag) => (

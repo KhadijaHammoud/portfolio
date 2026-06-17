@@ -1,21 +1,22 @@
 import { WorkShot } from '../../types';
+import { cn } from '../../utils';
 import WorkPolaroidStack from './WorkPolaroidStack';
 
-type WorkWalkthroughSectionProps = {
+type WorkScreenshotsSectionProps = {
   shots: readonly WorkShot[];
   viewerTitle: string;
   index: number;
   className?: string;
 };
 
-const WorkWalkthroughSection = ({
+const WorkScreenshotsSection = ({
   shots,
   viewerTitle,
   index,
   className = 'mt-8 border-t border-line/5 pt-8',
-}: WorkWalkthroughSectionProps) => {
+}: WorkScreenshotsSectionProps) => {
   return (
-    <div className={`overflow-visible ${className}`}>
+    <div className={cn('overflow-visible', className)}>
       <div className='mb-8 max-w-2xl'>
         <h4 className='text-lg font-semibold tracking-tight text-ink md:text-xl'>
           Product screenshots
@@ -36,4 +37,4 @@ const WorkWalkthroughSection = ({
   );
 };
 
-export default WorkWalkthroughSection;
+export default WorkScreenshotsSection;

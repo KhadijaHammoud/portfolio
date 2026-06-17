@@ -3,9 +3,7 @@ import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
 import { getSettleMotion } from '../../motion/settle';
 import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
-import WorkAppSections from './WorkAppSections';
-import WorkHighlightList from './WorkHighlightList';
-import WorkWalkthroughSection from './WorkWalkthroughSection';
+import WorkProjectDetails from './WorkProjectDetails';
 
 type WorkProjectProps = {
   project: WorkProjectType;
@@ -14,8 +12,6 @@ type WorkProjectProps = {
 
 const WorkProject = ({ project, index }: WorkProjectProps) => {
   const reduceMotion = useReducedMotion();
-  const shots = project.shots ?? [];
-  const hasProjectShots = shots.length > 0 && !project.apps?.length;
 
   return (
     <div id={`work-${project.slug}`} className='scroll-mt-28'>
@@ -41,25 +37,14 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
           <p className='mt-4 text-base leading-relaxed text-ink-muted'>
             <LinkedText>{project.summary}</LinkedText>
           </p>
-          {project.apps && project.apps.length > 0 && (
-            <WorkAppSections
-              apps={project.apps}
-              projectSlug={project.slug}
-              company={project.company}
-            />
-          )}
-          {project.highlights && project.highlights.length > 0 && (
-            <WorkHighlightList
-              items={project.highlights}
-              className={
-                project.apps && project.apps.length > 0
-                  ? 'mt-8 border-t border-line/5 pt-8'
-                  : 'mt-5'
-              }
-            />
-          )}
+
+          <WorkProjectDetails project={project} projectIndex={index} />
+
           {project.stack && project.stack.length > 0 && (
-            <AlignChipField id={`work-${project.slug}-chips`} className='mt-5 flex flex-wrap gap-2'>
+            <AlignChipField
+              id={`work-${project.slug}-chips`}
+              className='mt-5 flex flex-wrap gap-2'
+            >
               {project.stack.map((s, chipIdx) => (
                 <SkillChip
                   key={s}
@@ -69,13 +54,6 @@ const WorkProject = ({ project, index }: WorkProjectProps) => {
                 />
               ))}
             </AlignChipField>
-          )}
-          {hasProjectShots && (
-            <WorkWalkthroughSection
-              shots={shots}
-              viewerTitle={project.company}
-              index={index}
-            />
           )}
         </AlignableCard>
       </div>

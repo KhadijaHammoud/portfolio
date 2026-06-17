@@ -8,8 +8,10 @@ import {
 import { useAlignChipFieldId } from './AlignChipField';
 import { useAlignment } from './AlignmentContext';
 import { useCardDragAlign } from './useCardDragAlign';
+import { cn } from '../utils';
 
 type AlignableVariant = 'card' | 'chip';
+type NudgeProfile = 'spread' | 'stack';
 
 const CHIP_NUDGES = [
   { rotate: '-5.5deg', x: '9px', y: '7px' },
@@ -24,6 +26,8 @@ type UseAlignableOptions = {
   id: string;
   index: number;
   variant: AlignableVariant;
+  /** `stack` keeps rotation-only nudges for vertically stacked cards. */
+  nudgeProfile?: NudgeProfile;
 };
 
 function chipNudgeStyle(index: number): CSSProperties {
@@ -37,11 +41,16 @@ function chipNudgeStyle(index: number): CSSProperties {
 
 function passiveAlignProps(variant: AlignableVariant) {
   return {
-    className: variant === 'chip' ? 'chip' : '',
+    className: cn(variant === 'chip' && 'chip'),
   };
 }
 
-export function useAlignable({ id, index, variant }: UseAlignableOptions) {
+export function useAlignable({
+  id,
+  index,
+  variant,
+  nudgeProfile = 'spread',
+}: UseAlignableOptions) {
   const {
     isGameEnabled,
     registerCard,
@@ -91,6 +100,7 @@ export function useAlignable({ id, index, variant }: UseAlignableOptions) {
     aligned,
     index,
     gameEpoch,
+    nudgeProfile,
     onSnap: snap,
   });
 
@@ -123,20 +133,21 @@ export function useAlignable({ id, index, variant }: UseAlignableOptions) {
   const chipStyle: CSSProperties | undefined =
     crooked && variant === 'chip' ? chipNudgeStyle(index) : undefined;
 
-  const className = [
+  const className = cn(
     variant === 'card' ? 'card-settle' : 'chip chip-nudge',
-    crooked ? 'align-crooked' : '',
-    aligned ? 'is-aligned' : '',
-    dragEnabled ? 'align-draggable' : '',
-    dragging ? 'is-dragging' : '',
-    hoverEnabled ? 'align-hoverable' : '',
-  ]
-    .filter(Boolean)
-    .join(' ');
+    crooked && 'align-crooked',
+    aligned && 'is-aligned',
+    dragEnabled && 'align-draggable',
+    dragging && 'is-dragging',
+    hoverEnabled && 'align-hoverable',
+  );
 
   const mergedStyle: CSSProperties | undefined =
     variant === 'card' && crooked
-      ? { ...dragStyle, zIndex: index + 1 }
+      ? {
+          ...dragStyle,
+          zIndex: nudgeProfile === 'stack' ? 20 - index : index + 1,
+        }
       : chipStyle;
 
   return {

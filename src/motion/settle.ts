@@ -1,9 +1,9 @@
 import { useReducedMotion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 
-export const SETTLE_VIEWPORT = { once: true, margin: '-80px' } as const;
+const SETTLE_VIEWPORT = { once: true, margin: '-80px' } as const;
 
-export const SETTLE_EASE = [0.22, 1, 0.36, 1] as const;
+const SETTLE_EASE = [0.22, 1, 0.36, 1] as const;
 
 export function useSettleMotion(delay = 0) {
   const reduceMotion = useReducedMotion();

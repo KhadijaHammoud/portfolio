@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
 import { ButtonLink, ButtonVariant, Tooltip } from '../components/shared';
+import { cn } from '../utils';
 import { useAlignment } from './AlignmentContext';
 
 const SWEEP_MS = 650;
@@ -130,7 +131,10 @@ const AlignHud = () => {
                     className='mt-3'
                   >
                     <BrushCleaning
-                      className={`h-4 w-4 text-accent ${sweeping ? 'broom-sweeping' : ''}`}
+                      className={cn(
+                        'h-4 w-4 text-accent',
+                        sweeping && 'broom-sweeping',
+                      )}
                       aria-hidden
                     />
                     Sweep all into place
@@ -209,7 +213,7 @@ const AlignHud = () => {
                       ariaLabel={sweepTooltip(remaining)}
                     >
                       <BrushCleaning
-                        className={`h-4 w-4 ${sweeping ? 'broom-sweeping' : ''}`}
+                        className={cn('h-4 w-4', sweeping && 'broom-sweeping')}
                         aria-hidden
                       />
                     </ButtonLink>

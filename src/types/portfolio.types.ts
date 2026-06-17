@@ -36,7 +36,6 @@ export type WorkProject = {
   /** Omit when highlights and the Skills section already cover the stack. */
   stack?: string[];
   shots?: readonly WorkShot[];
-  walkthroughTitle?: string;
 };
 
 export type Experience = {

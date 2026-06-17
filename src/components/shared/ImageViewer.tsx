@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import React, { useCallback, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 
-export type ViewerImage = {
+type ViewerImage = {
   src: string;
   alt: string;
   caption?: string;

@@ -7,6 +7,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { cn } from '../utils';
 
 interface Point {
   x: number;
@@ -328,9 +329,10 @@ const AutonomousPawMarker: React.FC<{
   >
     <div className='relative z-[1]' style={{ rotate: `${rotate}deg` }}>
       <div
-        className={`text-secondary ${
-          reduceMotion ? 'opacity-[0.12]' : 'animate-paw-print-step'
-        }`}
+        className={cn(
+          'text-secondary',
+          reduceMotion ? 'opacity-[0.12]' : 'animate-paw-print-step',
+        )}
         style={
           reduceMotion
             ? undefined

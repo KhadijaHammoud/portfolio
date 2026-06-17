@@ -1,5 +1,6 @@
 import { LucideProps } from 'lucide-react';
 import React from 'react';
+import { cn } from '../../../utils';
 import ButtonLink, { ButtonVariant } from './ButtonLink';
 
 export { ButtonVariant as TextButtonVariant };
@@ -29,7 +30,7 @@ const TextButton: React.FC<TextButtonProps> = ({
   >
     {icon &&
       React.cloneElement(icon, {
-        className: ['h-4 w-4', icon.props.className].filter(Boolean).join(' '),
+        className: cn('h-4 w-4', icon.props.className),
       })}
     {children}
   </ButtonLink>

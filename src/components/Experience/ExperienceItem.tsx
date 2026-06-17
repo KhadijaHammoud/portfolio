@@ -1,8 +1,9 @@
 import { TextButton, TextButtonVariant } from '../shared/buttons';
 
 import { motion } from 'framer-motion';
-import { AlignCardFrame, useAlignable, useAlignment } from '../../alignment';
+import { AlignCardFrame, useAlignable } from '../../alignment';
 import { getSettleMotion, settleWithoutOffset } from '../../motion/settle';
+import { cn } from '../../utils';
 import type { Experience as ExperienceType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 
@@ -13,19 +14,23 @@ type ExperienceItemProps = {
 };
 
 const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
-  const { isGameEnabled } = useAlignment();
   const { alignProps, dragging } = useAlignable({
     id: `exp-${exp.workSlug ?? index}`,
     index,
     variant: 'card',
+    nudgeProfile: 'stack',
   });
 
-  const settle = isGameEnabled
-    ? settleWithoutOffset(getSettleMotion(reduceMotion, index * 0.06))
-    : getSettleMotion(reduceMotion, index * 0.06);
+  const settle = settleWithoutOffset(
+    getSettleMotion(reduceMotion, index * 0.06),
+  );
 
   return (
-    <motion.li {...settle} className='group align-card-root relative'>
+    <motion.li
+      {...settle}
+      className='group align-card-root relative isolate'
+      style={{ zIndex: 20 - index }}
+    >
       <span className='experience-timeline-dot' aria-hidden>
         <span className='grid h-3.5 w-3.5 place-items-center'>
           <span className='absolute h-3.5 w-3.5 rounded-full bg-accent/20' />
@@ -36,8 +41,13 @@ const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
       <AlignCardFrame dragging={dragging}>
         <div
           {...alignProps}
-          className={`card p-6 transition-colors hover:border-line/10 md:p-10 ${alignProps.className}`}
+          className={cn(alignProps.className)}
         >
+          <div
+            className={cn(
+              'card p-6 transition-colors hover:border-line/10 md:p-10',
+            )}
+          >
           <div className='flex flex-wrap items-start justify-between gap-x-6 gap-y-2'>
             <div className='min-w-0'>
               <p className='text-lg font-semibold leading-snug text-ink md:text-xl'>
@@ -70,6 +80,7 @@ const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
               </TextButton>
             </div>
           )}
+          </div>
         </div>
       </AlignCardFrame>
     </motion.li>

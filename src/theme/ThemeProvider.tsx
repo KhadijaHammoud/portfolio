@@ -7,12 +7,11 @@ import React, {
   useState,
 } from 'react';
 
-export type Theme = 'light' | 'dark';
+type Theme = 'light' | 'dark';
 
 interface ThemeContextValue {
   theme: Theme;
   toggleTheme: () => void;
-  setTheme: (t: Theme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
@@ -48,15 +47,14 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
   }, [theme]);
 
-  const setTheme = useCallback((t: Theme) => setThemeState(t), []);
   const toggleTheme = useCallback(
     () => setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark')),
     [],
   );
 
   const value = useMemo(
-    () => ({ theme, toggleTheme, setTheme }),
-    [theme, toggleTheme, setTheme],
+    () => ({ theme, toggleTheme }),
+    [theme, toggleTheme],
   );
 
   return (
