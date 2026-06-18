@@ -4,17 +4,17 @@ import { type ReactNode, useState } from 'react';
 import { cn } from '../../utils';
 
 type WorkCollapsiblePanelProps = {
+  children: ReactNode;
   id: string;
   title: string;
   description?: string;
-  children: ReactNode;
 };
 
 const WorkCollapsiblePanel = ({
+  children,
+  description,
   id,
   title,
-  description,
-  children,
 }: WorkCollapsiblePanelProps) => {
   const reduceMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);

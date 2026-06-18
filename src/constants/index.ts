@@ -1,1 +1,1 @@
-export * from './portfolio.constants';
+export * from './portfolio.const';

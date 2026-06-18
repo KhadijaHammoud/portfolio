@@ -1,6 +1,6 @@
 import type { Experience, WorkProject } from '../types';
-import { FULLYRAMPED_SHOTS } from './fullyramped-shots';
-import { SKIFF_CALENDAR_SHOTS } from './skiff-calendar-shots';
+import { FULLYRAMPED_SHOTS } from './fullyramped-shots.const';
+import { SKIFF_CALENDAR_SHOTS } from './skiff-calendar-shots.const';
 
 /** Shared employer / role metadata — single source for Work and Experience. */
 const SAN_FRANCISCO_REMOTE = 'San Francisco, CA (Remote)';

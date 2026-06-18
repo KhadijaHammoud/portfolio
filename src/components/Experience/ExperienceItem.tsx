@@ -2,7 +2,7 @@ import { TextButton, TextButtonVariant } from '../shared/buttons';
 
 import { motion } from 'framer-motion';
 import { AlignCardFrame, useAlignable } from '../../alignment';
-import { getSettleMotion, settleWithoutOffset } from '../../motion/settle';
+import { getSettleMotion, settleWithoutOffset } from '../../motion/settle.util';
 import { cn } from '../../utils';
 import type { Experience as ExperienceType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';

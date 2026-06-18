@@ -26,7 +26,7 @@ Open [http://localhost:3000](http://localhost:3000). The dev server reloads on s
 See **[TECH_CONVENTIONS.md](./TECH_CONVENTIONS.md)** for:
 
 - Directory layout and component patterns
-- Where portfolio copy and data live (`src/constants/portfolio.constants.ts`)
+- Where portfolio copy and data live (`src/constants/portfolio.const.ts`)
 - TypeScript, styling, and animation standards
 - Git commit and PR expectations
 

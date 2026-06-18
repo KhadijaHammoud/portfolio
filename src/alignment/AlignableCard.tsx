@@ -1,6 +1,6 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { settleWithoutOffset } from '../motion/settle';
+import { settleWithoutOffset } from '../motion/settle.util';
 import { cn } from '../utils';
 import AlignCardFrame from './AlignCardFrame';
 import { useAlignment } from './AlignmentContext';
@@ -15,21 +15,21 @@ const MOTION_TAGS = {
 } as const;
 
 type AlignableCardProps = {
+  children: ReactNode;
   id: string;
   index: number;
-  className?: string;
-  children: ReactNode;
-  settle?: HTMLMotionProps<'div'>;
   as?: MotionTag;
+  className?: string;
+  settle?: HTMLMotionProps<'div'>;
 };
 
 const AlignableCard = ({
+  as = 'div',
+  children,
+  className = '',
   id,
   index,
-  className = '',
-  children,
   settle,
-  as = 'div',
 }: AlignableCardProps) => {
   const { isGameEnabled } = useAlignment();
   const { alignProps, dragging } = useAlignable({

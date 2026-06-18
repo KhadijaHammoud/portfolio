@@ -3,12 +3,12 @@ import { useAlignable } from './useAlignable';
 
 type SkillChipProps = {
   id: string;
-  label: string;
   index: number;
+  label: string;
   as?: 'li' | 'span';
 };
 
-const SkillChip = ({ id, label, index, as = 'span' }: SkillChipProps) => {
+const SkillChip = ({ as = 'span', id, index, label }: SkillChipProps) => {
   const { alignProps } = useAlignable({
     id,
     index,

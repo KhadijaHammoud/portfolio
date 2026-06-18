@@ -1,32 +1,40 @@
 import { AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { useAlignment } from './AlignmentContext';
-import {
-  AlignHudCompactComplete,
-  AlignHudCompactProgress,
-  AlignHudHintCard,
-  formatAlignProgress,
-} from './AlignHudPanels';
-import { scrollToFirstCrooked } from './scrollToFirstCrooked';
+import { useAlignment } from '../AlignmentContext';
+import { formatAlignProgress } from './alignHud.util';
+import AlignHudCompactComplete from './AlignHudCompactComplete';
+import AlignHudCompactProgress from './AlignHudCompactProgress';
+import AlignHudHintCard from './AlignHudHintCard';
 
 const SWEEP_MS = 650;
+
+/** Smooth-scroll to the first misaligned card or chip group on the page. */
+function scrollToFirstCrooked() {
+  const target = document.querySelector('[data-aligned="false"]');
+  if (!target) return;
+
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center',
+  });
+}
 
 const AlignHud = () => {
   const reduceMotion = useReducedMotion();
   const {
-    isGameEnabled,
-    total,
-    alignedCount,
-    cardTotal,
-    cardAligned,
-    chipGroupTotal,
-    chipGroupAligned,
-    isComplete,
-    hintDismissed,
-    dismissHint,
-    showHint,
-    resetGame,
     alignAll,
+    alignedCount,
+    cardAligned,
+    cardTotal,
+    chipGroupAligned,
+    chipGroupTotal,
+    dismissHint,
+    hintDismissed,
+    isComplete,
+    isGameEnabled,
+    resetGame,
+    showHint,
+    total,
   } = useAlignment();
   const [sweeping, setSweeping] = useState(false);
   const [celebrated, setCelebrated] = useState(false);
@@ -80,35 +88,35 @@ const AlignHud = () => {
   if (hintExpanded) {
     hudPanel = (
       <AlignHudHintCard
-        reduceMotion={reduceMotion}
-        progress={progress}
-        progressLabel={progressLabel}
-        remaining={remaining}
         canSweep={canSweep}
-        sweeping={sweeping}
+        onDismiss={dismissHint}
         onFindCrooked={scrollToFirstCrooked}
         onSweep={sweep}
-        onDismiss={dismissHint}
+        progress={progress}
+        progressLabel={progressLabel}
+        reduceMotion={reduceMotion}
+        remaining={remaining}
+        sweeping={sweeping}
       />
     );
   } else if (isComplete) {
     hudPanel = (
       <AlignHudCompactComplete
-        reduceMotion={reduceMotion}
         onScrambleAgain={scrambleAgain}
+        reduceMotion={reduceMotion}
       />
     );
   } else {
     hudPanel = (
       <AlignHudCompactProgress
+        canSweep={canSweep}
+        onFindCrooked={scrollToFirstCrooked}
+        onShowHint={showHint}
+        onSweep={sweep}
+        progress={progress}
         reduceMotion={reduceMotion}
         remaining={remaining}
-        progress={progress}
-        canSweep={canSweep}
         sweeping={sweeping}
-        onShowHint={showHint}
-        onFindCrooked={scrollToFirstCrooked}
-        onSweep={sweep}
       />
     );
   }

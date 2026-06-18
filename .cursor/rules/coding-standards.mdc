@@ -13,6 +13,7 @@ alwaysApply: false
 - Prop interfaces: `ComponentNameProps` (or local `type` for small components).
 - Enums: `PascalCase` members (`TextButtonVariant.Primary`).
 - Data constants: `SCREAMING_SNAKE_CASE` (`PROFILE`, `EXPERIENCES`).
+- File suffixes: `*.util.ts`, `*.const.ts`, `*.type.ts`.
 
 ## Imports and exports
 
@@ -35,7 +36,7 @@ alwaysApply: false
 ## Styling
 
 - Tailwind + semantic tokens; avoid custom CSS unless necessary.
-- No hardcoded magic strings for copy—use `portfolio.constants.ts`.
+- No hardcoded magic strings for copy—use `portfolio.const.ts`.
 
 ## Performance
 

@@ -1,16 +1,16 @@
 import { useReducedMotion } from 'framer-motion';
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
-import { getSettleMotion } from '../../motion/settle';
+import { getSettleMotion } from '../../motion/settle.util';
 import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 import WorkProjectDetails from './WorkProjectDetails';
 
 type WorkProjectProps = {
-  project: WorkProjectType;
   index: number;
+  project: WorkProjectType;
 };
 
-const WorkProject = ({ project, index }: WorkProjectProps) => {
+const WorkProject = ({ index, project }: WorkProjectProps) => {
   const reduceMotion = useReducedMotion();
 
   return (

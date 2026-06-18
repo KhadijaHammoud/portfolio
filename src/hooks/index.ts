@@ -1,1 +1,1 @@
-export { MD_MEDIA_QUERY, useMinMd } from './useMinMd';
+export { useMinMd } from './useMinMd';

@@ -15,17 +15,17 @@ export function useAlignChipFieldId() {
 }
 
 type AlignChipFieldProps = {
-  id: string;
   children: ReactNode;
-  className?: string;
+  id: string;
   as?: 'div' | 'ul';
+  className?: string;
 };
 
 const AlignChipField = ({
-  id,
+  as = 'div',
   children,
   className = '',
-  as = 'div',
+  id,
 }: AlignChipFieldProps) => {
   const { isGameEnabled, registerChipGroup, unregisterChipGroup } =
     useAlignment();

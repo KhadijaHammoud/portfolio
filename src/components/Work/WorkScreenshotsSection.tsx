@@ -3,17 +3,17 @@ import { cn } from '../../utils';
 import WorkPolaroidStack from './WorkPolaroidStack';
 
 type WorkScreenshotsSectionProps = {
+  index: number;
   shots: readonly WorkShot[];
   viewerTitle: string;
-  index: number;
   className?: string;
 };
 
 const WorkScreenshotsSection = ({
+  className = 'mt-8 border-t border-line/5 pt-8',
+  index,
   shots,
   viewerTitle,
-  index,
-  className = 'mt-8 border-t border-line/5 pt-8',
 }: WorkScreenshotsSectionProps) => {
   return (
     <div className={cn('overflow-visible', className)}>

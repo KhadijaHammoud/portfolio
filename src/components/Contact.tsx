@@ -2,7 +2,7 @@ import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { PROFILE } from '../constants';
-import { useSettleMotion } from '../motion/settle';
+import { useSettleMotion } from '../motion/settle.util';
 import { LinkedInIcon } from './icons';
 import { TextButton, TextButtonVariant, ButtonGroup } from './shared';
 

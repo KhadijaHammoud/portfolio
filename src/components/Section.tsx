@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { useSettleMotion } from '../motion/settle';
+import { useSettleMotion } from '../motion/settle.util';
 
 type SectionProps = {
   children: React.ReactNode;
@@ -14,10 +14,10 @@ type SectionProps = {
 
 const Section = ({
   children,
-  eyebrow,
-  title,
   description,
+  eyebrow,
   id,
+  title,
   uncontainedBody = false,
 }: SectionProps) => {
   const settle = useSettleMotion();

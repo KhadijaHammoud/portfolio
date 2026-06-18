@@ -9,38 +9,38 @@ export { ButtonSize as IconButtonSize };
 type IconButtonProps = {
   icon: React.ReactElement<LucideProps>;
   label: string;
+  className?: string;
+  disabled?: boolean;
   href?: string;
   onClick?: (
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => void;
-  variant?: ButtonVariant;
   size?: ButtonSize;
-  disabled?: boolean;
   tooltipPlacement?: TooltipPlacement;
-  className?: string;
+  variant?: ButtonVariant;
 };
 
 const IconButton: React.FC<IconButtonProps> = ({
+  className,
+  disabled = false,
+  href,
   icon,
   label,
-  href,
   onClick,
-  variant = ButtonVariant.Ghost,
   size = ButtonSize.Md,
-  disabled = false,
   tooltipPlacement = 'bottom',
-  className,
+  variant = ButtonVariant.Ghost,
 }) => (
-  <Tooltip label={label} placement={tooltipPlacement} className='inline-flex'>
+  <Tooltip className='inline-flex' label={label} placement={tooltipPlacement}>
     <ButtonLink
-      href={href}
-      onClick={onClick}
-      variant={variant}
-      size={size}
-      iconOnly
-      disabled={disabled}
       ariaLabel={label}
       className={className}
+      disabled={disabled}
+      href={href}
+      iconOnly
+      onClick={onClick}
+      size={size}
+      variant={variant}
     >
       {React.cloneElement(icon, {
         className: cn(buttonIconClass(size), icon.props.className),

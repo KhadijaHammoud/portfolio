@@ -1,14 +1,14 @@
 import { GraduationCap } from 'lucide-react';
 import { AlignableCard } from '../../alignment';
 import { EDUCATION } from '../../constants';
-import { useSettleMotion } from '../../motion/settle';
+import { useSettleMotion } from '../../motion/settle.util';
 
 type EducationCardProps = {
-  school: (typeof EDUCATION)[number];
   index: number;
+  school: (typeof EDUCATION)[number];
 };
 
-const EducationCard = ({ school, index }: EducationCardProps) => {
+const EducationCard = ({ index, school }: EducationCardProps) => {
   const settle = useSettleMotion(index * 0.08);
 
   return (

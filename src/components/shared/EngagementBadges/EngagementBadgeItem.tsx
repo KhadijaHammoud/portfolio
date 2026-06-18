@@ -1,12 +1,11 @@
 import { ArrowUpRight } from 'lucide-react';
-import React from 'react';
-import type { EngagementBadge } from '../../types';
+import type { EngagementBadge } from '../../../types';
 
-type EngagementBadgesProps = {
-  badges?: readonly EngagementBadge[];
+type EngagementBadgeItemProps = {
+  badge: EngagementBadge;
 };
 
-function EngagementBadgeItem({ badge }: { badge: EngagementBadge }) {
+const EngagementBadgeItem = ({ badge }: EngagementBadgeItemProps) => {
   if (badge.href) {
     return (
       <a
@@ -25,18 +24,6 @@ function EngagementBadgeItem({ badge }: { badge: EngagementBadge }) {
   }
 
   return <span className='chip-badge'>{badge.label}</span>;
-}
-
-const EngagementBadges: React.FC<EngagementBadgesProps> = ({ badges }) => {
-  if (!badges?.length) return null;
-
-  return (
-    <>
-      {badges.map((badge) => (
-        <EngagementBadgeItem key={badge.label} badge={badge} />
-      ))}
-    </>
-  );
 };
 
-export default EngagementBadges;
+export default EngagementBadgeItem;

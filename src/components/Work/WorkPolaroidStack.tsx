@@ -135,11 +135,11 @@ const WorkPolaroidStack = ({
         <ImageViewer
           images={shots}
           index={viewerIndex}
+          onClose={() => setViewerIndex(null)}
           onIndexChange={(nextIndex) => {
             setViewerIndex(nextIndex);
             setTopIndex(nextIndex);
           }}
-          onClose={() => setViewerIndex(null)}
           title={viewerTitle}
         />
       )}

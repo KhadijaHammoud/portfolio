@@ -14,7 +14,7 @@ src/
 ├── components/           # Hero, About, Experience, Section, …
 │   ├── shared/           # TextButton, IconButton
 │   └── icons/            # Brand icons
-├── constants/            # portfolio.constants.ts
+├── constants/            # portfolio.const.ts
 ├── theme/                # ThemeProvider
 ├── App.tsx
 └── index.css             # CSS variables, .card, global utilities
@@ -25,7 +25,7 @@ src/
 1. **Reuse `components/shared/`** before creating new buttons or controls. Extend via props; export from `components/shared/index.ts`.
 2. **Use `Section`** for new page blocks: pass `eyebrow`, `title`, `id` for navbar anchors.
 3. **Keep `App.tsx` thin** — compose sections only.
-4. **Content in constants** — import `PROFILE`, `EXPERIENCES`, `EDUCATION`, etc. from `src/constants/portfolio.constants.ts`; avoid long hardcoded strings in section components.
+4. **Content in constants** — import `PROFILE`, `EXPERIENCES`, `EDUCATION`, etc. from `src/constants/portfolio.const.ts`; avoid long hardcoded strings in section components.
 
 ## Styling
 
@@ -40,7 +40,7 @@ src/
 
 ## New section checklist
 
-- [ ] Data in `portfolio.constants.ts`
+- [ ] Data in `portfolio.const.ts`
 - [ ] `Section` wrapper + unique `id`
 - [ ] Navbar link in `Navbar.tsx` if the section should be reachable
 - [ ] Framer Motion entrance consistent with sibling sections

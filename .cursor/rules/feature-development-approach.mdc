@@ -21,7 +21,7 @@ Read `TECH_CONVENTIONS.md` for project structure and standards.
 - Don't write too much code at once. Keep implementations simple and minimal.
 - Move redundant logic into helpers when it repeats.
 - Minimize changes and only modify what is specifically requested.
-- Match existing patterns in `src/components/` and `portfolio.constants.ts`.
+- Match existing patterns in `src/components/` and `portfolio.const.ts`.
 
 ## Documentation style
 

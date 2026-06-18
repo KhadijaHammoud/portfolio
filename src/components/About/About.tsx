@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { AlignableCard } from '../../alignment';
 import { LANGUAGES, PROFILE } from '../../constants';
-import { useSettleMotion } from '../../motion/settle';
+import { useSettleMotion } from '../../motion/settle.util';
 import Section from '../Section';
 import { LinkedText } from '../shared';
 import AboutInfoRow from './AboutInfoRow';

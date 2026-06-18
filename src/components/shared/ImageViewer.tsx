@@ -12,18 +12,17 @@ type ViewerImage = {
 type ImageViewerProps = {
   images: readonly ViewerImage[];
   index: number;
-  /** Accessible name for the dialog (e.g. company name). */
-  title: string;
-  onIndexChange: (index: number) => void;
   onClose: () => void;
+  onIndexChange: (index: number) => void;
+  title: string;
 };
 
 const ImageViewer: React.FC<ImageViewerProps> = ({
   images,
   index,
-  title,
-  onIndexChange,
   onClose,
+  onIndexChange,
+  title,
 }) => {
   const reduceMotion = useReducedMotion();
   const count = images.length;

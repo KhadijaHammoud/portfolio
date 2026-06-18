@@ -9,17 +9,17 @@ const PLACEMENT_CLASSES: Record<TooltipPlacement, string> = {
 };
 
 type TooltipProps = {
-  label: string;
   children: ReactNode;
-  placement?: TooltipPlacement;
+  label: string;
   className?: string;
+  placement?: TooltipPlacement;
 };
 
 const Tooltip = ({
-  label,
   children,
-  placement = 'bottom',
   className = 'inline-flex',
+  label,
+  placement = 'bottom',
 }: TooltipProps) => (
   <span className={cn('group/tooltip relative', className)}>
     {children}

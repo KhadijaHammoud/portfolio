@@ -2,11 +2,11 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import { motion, type Variants } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
-import { AlignCardFrame, useAlignable, useAlignment } from '../../alignment';
+import { useAlignable, useAlignment } from '../../alignment';
 import { EXPERIENCES, PROFILE } from '../../constants';
 import { cn } from '../../utils';
-import { TextButton, TextButtonVariant, ButtonGroup } from '../shared';
-import HeroStat from './HeroStat';
+import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import HeroStatsPanel from './HeroStatsPanel';
 
 dayjs.extend(customParseFormat);
 
@@ -43,53 +43,6 @@ const YEARS_OF_EXPERIENCE = (() => {
   );
   return `${years}+`;
 })();
-
-function HeroStatsGrid() {
-  return (
-    <div className='flex flex-col gap-px sm:flex-row'>
-      <HeroStat label='Years of experience' value={YEARS_OF_EXPERIENCE} />
-      <HeroStat label='Users at scale' value='2M+' />
-      <HeroStat label='ARR from zero' value='$1M+' />
-      <HeroStat label='Open-source stars' value='420+' />
-    </div>
-  );
-}
-
-type HeroStatsPanelProps = {
-  isGameEnabled: boolean;
-  alignProps: ReturnType<typeof useAlignable>['alignProps'];
-  dragging: boolean;
-};
-
-function HeroStatsPanel({
-  isGameEnabled,
-  alignProps,
-  dragging,
-}: HeroStatsPanelProps) {
-  if (!isGameEnabled) {
-    return (
-      <div className='overflow-hidden rounded-2xl border border-line/5 bg-line/[0.04]'>
-        <HeroStatsGrid />
-      </div>
-    );
-  }
-
-  return (
-    <AlignCardFrame dragging={dragging}>
-      <div
-        {...alignProps}
-        className={cn(
-          'relative rounded-2xl border border-line/5 bg-line/[0.04]',
-          alignProps.className,
-        )}
-      >
-        <div className='overflow-hidden rounded-2xl'>
-          <HeroStatsGrid />
-        </div>
-      </div>
-    </AlignCardFrame>
-  );
-}
 
 const Hero = () => {
   const { isGameEnabled } = useAlignment();
@@ -200,9 +153,10 @@ const Hero = () => {
           className='align-card-root relative mt-12'
         >
           <HeroStatsPanel
-            isGameEnabled={isGameEnabled}
             alignProps={alignProps}
             dragging={dragging}
+            isGameEnabled={isGameEnabled}
+            yearsOfExperience={YEARS_OF_EXPERIENCE}
           />
         </motion.div>
       </div>

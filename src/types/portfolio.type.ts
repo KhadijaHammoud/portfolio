@@ -11,7 +11,7 @@ export type WorkShot = {
 };
 
 /** Product area within a multi-app work card (e.g. Skiff Mail). */
-export type WorkAppSection = {
+type WorkAppSection = {
   title: string;
   scope: string;
   summary?: string;

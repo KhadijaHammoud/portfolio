@@ -8,40 +8,40 @@ export { ButtonSize as TextButtonSize };
 
 type TextButtonProps = {
   children: React.ReactNode;
-  href?: string;
+  className?: string;
+  disabled?: boolean;
   download?: string;
+  href?: string;
   icon?: React.ReactElement<LucideProps>;
-  showArrow?: boolean;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
   onClick?: (
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => void;
-  disabled?: boolean;
-  className?: string;
+  showArrow?: boolean;
+  size?: ButtonSize;
+  variant?: ButtonVariant;
 };
 
 const TextButton: React.FC<TextButtonProps> = ({
   children,
-  href,
-  download,
-  icon,
-  showArrow = false,
-  variant = ButtonVariant.Primary,
-  size = ButtonSize.Md,
-  onClick,
-  disabled = false,
   className,
+  disabled = false,
+  download,
+  href,
+  icon,
+  onClick,
+  showArrow = false,
+  size = ButtonSize.Md,
+  variant = ButtonVariant.Primary,
 }) => (
   <ButtonLink
-    href={href}
-    download={download}
-    variant={variant}
-    size={size}
-    showArrow={showArrow}
-    onClick={onClick}
-    disabled={disabled}
     className={className}
+    disabled={disabled}
+    download={download}
+    href={href}
+    onClick={onClick}
+    showArrow={showArrow}
+    size={size}
+    variant={variant}
   >
     {icon &&
       React.cloneElement(icon, {

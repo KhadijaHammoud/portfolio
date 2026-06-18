@@ -1,12 +1,12 @@
 import type { ReactNode } from 'react';
 
 type AlignCardFrameProps = {
-  dragging: boolean;
   children: ReactNode;
+  dragging: boolean;
 };
 
 /** Static shell — drop target stays at the aligned layout position while the card moves. */
-const AlignCardFrame = ({ dragging, children }: AlignCardFrameProps) => (
+const AlignCardFrame = ({ children, dragging }: AlignCardFrameProps) => (
   <div className='align-card-shell relative'>
     {dragging && (
       <div
