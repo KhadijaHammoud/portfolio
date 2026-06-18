@@ -7,7 +7,8 @@ import {
 import { Expand } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { WorkShot } from '../../types';
-import { ButtonLink, ButtonVariant } from '../shared';
+import { useMinMd } from '../../hooks';
+import { TextButton, TextButtonVariant } from '../shared';
 import ImageViewer from '../shared/ImageViewer';
 
 type WorkPolaroidStackProps = {
@@ -92,6 +93,7 @@ const WorkPolaroidStack = ({
   projectIndex = 0,
 }: WorkPolaroidStackProps) => {
   const reduceMotion = useReducedMotion();
+  const fanSupported = useMinMd();
   const [topIndex, setTopIndex] = useState(0);
   const [fanOpen, setFanOpen] = useState(false);
   const [viewerIndex, setViewerIndex] = useState<number | null>(null);
@@ -113,7 +115,7 @@ const WorkPolaroidStack = ({
   const stackDepth = Math.max(0, shots.length - 1);
   const stackAnchorTop = slotHeightRem / 2;
   const containerHeightRem = stackContainerHeightRem(slotHeightRem, stackDepth);
-  const fanEnabled = fanOpen && !reduceMotion;
+  const fanEnabled = fanSupported && fanOpen && !reduceMotion;
 
   const goNext = () => {
     setTopIndex((index) => (index + 1) % shots.length);
@@ -151,8 +153,8 @@ const WorkPolaroidStack = ({
             tabIndex={0}
             onClick={handleStackClick}
             onMouseDown={(event) => event.preventDefault()}
-            onMouseEnter={() => setFanOpen(true)}
-            onMouseLeave={() => setFanOpen(false)}
+            onMouseEnter={fanSupported ? () => setFanOpen(true) : undefined}
+            onMouseLeave={fanSupported ? () => setFanOpen(false) : undefined}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
@@ -172,7 +174,6 @@ const WorkPolaroidStack = ({
                 topIndex,
                 shots.length,
               );
-              const isTop = depthFromTop === 0;
               const pose = stackPose(
                 shotIndex,
                 depthFromTop,
@@ -214,20 +215,6 @@ const WorkPolaroidStack = ({
                       }
                     />
                   </div>
-                  {isTop && (
-                    <ButtonLink
-                      unstyled
-                      iconOnly
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        openViewer(shotIndex);
-                      }}
-                      ariaLabel={`View full size: ${shot.alt}`}
-                      className='pointer-events-auto absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full border border-line/10 bg-bg/90 text-ink-muted shadow-sm backdrop-blur-sm transition-colors hover:border-accent/40 hover:text-accent'
-                    >
-                      <Expand className='h-4 w-4' aria-hidden />
-                    </ButtonLink>
-                  )}
                 </motion.div>
               );
             })}
@@ -253,14 +240,14 @@ const WorkPolaroidStack = ({
               {activeShot.caption}
             </p>
           )}
-          <ButtonLink
-            variant={ButtonVariant.Secondary}
+          <TextButton
+            variant={TextButtonVariant.Secondary}
             onClick={() => openViewer(topIndex)}
+            icon={<Expand aria-hidden />}
             className='mt-5'
           >
-            <Expand className='h-4 w-4' aria-hidden />
             View full size
-          </ButtonLink>
+          </TextButton>
         </motion.div>
       </div>
     </>

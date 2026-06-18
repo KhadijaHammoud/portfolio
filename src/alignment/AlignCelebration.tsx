@@ -16,31 +16,31 @@ const CELEBRATION_MS = 4500;
 
 const AlignCelebration = () => {
   const reduceMotion = useReducedMotion();
-  const { isGameEnabled, isComplete } = useAlignment();
+  const { isGameEnabled, celebrationEpoch } = useAlignment();
   const [active, setActive] = useState(false);
-  const wasCompleteRef = useRef(false);
+  const lastCelebrationRef = useRef(0);
 
   useEffect(() => {
-    if (!isGameEnabled || reduceMotion) return;
-
-    if (!isComplete) {
-      wasCompleteRef.current = false;
+    if (!isGameEnabled || reduceMotion === true) return;
+    if (
+      celebrationEpoch === 0 ||
+      celebrationEpoch === lastCelebrationRef.current
+    ) {
       return;
     }
 
-    if (wasCompleteRef.current) return;
-    wasCompleteRef.current = true;
-
+    lastCelebrationRef.current = celebrationEpoch;
     setActive(true);
     const timer = window.setTimeout(() => setActive(false), CELEBRATION_MS);
     return () => window.clearTimeout(timer);
-  }, [isComplete, isGameEnabled, reduceMotion]);
+  }, [celebrationEpoch, isGameEnabled, reduceMotion]);
 
   if (!isGameEnabled || !active) return null;
 
   return (
     <div
-      className='align-celebration pointer-events-none fixed inset-0 z-[45] overflow-hidden'
+      key={celebrationEpoch}
+      className='align-celebration pointer-events-none fixed inset-0 z-[60] overflow-hidden'
       aria-hidden
     >
       {SPARKLES.map((sparkle) => (

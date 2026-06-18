@@ -3,7 +3,7 @@ import { FileDown, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { PROFILE } from '../constants';
 import { cn } from '../utils';
-import { TextButton, TextButtonVariant } from './shared';
+import { TextButton, TextButtonVariant, ButtonGroup } from './shared';
 import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
@@ -131,7 +131,7 @@ const Navbar = () => {
           })}
         </ul>
 
-        <div className='flex items-center gap-2 sm:gap-3'>
+        <ButtonGroup>
           <div className='hidden sm:contents'>
             <TextButton
               href={PROFILE.cv}
@@ -143,7 +143,7 @@ const Navbar = () => {
             </TextButton>
           </div>
           <ThemeToggle />
-        </div>
+        </ButtonGroup>
       </nav>
     </motion.header>
   );

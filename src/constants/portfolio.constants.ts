@@ -105,6 +105,7 @@ export const PROFILE = {
   linkedin: 'https://linkedin.com/in/khadijahammoud',
   cv: '/Khadija_Hammoud_CV_2026.pdf',
   cvFileName: 'Khadija_Hammoud_CV_2026.pdf',
+  footerTagline: 'Aligned with care',
   bio: [
     "I'm a frontend-focused engineer based in Cairo, working remotely with teams across the globe to plan, build, and improve great user experiences.",
     'I thrive on turning ideas into intuitive, delightful interfaces, collaborating closely with design and product from the earliest stages.',

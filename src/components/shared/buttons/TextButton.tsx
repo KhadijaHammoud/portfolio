@@ -1,17 +1,24 @@
 import { LucideProps } from 'lucide-react';
 import React from 'react';
 import { cn } from '../../../utils';
-import ButtonLink, { ButtonVariant } from './ButtonLink';
+import ButtonLink, { ButtonSize, ButtonVariant, buttonIconClass } from './ButtonLink';
 
 export { ButtonVariant as TextButtonVariant };
+export { ButtonSize as TextButtonSize };
 
 type TextButtonProps = {
   children: React.ReactNode;
-  href: string;
+  href?: string;
   download?: string;
   icon?: React.ReactElement<LucideProps>;
   showArrow?: boolean;
   variant?: ButtonVariant;
+  size?: ButtonSize;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => void;
+  disabled?: boolean;
+  className?: string;
 };
 
 const TextButton: React.FC<TextButtonProps> = ({
@@ -21,16 +28,24 @@ const TextButton: React.FC<TextButtonProps> = ({
   icon,
   showArrow = false,
   variant = ButtonVariant.Primary,
+  size = ButtonSize.Md,
+  onClick,
+  disabled = false,
+  className,
 }) => (
   <ButtonLink
     href={href}
     download={download}
     variant={variant}
+    size={size}
     showArrow={showArrow}
+    onClick={onClick}
+    disabled={disabled}
+    className={className}
   >
     {icon &&
       React.cloneElement(icon, {
-        className: cn('h-4 w-4', icon.props.className),
+        className: cn(buttonIconClass(size), icon.props.className),
       })}
     {children}
   </ButtonLink>

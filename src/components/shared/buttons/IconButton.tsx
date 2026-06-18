@@ -1,13 +1,20 @@
+import { LucideProps } from 'lucide-react';
 import React from 'react';
+import { cn } from '../../../utils';
 import Tooltip, { type TooltipPlacement } from '../Tooltip';
-import ButtonLink, { ButtonVariant } from './ButtonLink';
+import ButtonLink, { ButtonSize, ButtonVariant, buttonIconClass } from './ButtonLink';
+
+export { ButtonSize as IconButtonSize };
 
 type IconButtonProps = {
-  icon: React.ReactElement;
+  icon: React.ReactElement<LucideProps>;
   label: string;
   href?: string;
-  onClick?: () => void;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => void;
   variant?: ButtonVariant;
+  size?: ButtonSize;
   disabled?: boolean;
   tooltipPlacement?: TooltipPlacement;
   className?: string;
@@ -19,6 +26,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   href,
   onClick,
   variant = ButtonVariant.Ghost,
+  size = ButtonSize.Md,
   disabled = false,
   tooltipPlacement = 'bottom',
   className,
@@ -28,12 +36,15 @@ const IconButton: React.FC<IconButtonProps> = ({
       href={href}
       onClick={onClick}
       variant={variant}
+      size={size}
       iconOnly
       disabled={disabled}
       ariaLabel={label}
       className={className}
     >
-      {icon}
+      {React.cloneElement(icon, {
+        className: cn(buttonIconClass(size), icon.props.className),
+      })}
     </ButtonLink>
   </Tooltip>
 );

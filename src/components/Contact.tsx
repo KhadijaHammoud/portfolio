@@ -4,7 +4,7 @@ import { Mail } from 'lucide-react';
 import { PROFILE } from '../constants';
 import { useSettleMotion } from '../motion/settle';
 import { LinkedInIcon } from './icons';
-import { TextButton, TextButtonVariant } from './shared';
+import { TextButton, TextButtonVariant, ButtonGroup } from './shared';
 
 const Contact = () => {
   const settle = useSettleMotion();
@@ -42,7 +42,7 @@ const Contact = () => {
             {PROFILE.email}
           </TextButton>
 
-          <div className='flex items-center justify-center gap-3'>
+          <ButtonGroup className='justify-center'>
             <TextButton
               href={PROFILE.github}
               icon={<SiGithub />}
@@ -57,7 +57,7 @@ const Contact = () => {
             >
               LinkedIn
             </TextButton>
-          </div>
+          </ButtonGroup>
         </motion.div>
       </div>
     </section>

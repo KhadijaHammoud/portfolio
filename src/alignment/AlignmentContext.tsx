@@ -8,28 +8,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-
-/** Match Tailwind `md` — alignment game is desktop/tablet only. */
-const ALIGNMENT_GAME_MIN_WIDTH_PX = 768;
-const ALIGNMENT_MEDIA_QUERY = `(min-width: ${ALIGNMENT_GAME_MIN_WIDTH_PX}px)`;
-
-function useAlignmentGameEnabled() {
-  const [enabled, setEnabled] = useState(() =>
-    typeof window !== 'undefined'
-      ? window.matchMedia(ALIGNMENT_MEDIA_QUERY).matches
-      : false,
-  );
-
-  useEffect(() => {
-    const mq = window.matchMedia(ALIGNMENT_MEDIA_QUERY);
-    const onChange = () => setEnabled(mq.matches);
-    onChange();
-    mq.addEventListener('change', onChange);
-    return () => mq.removeEventListener('change', onChange);
-  }, []);
-
-  return enabled;
-}
+import { useMinMd } from '../hooks';
 
 type AlignmentContextValue = {
   isGameEnabled: boolean;
@@ -49,6 +28,7 @@ type AlignmentContextValue = {
   total: number;
   alignedCount: number;
   isComplete: boolean;
+  celebrationEpoch: number;
   hintDismissed: boolean;
   dismissHint: () => void;
   showHint: () => void;
@@ -75,7 +55,7 @@ function countAlignedChipGroups(
 }
 
 export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
-  const isGameEnabled = useAlignmentGameEnabled();
+  const isGameEnabled = useMinMd();
   const [registeredCards, setRegisteredCards] = useState<Set<string>>(
     () => new Set(),
   );
@@ -84,9 +64,11 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
   );
   const [aligned, setAligned] = useState<Set<string>>(() => new Set());
   const [gameEpoch, setGameEpoch] = useState(0);
+  const [celebrationEpoch, setCelebrationEpoch] = useState(0);
   const [hintDismissed, setHintDismissed] = useState(false);
   const registeredCardsRef = useRef(registeredCards);
   const chipGroupsRef = useRef(chipGroups);
+  const wasCompleteRef = useRef(false);
 
   useEffect(() => {
     registeredCardsRef.current = registeredCards;
@@ -219,6 +201,20 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
   const isComplete = total > 0 && alignedCount === total;
 
   useEffect(() => {
+    if (!isGameEnabled) {
+      wasCompleteRef.current = false;
+      return;
+    }
+
+    const justCompleted = isComplete && !wasCompleteRef.current;
+    wasCompleteRef.current = isComplete;
+
+    if (justCompleted) {
+      setCelebrationEpoch((epoch) => epoch + 1);
+    }
+  }, [isComplete, isGameEnabled]);
+
+  useEffect(() => {
     if (!isGameEnabled) return;
     document.documentElement.classList.add('align-game-active');
     return () => document.documentElement.classList.remove('align-game-active');
@@ -243,6 +239,7 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
       total,
       alignedCount,
       isComplete,
+      celebrationEpoch,
       hintDismissed,
       dismissHint,
       showHint,
@@ -267,6 +264,7 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
       total,
       alignedCount,
       isComplete,
+      celebrationEpoch,
       hintDismissed,
       dismissHint,
       showHint,

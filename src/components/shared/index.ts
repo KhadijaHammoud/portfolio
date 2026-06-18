@@ -1,8 +1,11 @@
 export {
+  ButtonGroup,
   ButtonLink,
   ButtonVariant,
   IconButton,
+  IconButtonSize,
   TextButton,
+  TextButtonSize,
   TextButtonVariant,
 } from './buttons';
 export { default as EngagementBadges } from './EngagementBadges';
