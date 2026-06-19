@@ -1,4 +1,4 @@
-import { SKILLS } from '../../constants';
+import { SKILLS } from './skills.const';
 import Section from '../Section';
 import SkillGroupCard from './SkillGroupCard';
 

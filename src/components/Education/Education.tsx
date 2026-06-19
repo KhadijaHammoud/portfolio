@@ -1,5 +1,5 @@
-import { EDUCATION } from '../../constants';
 import Section from '../Section';
+import { EDUCATION } from './education.const';
 import EducationCard from './EducationCard';
 
 const Education = () => {

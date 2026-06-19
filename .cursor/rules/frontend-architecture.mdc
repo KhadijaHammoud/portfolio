@@ -25,7 +25,7 @@ src/
 1. **Reuse `components/shared/`** before creating new buttons or controls. Extend via props; export from `components/shared/index.ts`.
 2. **Use `Section`** for new page blocks: pass `eyebrow`, `title`, `id` for navbar anchors.
 3. **Keep `App.tsx` thin** — compose sections only.
-4. **Content in constants** — import `PROFILE`, `EXPERIENCES`, `EDUCATION`, etc. from `src/constants/portfolio.const.ts`; avoid long hardcoded strings in section components.
+4. **Content in constants** — import shared `PROFILE` / `EXPERIENCES` from `src/constants/`; section-specific copy from co-located `*.const.ts` in each feature folder.
 
 ## Styling
 
@@ -40,7 +40,7 @@ src/
 
 ## New section checklist
 
-- [ ] Data in `portfolio.const.ts`
+- [ ] Data in the feature’s `*.const.ts` or shared `src/constants/`
 - [ ] `Section` wrapper + unique `id`
 - [ ] Navbar link in `Navbar.tsx` if the section should be reachable
 - [ ] Framer Motion entrance consistent with sibling sections

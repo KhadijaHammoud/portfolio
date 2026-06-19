@@ -3,6 +3,42 @@ export type EngagementBadge = {
   href?: string;
 };
 
+export enum Skill {
+  TypeScript = 'TypeScript',
+  JavaScript = 'JavaScript',
+  HTML = 'HTML',
+  CSS = 'CSS',
+  SCSS = 'SCSS',
+  GraphQL = 'GraphQL',
+  Python = 'Python',
+  Swift = 'Swift',
+  Java = 'Java',
+  CSharp = 'C#',
+  Rust = 'Rust',
+  React = 'React',
+  Redux = 'Redux',
+  RTKQuery = 'RTK Query',
+  ApolloClient = 'Apollo Client',
+  Node = 'Node.js',
+  Express = 'Express',
+  Tailwind = 'Tailwind CSS',
+  DaisyUI = 'DaisyUI',
+  StyledComponents = 'styled-components',
+  RadixUI = 'Radix UI',
+  ProseMirror = 'ProseMirror',
+  Yjs = 'Yjs',
+  FramerMotion = 'Framer Motion',
+  Recharts = 'Recharts',
+  WebRTC = 'WebRTC (Daily.co)',
+  WebSockets = 'WebSockets (Socket.io)',
+  Jest = 'Jest',
+  Auth0 = 'Auth0',
+  RESTAPIs = 'REST APIs',
+  PerformanceOptimization = 'Performance Optimization',
+  SystemDesign = 'System Design',
+  E2EEncryption = 'E2E Encryption',
+}
+
 export type WorkShot = {
   src: string;
   alt: string;

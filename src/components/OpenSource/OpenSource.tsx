@@ -1,12 +1,12 @@
 import { useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Star } from 'lucide-react';
-import { AlignableCard, AlignChipField, SkillChip } from '../alignment';
-import { OPEN_SOURCE } from '../constants';
-import { getSettleMotion } from '../motion/settle.util';
-import Section from './Section';
-import { EngagementBadges, ImpactTags, LinkedText } from './shared';
-import WorkCollapsiblePanel from './Work/WorkCollapsiblePanel';
-import WorkHighlightList from './Work/WorkHighlightList';
+import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
+import { getSettleMotion } from '../../motion';
+import Section from '../Section';
+import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
+import WorkCollapsiblePanel from '../Work/WorkCollapsiblePanel';
+import WorkHighlightList from '../Work/WorkHighlightList';
+import { OPEN_SOURCE } from './openSource.const';
 
 const OpenSource = () => {
   const reduceMotion = useReducedMotion();

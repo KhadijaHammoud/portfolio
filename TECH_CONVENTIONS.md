@@ -120,7 +120,7 @@ src/
 - **`src/hooks/`** — hooks reused across features (e.g. `useMinMd` for Tailwind `md` breakpoint).
 - **Feature hooks** stay with their feature when not shared (e.g. `useAlignable` in `src/alignment/`).
 - **Do not** add a standalone util file for logic used in only one place — keep it in that module or co-locate private helpers in the parent feature folder.
-- **`src/utils/`** is for utilities imported from **multiple** unrelated modules (currently `cn`).
+- **`src/utils/`** — utilities used across multiple unrelated modules (e.g. `cn`).
 
 ### Shared components
 
@@ -193,10 +193,14 @@ className = 'text-secondary bg-secondary/20'; // ambient — paws, spotlight, bl
 
 ## 7. Content and constants
 
-All portfolio copy and structured data live in **`src/constants/portfolio.const.ts`**:
+All portfolio copy and structured data are split by feature:
 
-- `PROFILE` — name, tagline, bio, links
-- `SKILLS`, `EXPERIENCES`, `EDUCATION`, `OPEN_SOURCE`, `LANGUAGES`
+- **`src/constants/portfolio.const.ts`** — shared `PROFILE`, `ENGAGEMENT_CORE`, and `Skill`
+- **`src/constants/experience.const.ts`** — `EXPERIENCES` timeline
+- **Feature folders** — section-specific copy in co-located `*.const.ts` files (e.g. `Work/work.const.ts`, `About/about.const.ts`)
+
+- `PROFILE`, `EXPERIENCES`, `ENGAGEMENT_CORE`, `Skill` — in `src/constants/`
+- Section copy — co-located `*.const.ts` in each feature folder (`hero.const.ts`, `work.const.ts`, …)
 
 **Rules:**
 
@@ -230,7 +234,7 @@ All portfolio copy and structured data live in **`src/constants/portfolio.const.
 
 ### When adding a feature (checklist)
 
-- [ ] Copy/data in `portfolio.const.ts` if it is reusable content
+- [ ] Copy/data in the feature’s `*.const.ts` (or `portfolio.const.ts` / `experience.const.ts` when shared)
 - [ ] Section uses `Section` + navbar `id` if it is a new anchor
 - [ ] Shared UI reused from `components/shared/`
 - [ ] Light and dark theme checked

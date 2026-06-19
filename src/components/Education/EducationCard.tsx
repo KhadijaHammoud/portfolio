@@ -1,7 +1,7 @@
 import { GraduationCap } from 'lucide-react';
 import { AlignableCard } from '../../alignment';
-import { EDUCATION } from '../../constants';
-import { useSettleMotion } from '../../motion/settle.util';
+import { useSettleMotion } from '../../motion';
+import { EDUCATION } from './education.const';
 
 type EducationCardProps = {
   index: number;

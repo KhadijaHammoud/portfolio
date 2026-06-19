@@ -1,48 +1,11 @@
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
 import { useAlignable, useAlignment } from '../../alignment';
-import { EXPERIENCES, PROFILE } from '../../constants';
+import { PROFILE } from '../../constants';
 import { cn } from '../../utils';
 import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import { FADE_UP, HERO, YEARS_OF_EXPERIENCE } from './hero.const';
 import HeroStatsPanel from './HeroStatsPanel';
-
-dayjs.extend(customParseFormat);
-
-const EXPERIENCE_START_FORMAT = 'MMM YYYY';
-
-const FADE_UP: Variants = {
-  hidden: { opacity: 0, y: 16, x: 10 },
-  show: (i: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    x: 0,
-    transition: {
-      delay: 0.1 + i * 0.08,
-      duration: 0.6,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
-/** Full years since earliest role start — e.g. `"5+"` for hero stats. */
-const YEARS_OF_EXPERIENCE = (() => {
-  const earliestStart = EXPERIENCES.reduce(
-    (earliest, exp) =>
-      dayjs(exp.start, EXPERIENCE_START_FORMAT).isBefore(
-        dayjs(earliest, EXPERIENCE_START_FORMAT),
-      )
-        ? exp.start
-        : earliest,
-    EXPERIENCES[0].start,
-  );
-  const years = dayjs().diff(
-    dayjs(earliestStart, EXPERIENCE_START_FORMAT),
-    'year',
-  );
-  return `${years}+`;
-})();
 
 const Hero = () => {
   const { isGameEnabled } = useAlignment();
@@ -99,9 +62,8 @@ const Hero = () => {
           custom={2}
           className='mt-6 max-w-2xl text-xl leading-relaxed text-ink-muted md:text-2xl md:leading-relaxed'
         >
-          I&apos;m a{' '}
-          <span className='font-bold text-ink'>{PROFILE.heroTaglineRole}</span>{' '}
-          {PROFILE.heroTagline}
+          I&apos;m a <span className='font-bold text-ink'>{HERO.role}</span>{' '}
+          {HERO.tagline}
         </motion.p>
 
         <motion.p
@@ -111,7 +73,7 @@ const Hero = () => {
           custom={3}
           className='mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted'
         >
-          {PROFILE.heroLead}
+          {HERO.lead}
         </motion.p>
 
         <motion.div
@@ -129,7 +91,10 @@ const Hero = () => {
             >
               Say hello
             </TextButton>
-            <TextButton href='#experience' variant={TextButtonVariant.Secondary}>
+            <TextButton
+              href='#experience'
+              variant={TextButtonVariant.Secondary}
+            >
               See my experience
             </TextButton>
           </ButtonGroup>

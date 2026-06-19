@@ -1,6 +1,6 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import type { ReactNode } from 'react';
-import { settleWithoutOffset } from '../motion/settle.util';
+import { settleWithoutOffset } from '../motion';
 import { cn } from '../utils';
 import AlignCardFrame from './AlignCardFrame';
 import { useAlignment } from './AlignmentContext';

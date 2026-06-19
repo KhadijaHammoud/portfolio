@@ -1,6 +1,6 @@
 import { useReducedMotion } from 'framer-motion';
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
-import { getSettleMotion } from '../../motion/settle.util';
+import { getSettleMotion } from '../../motion';
 import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 import WorkProjectDetails from './WorkProjectDetails';

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { FileDown, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { PROFILE } from '../constants';
-import { cn } from '../utils';
-import { TextButton, TextButtonVariant, ButtonGroup } from './shared';
-import ThemeToggle from './ThemeToggle';
+import { cn } from '../../utils';
+import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import ThemeToggle from '../ThemeToggle';
+import { CV } from './navbar.const';
 
 const LINKS = [
   { href: '#about', label: 'About' },
@@ -134,8 +134,8 @@ const Navbar = () => {
         <ButtonGroup>
           <div className='hidden sm:contents'>
             <TextButton
-              href={PROFILE.cv}
-              download={PROFILE.cvFileName}
+              href={CV.href}
+              download={CV.fileName}
               icon={<FileDown className='h-4 w-4' />}
               variant={TextButtonVariant.Ghost}
             >

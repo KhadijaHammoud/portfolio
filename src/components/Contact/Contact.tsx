@@ -1,10 +1,10 @@
 import { SiGithub } from '@icons-pack/react-simple-icons';
 import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
-import { PROFILE } from '../constants';
-import { useSettleMotion } from '../motion/settle.util';
-import { LinkedInIcon } from './icons';
-import { TextButton, TextButtonVariant, ButtonGroup } from './shared';
+import { useSettleMotion } from '../../motion';
+import { LinkedInIcon } from '../icons';
+import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import { CONTACT } from './contact.const';
 
 const Contact = () => {
   const settle = useSettleMotion();
@@ -34,24 +34,24 @@ const Contact = () => {
           </p>
 
           <TextButton
-            href={`mailto:${PROFILE.email}`}
+            href={`mailto:${CONTACT.email}`}
             icon={<Mail />}
             showArrow
             variant={TextButtonVariant.Primary}
           >
-            {PROFILE.email}
+            {CONTACT.email}
           </TextButton>
 
           <ButtonGroup className='justify-center'>
             <TextButton
-              href={PROFILE.github}
+              href={CONTACT.github}
               icon={<SiGithub />}
               variant={TextButtonVariant.Ghost}
             >
               GitHub
             </TextButton>
             <TextButton
-              href={PROFILE.linkedin}
+              href={CONTACT.linkedin}
               icon={<LinkedInIcon />}
               variant={TextButtonVariant.Ghost}
             >

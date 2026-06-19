@@ -1,4 +1,4 @@
-import { FEATURED_WORK } from '../../constants';
+import { FEATURED_WORK } from './work.const';
 import Section from '../Section';
 import WorkProject from './WorkProject';
 

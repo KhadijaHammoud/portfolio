@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import React from 'react';
-import { useSettleMotion } from '../motion/settle.util';
+import { useSettleMotion } from '../motion';
 
 type SectionProps = {
   children: React.ReactNode;

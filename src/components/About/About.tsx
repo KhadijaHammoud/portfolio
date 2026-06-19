@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import { AlignableCard } from '../../alignment';
-import { LANGUAGES, PROFILE } from '../../constants';
-import { useSettleMotion } from '../../motion/settle.util';
+import { PROFILE } from '../../constants';
+import { useSettleMotion } from '../../motion';
 import Section from '../Section';
 import { LinkedText } from '../shared';
+import { BIO, LANGUAGES } from './about.const';
 import AboutInfoRow from './AboutInfoRow';
 
 const About = () => {
@@ -26,7 +27,7 @@ const About = () => {
           {...bioSettle}
           className='space-y-5 text-lg leading-relaxed text-ink-muted'
         >
-          {PROFILE.bio.map((p, i) => (
+          {BIO.map((p, i) => (
             <p key={i}>
               <LinkedText>{p}</LinkedText>
             </p>

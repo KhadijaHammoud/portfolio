@@ -1,6 +1,6 @@
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
-import { SKILLS } from '../../constants';
-import { useSettleMotion } from '../../motion/settle.util';
+import { useSettleMotion } from '../../motion';
+import { SKILLS } from './skills.const';
 
 type SkillGroupCardProps = {
   group: (typeof SKILLS)[number];
