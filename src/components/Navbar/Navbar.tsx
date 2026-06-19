@@ -137,7 +137,7 @@ const Navbar = () => {
               href={CV.href}
               download={CV.fileName}
               icon={<FileDown className='h-4 w-4' />}
-              variant={TextButtonVariant.Ghost}
+              variant={TextButtonVariant.Primary}
             >
               Download CV
             </TextButton>

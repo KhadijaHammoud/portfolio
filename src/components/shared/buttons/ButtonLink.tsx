@@ -58,20 +58,13 @@ function buttonTextPadding(
   size: ButtonSize,
 ): string {
   if (size === ButtonSize.Sm) {
-    return variant === ButtonVariant.Ghost ? 'px-3' : 'px-3 py-0';
+    return 'px-3';
   }
 
-  return variant === ButtonVariant.Ghost ? 'px-3.5' : 'px-5 py-3';
+  return variant === ButtonVariant.Ghost ? 'px-3.5' : 'px-5';
 }
 
-function buttonTextSizeClass(variant: ButtonVariant, size: ButtonSize): string {
-  if (
-    variant === ButtonVariant.Primary ||
-    variant === ButtonVariant.Secondary
-  ) {
-    return size === ButtonSize.Sm ? 'h-8 text-xs' : 'text-sm';
-  }
-
+function buttonTextSizeClass(_variant: ButtonVariant, size: ButtonSize): string {
   return BUTTON_SIZE_CLASS[size].text;
 }
 
