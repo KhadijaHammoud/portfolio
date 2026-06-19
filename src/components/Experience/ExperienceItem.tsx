@@ -1,11 +1,10 @@
-import { TextButton, TextButtonVariant } from '../shared/buttons';
-
 import { motion } from 'framer-motion';
 import { AlignCardFrame, useAlignable } from '../../alignment';
 import { getSettleMotion, settleWithoutOffset } from '../../motion';
 import type { Experience as ExperienceType } from '../../types';
 import { cn } from '../../utils';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
+import { ButtonVariant, TextButton } from '../shared/Button';
 
 type ExperienceItemProps = {
   exp: ExperienceType;
@@ -70,7 +69,7 @@ const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
               <div className='mt-5'>
                 <TextButton
                   href={`#work-${exp.workSlug}`}
-                  variant={TextButtonVariant.Ghost}
+                  variant={ButtonVariant.GHOST}
                   showArrow
                 >
                   View product work

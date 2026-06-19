@@ -136,7 +136,7 @@ src/
 
 - **Avoid `any`.** Use interfaces for props; `interface` for object shapes; `type` for unions.
 - Prop interfaces: `ComponentNameProps` (or inline `type` for small local components).
-- Enums: `PascalCase` members (`TextButtonVariant.Primary`).
+- Enums: `PascalCase` members (`ButtonVariant.PRIMARY`).
 - Module-level data constants: **SCREAMING_SNAKE_CASE** (`PROFILE`, `EXPERIENCES`, `EDUCATION`).
 - **File suffixes:** utilities → `*.util.ts`, constants → `*.const.ts`, shared types → `*.type.ts`.
 

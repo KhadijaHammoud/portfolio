@@ -2,9 +2,8 @@ import { LucideProps } from 'lucide-react';
 import React from 'react';
 import { cn } from '../../../utils';
 import Tooltip, { type TooltipPlacement } from '../Tooltip';
-import ButtonLink, { ButtonSize, ButtonVariant, buttonIconClass } from './ButtonLink';
-
-export { ButtonSize as IconButtonSize };
+import { ButtonSize, ButtonVariant } from './Button.type';
+import ButtonLink, { buttonIconClass } from './ButtonLink';
 
 type IconButtonProps = {
   icon: React.ReactElement<LucideProps>;
@@ -12,12 +11,12 @@ type IconButtonProps = {
   className?: string;
   disabled?: boolean;
   href?: string;
-  onClick?: (
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ) => void;
   size?: ButtonSize;
   tooltipPlacement?: TooltipPlacement;
   variant?: ButtonVariant;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => void;
 };
 
 const IconButton: React.FC<IconButtonProps> = ({
@@ -26,10 +25,10 @@ const IconButton: React.FC<IconButtonProps> = ({
   href,
   icon,
   label,
+  size = ButtonSize.MD,
+  tooltipPlacement,
+  variant = ButtonVariant.GHOST,
   onClick,
-  size = ButtonSize.Md,
-  tooltipPlacement = 'bottom',
-  variant = ButtonVariant.Ghost,
 }) => (
   <Tooltip className='inline-flex' label={label} placement={tooltipPlacement}>
     <ButtonLink

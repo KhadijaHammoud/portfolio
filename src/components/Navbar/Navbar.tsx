@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { FileDown, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cn } from '../../utils';
-import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import { ButtonGroup, ButtonVariant, TextButton } from '../shared';
 import ThemeToggle from '../ThemeToggle';
 import { CV } from './navbar.const';
 
@@ -137,7 +137,7 @@ const Navbar = () => {
               href={CV.href}
               download={CV.fileName}
               icon={<FileDown className='h-4 w-4' />}
-              variant={TextButtonVariant.Primary}
+              variant={ButtonVariant.PRIMARY}
             >
               Download CV
             </TextButton>

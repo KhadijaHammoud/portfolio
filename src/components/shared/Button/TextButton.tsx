@@ -1,10 +1,8 @@
 import { LucideProps } from 'lucide-react';
 import React from 'react';
 import { cn } from '../../../utils';
-import ButtonLink, { ButtonSize, ButtonVariant, buttonIconClass } from './ButtonLink';
-
-export { ButtonVariant as TextButtonVariant };
-export { ButtonSize as TextButtonSize };
+import { ButtonSize, ButtonVariant } from './Button.type';
+import ButtonLink, { buttonIconClass } from './ButtonLink';
 
 type TextButtonProps = {
   children: React.ReactNode;
@@ -30,8 +28,8 @@ const TextButton: React.FC<TextButtonProps> = ({
   icon,
   onClick,
   showArrow = false,
-  size = ButtonSize.Md,
-  variant = ButtonVariant.Primary,
+  size = ButtonSize.MD,
+  variant = ButtonVariant.PRIMARY,
 }) => (
   <ButtonLink
     className={className}

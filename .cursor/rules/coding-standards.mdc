@@ -11,7 +11,7 @@ alwaysApply: false
 
 - **No `any`.** Use interfaces for props; `interface` for object shapes; `type` for unions.
 - Prop interfaces: `ComponentNameProps` (or local `type` for small components).
-- Enums: `PascalCase` members (`TextButtonVariant.Primary`).
+- Enums: `PascalCase` members (`ButtonVariant.PRIMARY`).
 - Data constants: `SCREAMING_SNAKE_CASE` (`PROFILE`, `EXPERIENCES`).
 - File suffixes: `*.util.ts`, `*.const.ts`, `*.type.ts`.
 

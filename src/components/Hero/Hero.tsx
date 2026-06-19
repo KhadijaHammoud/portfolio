@@ -3,8 +3,13 @@ import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
 import { useAlignable, useAlignment } from '../../alignment';
 import { PROFILE } from '../../constants';
 import { cn } from '../../utils';
-import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
-import Tooltip from '../shared/Tooltip';
+import {
+  ButtonGroup,
+  ButtonVariant,
+  TextButton,
+  Tooltip,
+  TooltipPlacement,
+} from '../shared';
 import { FADE_UP, HERO, YEARS_OF_EXPERIENCE } from './hero.const';
 import HeroStatsPanel from './HeroStatsPanel';
 
@@ -76,7 +81,7 @@ const Hero = () => {
         >
           {HERO.lead}
           <Tooltip
-            placement='right'
+            placement={TooltipPlacement.RIGHT}
             label={
               <>
                 {HERO.info.leading}{' '}
@@ -114,14 +119,11 @@ const Hero = () => {
             <TextButton
               href='#contact'
               showArrow
-              variant={TextButtonVariant.Primary}
+              variant={ButtonVariant.PRIMARY}
             >
               Say hello
             </TextButton>
-            <TextButton
-              href='#experience'
-              variant={TextButtonVariant.Secondary}
-            >
+            <TextButton href='#experience' variant={ButtonVariant.SECONDARY}>
               See my experience
             </TextButton>
           </ButtonGroup>

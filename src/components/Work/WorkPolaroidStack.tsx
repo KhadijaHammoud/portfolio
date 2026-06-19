@@ -6,9 +6,9 @@ import {
 } from 'framer-motion';
 import { Expand } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { WorkShot } from '../../types';
 import { useMinMd } from '../../hooks';
-import { TextButton, TextButtonVariant } from '../shared';
+import { WorkShot } from '../../types';
+import { ButtonVariant, TextButton } from '../shared';
 import ImageViewer from '../shared/ImageViewer';
 
 type WorkPolaroidStackProps = {
@@ -241,7 +241,7 @@ const WorkPolaroidStack = ({
             </p>
           )}
           <TextButton
-            variant={TextButtonVariant.Secondary}
+            variant={ButtonVariant.SECONDARY}
             onClick={() => openViewer(topIndex)}
             icon={<Expand aria-hidden />}
             className='mt-5'

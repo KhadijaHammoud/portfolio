@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { useSettleMotion } from '../../motion';
 import { LinkedInIcon } from '../icons';
-import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import { ButtonGroup, ButtonVariant, TextButton } from '../shared';
 import { CONTACT } from './contact.const';
 
 const Contact = () => {
@@ -37,7 +37,7 @@ const Contact = () => {
             href={`mailto:${CONTACT.email}`}
             icon={<Mail />}
             showArrow
-            variant={TextButtonVariant.Primary}
+            variant={ButtonVariant.PRIMARY}
           >
             {CONTACT.email}
           </TextButton>
@@ -46,14 +46,14 @@ const Contact = () => {
             <TextButton
               href={CONTACT.github}
               icon={<SiGithub />}
-              variant={TextButtonVariant.Ghost}
+              variant={ButtonVariant.GHOST}
             >
               GitHub
             </TextButton>
             <TextButton
               href={CONTACT.linkedin}
               icon={<LinkedInIcon />}
-              variant={TextButtonVariant.Ghost}
+              variant={ButtonVariant.GHOST}
             >
               LinkedIn
             </TextButton>

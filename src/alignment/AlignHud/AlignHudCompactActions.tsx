@@ -1,9 +1,10 @@
 import { BrushCleaning, ScanSearch } from 'lucide-react';
 import {
   ButtonGroup,
+  ButtonSize,
+  ButtonVariant,
   IconButton,
-  IconButtonSize,
-  TextButtonVariant,
+  TooltipPlacement,
 } from '../../components/shared';
 import { cn } from '../../utils';
 import { FIND_CROOKED_LABEL } from './alignHud.const';
@@ -26,8 +27,8 @@ const AlignHudCompactActions = ({
       icon={<ScanSearch aria-hidden />}
       label={FIND_CROOKED_LABEL}
       onClick={onFindCrooked}
-      size={IconButtonSize.Sm}
-      tooltipPlacement='top'
+      size={ButtonSize.SM}
+      tooltipPlacement={TooltipPlacement.TOP}
     />
     {canSweep && (
       <IconButton
@@ -40,9 +41,9 @@ const AlignHudCompactActions = ({
         }
         label='Sweep all into place'
         onClick={onSweep}
-        size={IconButtonSize.Sm}
-        tooltipPlacement='top'
-        variant={TextButtonVariant.Accent}
+        size={ButtonSize.SM}
+        tooltipPlacement={TooltipPlacement.TOP}
+        variant={ButtonVariant.ACCENT}
       />
     )}
   </ButtonGroup>

@@ -7,11 +7,11 @@ import {
 } from 'lucide-react';
 import {
   ButtonGroup,
+  ButtonSize,
+  ButtonVariant,
   IconButton,
-  IconButtonSize,
   TextButton,
-  TextButtonSize,
-  TextButtonVariant,
+  TooltipPlacement,
 } from '../../components/shared';
 import { cn } from '../../utils';
 import { FIND_CROOKED_LABEL } from './alignHud.const';
@@ -72,8 +72,8 @@ const AlignHudHintCard = ({
             className={canSweep ? 'w-full' : undefined}
             icon={<ScanSearch aria-hidden />}
             onClick={onFindCrooked}
-            size={TextButtonSize.Sm}
-            variant={TextButtonVariant.Ghost}
+            size={ButtonSize.SM}
+            variant={ButtonVariant.GHOST}
           >
             {FIND_CROOKED_LABEL}
           </TextButton>
@@ -88,8 +88,8 @@ const AlignHudHintCard = ({
                 />
               }
               onClick={onSweep}
-              size={TextButtonSize.Sm}
-              variant={TextButtonVariant.Accent}
+              size={ButtonSize.SM}
+              variant={ButtonVariant.ACCENT}
             >
               <span className='truncate'>Sweep all</span>
               <span className='shrink-0 font-mono text-xs text-ink-muted'>
@@ -104,8 +104,8 @@ const AlignHudHintCard = ({
         icon={<X aria-hidden />}
         label='Minimize'
         onClick={onDismiss}
-        size={IconButtonSize.Sm}
-        tooltipPlacement='top'
+        size={ButtonSize.SM}
+        tooltipPlacement={TooltipPlacement.TOP}
       />
     </div>
   </motion.div>
