@@ -1,8 +1,8 @@
 import { AnimatePresence, useReducedMotion } from 'framer-motion';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAlignment } from '../AlignmentContext';
 import { formatAlignProgress } from './alignHud.util';
-import AlignHudCompactComplete from './AlignHudCompactComplete';
+import AlignHudCornerDot from './AlignHudCornerDot';
 import AlignHudCompactProgress from './AlignHudCompactProgress';
 import AlignHudHintCard from './AlignHudHintCard';
 
@@ -37,8 +37,6 @@ const AlignHud = () => {
     total,
   } = useAlignment();
   const [sweeping, setSweeping] = useState(false);
-  const [celebrated, setCelebrated] = useState(false);
-  const [hideHud, setHideHud] = useState(false);
 
   const remaining = total - alignedCount;
   const canSweep = isGameEnabled && total > 0 && !isComplete;
@@ -57,8 +55,9 @@ const AlignHud = () => {
 
   const scrambleAgain = useCallback(() => {
     resetGame();
+    showHint();
     scrollToFirstCrooked();
-  }, [resetGame]);
+  }, [resetGame, showHint]);
 
   const progress = total > 0 ? alignedCount / total : 0;
   const progressLabel = formatAlignProgress(
@@ -69,20 +68,16 @@ const AlignHud = () => {
   );
   const hintExpanded = !hintDismissed && total > 0 && !isComplete;
 
-  useEffect(() => {
-    if (!isComplete) {
-      setCelebrated(false);
-      setHideHud(false);
-      return;
-    }
+  if (!isGameEnabled || total === 0) return null;
 
-    if (celebrated) return;
-    setCelebrated(true);
-    const timer = window.setTimeout(() => setHideHud(true), 4500);
-    return () => window.clearTimeout(timer);
-  }, [isComplete, celebrated]);
-
-  if (!isGameEnabled || total === 0 || hideHud) return null;
+  if (isComplete) {
+    return (
+      <AlignHudCornerDot
+        onActivate={scrambleAgain}
+        reduceMotion={reduceMotion}
+      />
+    );
+  }
 
   let hudPanel;
   if (hintExpanded) {
@@ -97,13 +92,6 @@ const AlignHud = () => {
         reduceMotion={reduceMotion}
         remaining={remaining}
         sweeping={sweeping}
-      />
-    );
-  } else if (isComplete) {
-    hudPanel = (
-      <AlignHudCompactComplete
-        onScrambleAgain={scrambleAgain}
-        reduceMotion={reduceMotion}
       />
     );
   } else {

@@ -7,12 +7,13 @@ import {
 } from 'react';
 import { cn } from '../../utils';
 
-export type TooltipPlacement = 'top' | 'bottom' | 'right';
+export type TooltipPlacement = 'top' | 'bottom' | 'right' | 'left';
 
 const PLACEMENT_CLASSES: Record<TooltipPlacement, string> = {
   top: 'bottom-[calc(100%+0.5rem)] left-1/2 -translate-x-1/2',
   bottom: 'top-[calc(100%+0.5rem)] left-1/2 -translate-x-1/2',
   right: 'left-[calc(100%+0.5rem)] top-1/2 -translate-y-1/2',
+  left: 'right-[calc(100%+0.5rem)] top-1/2 -translate-y-1/2',
 };
 
 /** Invisible hover bridge so the pointer can reach the tooltip without closing it. */
@@ -22,6 +23,7 @@ const BRIDGE_CLASSES: Record<TooltipPlacement, string> = {
     'before:absolute before:-top-2 before:left-0 before:h-2 before:w-full before:content-[""]',
   right:
     'before:absolute before:-left-2 before:top-0 before:h-full before:w-2 before:content-[""]',
+  left: 'before:absolute before:-right-2 before:top-0 before:h-full before:w-2 before:content-[""]',
 };
 
 const LEAVE_DELAY_MS = 120;

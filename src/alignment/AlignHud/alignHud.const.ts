@@ -1,6 +1,10 @@
 export const FIND_CROOKED_LABEL = 'Find crooked';
 export const EXPAND_HINT_LABEL = 'Show instructions';
 export const COMPACT_HUD_ROW_CLASS = 'flex min-h-14 items-center gap-2 p-2';
+export const CORNER_COMPLETE_HEADLINE = "Everything's in place. Nice eye.";
+export const CORNER_COMPLETE_HINT =
+  'Want to play again? Click this button to scramble again.';
+export const CORNER_COMPLETE_MESSAGE_MS = 4500;
 
 export const COMPACT_MOTION_PROPS = {
   className:
