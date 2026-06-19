@@ -4,6 +4,7 @@ import { useAlignable, useAlignment } from '../../alignment';
 import { PROFILE } from '../../constants';
 import { cn } from '../../utils';
 import { ButtonGroup, TextButton, TextButtonVariant } from '../shared';
+import Tooltip from '../shared/Tooltip';
 import { FADE_UP, HERO, YEARS_OF_EXPERIENCE } from './hero.const';
 import HeroStatsPanel from './HeroStatsPanel';
 
@@ -74,6 +75,32 @@ const Hero = () => {
           className='mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted'
         >
           {HERO.lead}
+          <Tooltip
+            placement='right'
+            label={
+              <>
+                {HERO.info.leading}{' '}
+                <a
+                  href={HERO.info.linkHref}
+                  target='_blank'
+                  rel='noreferrer'
+                  className='underline decoration-accent/50 underline-offset-2 transition-colors hover:text-accent'
+                >
+                  {HERO.info.linkText}
+                </a>{' '}
+                {HERO.info.trailing}
+              </>
+            }
+          >
+            <span
+              tabIndex={0}
+              className='cursor-default text-accent'
+              aria-label={`${HERO.info.leading} ${HERO.info.linkText} ${HERO.info.trailing}`}
+            >
+              *
+            </span>
+          </Tooltip>
+          .
         </motion.p>
 
         <motion.div

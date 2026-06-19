@@ -8,7 +8,13 @@ dayjs.extend(customParseFormat);
 export const HERO = {
   role: 'software engineer',
   tagline: 'who ships polished, zero-to-one products.',
-  lead: 'With a strong focus on frontend development, I help teams build scalable, high-performance applications from sketch to production, clean and pixel-perfect. I care about the details most people only feel, like when something needs to go just a little to the left.',
+  lead: 'With a strong focus on frontend development, I help teams build scalable, high-performance applications from sketch to production, clean and pixel-perfect. I care about the details most people only feel, like when something needs to go just a little to the left',
+  info: {
+    leading: 'Inspired by',
+    linkText: 'A Little to the Left',
+    linkHref: 'https://www.alittletotheleft.com/',
+    trailing: '- not affiliated',
+  },
 };
 
 const EXPERIENCE_START_FORMAT = 'MMM YYYY';
