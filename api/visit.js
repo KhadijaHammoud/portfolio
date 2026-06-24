@@ -100,7 +100,14 @@ async function sendVisitEmail(details, apiKey, toEmail) {
   });
 
   if (!response.ok) {
-    throw new Error(await response.text());
+    const text = await response.text();
+    let message = text;
+    try {
+      message = JSON.parse(text).message ?? text;
+    } catch {
+      // use raw response text
+    }
+    throw new Error(message);
   }
 }
 
@@ -157,7 +164,9 @@ module.exports = async function handler(req, res) {
   try {
     await sendVisitEmail(details, apiKey, toEmail);
     res.status(204).end();
-  } catch {
-    res.status(500).json({ error: 'Failed to send notification' });
+  } catch (err) {
+    const message =
+      err instanceof Error ? err.message : 'Failed to send notification';
+    res.status(500).json({ error: 'Failed to send notification', detail: message });
   }
 };
