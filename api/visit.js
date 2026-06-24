@@ -147,12 +147,7 @@ module.exports = async function handler(req, res) {
   const path = typeof body.path === 'string' ? body.path : '/';
 
   const details = {
-    time: new Date().toLocaleString('en-US', {
-      dateStyle: 'medium',
-      timeStyle: 'short',
-      timeZone: 'UTC',
-      timeZoneName: 'short',
-    }),
+    time: new Date().toUTCString(),
     location: formatLocation(headers),
     device: parseDevice(userAgent),
     referrer: formatReferrer(body.referrer),
