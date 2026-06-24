@@ -8,8 +8,7 @@ import { Expand } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { useMinMd } from '../../hooks';
 import { WorkShot } from '../../types';
-import { ButtonVariant, TextButton } from '../shared';
-import ImageViewer from '../shared/ImageViewer';
+import { ButtonVariant, ImageViewer, TextButton } from '../shared';
 
 type WorkPolaroidStackProps = {
   shots: readonly WorkShot[];
