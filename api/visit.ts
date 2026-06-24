@@ -1,5 +1,3 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
 /**
  * Vercel serverless handler for portfolio visit notifications.
  *
@@ -14,6 +12,18 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
  * - `VISIT_NOTIFY_FROM` — verified sender (defaults to Resend's test address)
  * - `VISIT_NOTIFY_SECRET` — must match `REACT_APP_VISIT_NOTIFY_SECRET` on the client
  */
+
+type VisitRequest = {
+  method?: string;
+  headers: Record<string, string | string[] | undefined>;
+  body?: VisitPayload;
+};
+
+type VisitResponse = {
+  status: (code: number) => VisitResponse;
+  json: (body: unknown) => void;
+  end: () => void;
+};
 
 /** Skip crawlers and link-preview bots so they don't trigger emails. */
 const BOT_PATTERN =
@@ -33,7 +43,7 @@ type VisitDetails = {
 };
 
 function header(
-  headers: VercelRequest['headers'],
+  headers: VisitRequest['headers'],
   name: string,
 ): string | undefined {
   const value = headers[name];
@@ -58,7 +68,7 @@ function parseDevice(userAgent: string): string {
   return `${browser} on ${os}`;
 }
 
-function formatLocation(headers: VercelRequest['headers']): string {
+function formatLocation(headers: VisitRequest['headers']): string {
   // Populated by Vercel from the visitor's IP — not available outside Vercel.
   const city = header(headers, 'x-vercel-ip-city');
   const region = header(headers, 'x-vercel-ip-country-region');
@@ -132,8 +142,8 @@ async function sendVisitEmail(
 }
 
 export default async function handler(
-  req: VercelRequest,
-  res: VercelResponse,
+  req: VisitRequest,
+  res: VisitResponse,
 ): Promise<void> {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
