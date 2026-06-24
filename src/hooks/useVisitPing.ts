@@ -7,7 +7,7 @@ const SESSION_KEY = 'portfolio-visit-pinged';
  * Notifies the owner when someone visits the portfolio (production only).
  *
  * Fires a single POST to `/api/visit` on first load per session. The API
- * sends an email via Resend; see `api/visit.ts` and `.env.example` for setup.
+ * sends an email via Resend; see `api/visit.js` and `.env.example` for setup.
  *
  * Requires a Vercel deploy — CRA's dev server does not serve `/api/visit`.
  * Optional: set `REACT_APP_VISIT_NOTIFY_SECRET` (must match `VISIT_NOTIFY_SECRET`).
