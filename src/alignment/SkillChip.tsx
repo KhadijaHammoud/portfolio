@@ -1,18 +1,19 @@
 import type { ElementType } from 'react';
+import { AlignableVariant, SkillChipTag } from '../types';
 import { useAlignable } from './useAlignable';
 
 type SkillChipProps = {
   id: string;
   index: number;
   label: string;
-  as?: 'li' | 'span';
+  as?: SkillChipTag;
 };
 
-const SkillChip = ({ id, index, label, as = 'span' }: SkillChipProps) => {
+const SkillChip = ({ id, index, label, as = SkillChipTag.SPAN }: SkillChipProps) => {
   const { alignProps } = useAlignable({
     id,
     index,
-    variant: 'chip',
+    variant: AlignableVariant.CHIP,
   });
   const Tag = as as ElementType;
 

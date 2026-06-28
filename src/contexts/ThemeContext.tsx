@@ -1,6 +1,5 @@
 import { createContext, useContext } from 'react';
-
-export type Theme = 'light' | 'dark';
+import { Theme } from '../types';
 
 export interface ThemeContextValue {
   theme: Theme;

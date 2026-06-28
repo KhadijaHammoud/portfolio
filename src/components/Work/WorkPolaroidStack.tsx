@@ -32,7 +32,7 @@ function stackDepthFromTop(index: number, topIndex: number, total: number) {
 }
 
 function polaroidAspect(shot: WorkShot) {
-  return shot.variant === 'mobile' ? 9 / 16 : 4 / 3;
+  return shot.mobile ? 9 / 16 : 4 / 3;
 }
 
 function polaroidHeightRem(shot: WorkShot, widthRem = POLAROID_WIDTH_REM) {
@@ -205,8 +205,8 @@ const WorkPolaroidStack = ({
                     <img
                       src={shot.src}
                       alt=''
-                      width={shot.variant === 'mobile' ? 390 : 1280}
-                      height={shot.variant === 'mobile' ? 844 : 800}
+                      width={shot.mobile ? 390 : 1280}
+                      height={shot.mobile ? 844 : 800}
                       draggable={false}
                       className='h-full w-full object-contain'
                       loading={

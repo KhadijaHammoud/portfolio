@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { AlignableCard } from '../../alignment';
+import { AlignableCardTag } from '../../types';
 import { PROFILE } from '../../constants';
 import { useSettleMotion } from '../../motion';
 import Section from '../Section';
@@ -37,7 +38,7 @@ const About = () => {
         <AlignableCard
           id='about-sidebar'
           index={1}
-          as='aside'
+          as={AlignableCardTag.ASIDE}
           className='space-y-6 p-6'
           settle={asideSettle}
         >

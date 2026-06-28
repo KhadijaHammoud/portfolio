@@ -1,0 +1,43 @@
+---
+globs: src/**/*.ts,src/**/*.tsx
+alwaysApply: false
+---
+
+# Frontend — Portfolio
+
+> Full reference: `TECH_CONVENTIONS.md`
+
+## Layout
+
+```
+src/
+├── alignment/     # mini-game (desktop md+)
+├── components/    # sections + shared/
+├── constants/     # shared copy/data
+├── contexts/      # providers in App.tsx / index.tsx
+├── hooks/         # shared hooks
+├── motion/        # shared motion helpers
+├── types/         # cross-feature enums/types
+├── utils/         # shared utils (cn)
+├── App.tsx
+└── index.css
+```
+
+**Colocate** hooks, utils, constants, types, and contexts with their owner. Promote to top-level folders only when reused across unrelated features, or when a provider mounts in `App.tsx` / `index.tsx`. Component-specific types stay in that component folder (e.g. `Button.type.ts`).
+
+## Code
+
+- No `any`. Props: `ComponentNameProps`. Fixed-choice inputs → **enum** (not string unions).
+- Cross-feature enums/types → `src/types/`. Component enums → co-located `*.type.ts`.
+- Props order: required → optional; vars → callbacks; alphabetical within each group (types, destructuring, JSX).
+- Imports: external → internal → relative → assets. Named exports; barrel from `components/shared`.
+- Copy in `*.const.ts` — not hardcoded in components. Reuse `components/shared/` and `Section`.
+- Tailwind + semantic tokens (`ink`, `bg`, `accent`, `line`). Theme via `ThemeProvider` in `src/contexts`.
+- `useCallback` / `useMemo` only when justified. No `console.log`.
+
+## New section checklist
+
+- [ ] Data in feature `*.const.ts` or shared `src/constants/`
+- [ ] `Section` + unique `id`; navbar link if needed
+- [ ] Shared UI reused; light + dark checked
+- [ ] `npm run build` passes

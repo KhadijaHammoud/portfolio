@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
 import { useAlignable } from '../../alignment';
 import { useAlignment } from '../../contexts';
+import { AlignableVariant } from '../../types';
 import { PROFILE } from '../../constants';
 import { cn } from '../../utils';
 import {
@@ -19,7 +20,7 @@ const Hero = () => {
   const { alignProps, dragging } = useAlignable({
     id: 'hero-stats',
     index: 0,
-    variant: 'card',
+    variant: AlignableVariant.CARD,
   });
 
   return (

@@ -84,28 +84,28 @@ const SKIFF_CALENDAR_SHOTS = [
     alt: 'Monthly calendar (mobile)',
     caption:
       'Mobile month view with compact event chips, overflow counts, and one-tap navigation to today.',
-    variant: 'mobile',
+    mobile: true,
   },
   {
     src: '/featured/skiff/mobile/Screenshot%202024-01-24%20at%205.13.43%20PM.png',
     alt: 'Create event (mobile)',
     caption:
       'Bottom-sheet event creation with all-day toggle, conferencing, and push/email reminders.',
-    variant: 'mobile',
+    mobile: true,
   },
   {
     src: '/featured/skiff/mobile/Screenshot%202024-01-24%20at%205.14.00%20PM.png',
     alt: 'Recurring events on mobile',
     caption:
       'Touch-optimized month grid carrying the same recurring-event density as the web client.',
-    variant: 'mobile',
+    mobile: true,
   },
   {
     src: '/featured/skiff/mobile/Screenshot%202024-01-24%20at%205.14.54%20PM.png',
     alt: 'Day timeline (mobile)',
     caption:
       'Combined month picker and day timeline for drilling into hourly schedules on mobile.',
-    variant: 'mobile',
+    mobile: true,
   },
 ] as const;
 

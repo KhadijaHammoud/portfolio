@@ -1,24 +1,23 @@
 import { motion, type HTMLMotionProps } from 'framer-motion';
 import type { ReactNode } from 'react';
 import { settleWithoutOffset } from '../motion';
-import { cn } from '../utils';
-import AlignCardFrame from './AlignCardFrame';
 import { useAlignment } from '../contexts';
+import { cn } from '../utils';
+import { AlignableCardTag, AlignableVariant } from '../types';
+import AlignCardFrame from './AlignCardFrame';
 import { useAlignable } from './useAlignable';
 
-type MotionTag = 'div' | 'article' | 'aside';
-
 const MOTION_TAGS = {
-  div: motion.div,
-  article: motion.article,
-  aside: motion.aside,
+  [AlignableCardTag.DIV]: motion.div,
+  [AlignableCardTag.ARTICLE]: motion.article,
+  [AlignableCardTag.ASIDE]: motion.aside,
 } as const;
 
 type AlignableCardProps = {
   children: ReactNode;
   id: string;
   index: number;
-  as?: MotionTag;
+  as?: AlignableCardTag;
   className?: string;
   settle?: HTMLMotionProps<'div'>;
 };
@@ -27,7 +26,7 @@ const AlignableCard = ({
   children,
   id,
   index,
-  as = 'div',
+  as = AlignableCardTag.DIV,
   className = '',
   settle,
 }: AlignableCardProps) => {
@@ -35,7 +34,7 @@ const AlignableCard = ({
   const { alignProps, dragging } = useAlignable({
     id,
     index,
-    variant: 'card',
+    variant: AlignableVariant.CARD,
   });
   const Motion = MOTION_TAGS[as];
   const resolvedSettle =

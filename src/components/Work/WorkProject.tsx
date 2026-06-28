@@ -1,5 +1,6 @@
 import { useReducedMotion } from 'framer-motion';
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
+import { AlignableCardTag } from '../../types';
 import { getSettleMotion } from '../../motion';
 import { WorkProject as WorkProjectType } from '../../types';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
@@ -19,7 +20,7 @@ const WorkProject = ({ index, project }: WorkProjectProps) => {
         <AlignableCard
           id={`work-${project.slug}`}
           index={index}
-          as='article'
+          as={AlignableCardTag.ARTICLE}
           className='p-6 md:p-10'
           settle={getSettleMotion(reduceMotion, index * 0.05)}
         >

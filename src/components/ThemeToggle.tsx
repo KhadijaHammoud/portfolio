@@ -1,11 +1,12 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from '../contexts';
+import { Theme } from '../types';
 import { IconButton } from './shared';
 
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
-  const isDark = theme === 'dark';
+  const isDark = theme === Theme.DARK;
 
   const ThemeIcon = isDark ? Moon : Sun;
 
@@ -24,7 +25,7 @@ const ThemeToggle = () => {
           </motion.span>
         </AnimatePresence>
       }
-      label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      label={`Switch to ${isDark ? Theme.LIGHT : Theme.DARK} theme`}
       onClick={toggleTheme}
     />
   );

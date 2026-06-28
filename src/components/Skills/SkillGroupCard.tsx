@@ -1,4 +1,9 @@
-import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
+import {
+  AlignableCard,
+  AlignChipField,
+  SkillChip,
+} from '../../alignment';
+import { AlignChipFieldTag, SkillChipTag } from '../../types';
 import { useSettleMotion } from '../../motion';
 import { SKILLS } from './skills.const';
 
@@ -24,7 +29,7 @@ const SkillGroupCard = ({ group, index }: SkillGroupCardProps) => {
         <h3 className='text-base font-semibold text-ink'>{group.group}</h3>
       </div>
       <AlignChipField
-        as='ul'
+        as={AlignChipFieldTag.UL}
         id={`skills-chips-${group.group}`}
         className='mt-5 flex flex-wrap gap-2'
       >
@@ -34,7 +39,7 @@ const SkillGroupCard = ({ group, index }: SkillGroupCardProps) => {
             id={`skills-chip-${group.group}-${item}`}
             index={itemIdx + index * 3}
             label={item}
-            as='li'
+            as={SkillChipTag.LI}
           />
         ))}
       </AlignChipField>

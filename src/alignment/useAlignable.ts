@@ -9,10 +9,8 @@ import {
 } from 'react';
 import { useAlignment } from '../contexts';
 import { cn } from '../utils';
+import { AlignableVariant, NudgeProfile } from '../types';
 import { useAlignChipFieldId } from './AlignChipFieldContext';
-
-type AlignableVariant = 'card' | 'chip';
-type NudgeProfile = 'spread' | 'stack';
 
 const CHIP_NUDGES = [
   { rotate: '-5.5deg', x: '9px', y: '7px' },
@@ -38,8 +36,6 @@ const STACK_CARD_NUDGES = [
   { rotate: 4.5, x: 0, y: 0 },
 ] as const;
 
-type CardNudgeProfile = 'spread' | 'stack';
-
 type CardNudge = {
   readonly rotate: number;
   readonly x: number;
@@ -59,8 +55,8 @@ type UseAlignableOptions = {
   nudgeProfile?: NudgeProfile;
 };
 
-function getCardNudge(index: number, profile: CardNudgeProfile): CardNudge {
-  const pool = profile === 'stack' ? STACK_CARD_NUDGES : CARD_NUDGES;
+function getCardNudge(index: number, profile: NudgeProfile): CardNudge {
+  const pool = profile === NudgeProfile.STACK ? STACK_CARD_NUDGES : CARD_NUDGES;
   return pool[index % pool.length];
 }
 
@@ -86,7 +82,7 @@ function chipNudgeStyle(index: number): CSSProperties {
 
 function passiveAlignProps(variant: AlignableVariant) {
   return {
-    className: cn(variant === 'chip' && 'chip'),
+    className: cn(variant === AlignableVariant.CHIP && 'chip'),
   };
 }
 
@@ -105,14 +101,14 @@ function buildDragStyle({
   dragging: boolean;
   enabled: boolean;
   nudge: CardNudge;
-  nudgeProfile: CardNudgeProfile;
+  nudgeProfile: NudgeProfile;
   totalX: number;
   totalY: number;
 }): CSSProperties | undefined {
   if (!enabled || aligned) return undefined;
 
   const rotate =
-    nudgeProfile === 'stack'
+    nudgeProfile === NudgeProfile.STACK
       ? nudge.rotate
       : getCardDragRotation(nudge, totalX, totalY);
 
@@ -131,14 +127,14 @@ function useCardDragAlign({
   enabled,
   gameEpoch,
   index,
-  nudgeProfile = 'spread',
+  nudgeProfile = NudgeProfile.SPREAD,
   onSnap,
 }: {
   aligned: boolean;
   enabled: boolean;
   gameEpoch: number;
   index: number;
-  nudgeProfile?: CardNudgeProfile;
+  nudgeProfile?: NudgeProfile;
   onSnap: () => void;
 }) {
   const nudge = getCardNudge(index, nudgeProfile);
@@ -148,8 +144,10 @@ function useCardDragAlign({
   const dragStartRef = useRef({ deltaX: 0, deltaY: 0, x: 0, y: 0 });
   const hasDraggedRef = useRef(false);
 
-  const totalX = nudgeProfile === 'stack' ? delta.x : nudge.x + delta.x;
-  const totalY = nudgeProfile === 'stack' ? delta.y : nudge.y + delta.y;
+  const totalX =
+    nudgeProfile === NudgeProfile.STACK ? delta.x : nudge.x + delta.x;
+  const totalY =
+    nudgeProfile === NudgeProfile.STACK ? delta.y : nudge.y + delta.y;
 
   const resetDrag = useCallback(() => {
     setDragging(false);
@@ -166,7 +164,7 @@ function useCardDragAlign({
     if (!dragging) return;
 
     const snapDistance =
-      nudgeProfile === 'stack'
+      nudgeProfile === NudgeProfile.STACK
         ? Math.hypot(delta.x, delta.y)
         : Math.hypot(totalX, totalY);
 
@@ -266,7 +264,7 @@ export function useAlignable({
   id,
   index,
   variant,
-  nudgeProfile = 'spread',
+  nudgeProfile = NudgeProfile.SPREAD,
 }: UseAlignableOptions) {
   const {
     gameEpoch,
@@ -283,13 +281,13 @@ export function useAlignable({
   const aligned = isAligned(id);
   const gameActive = isGameEnabled && !reduceMotion;
 
-  const dragEnabled = gameActive && variant === 'card' && !aligned;
-  const hoverEnabled = gameActive && variant === 'chip' && !aligned;
+  const dragEnabled = gameActive && variant === AlignableVariant.CARD && !aligned;
+  const hoverEnabled = gameActive && variant === AlignableVariant.CHIP && !aligned;
 
   useEffect(() => {
     if (!isGameEnabled) return;
 
-    if (variant === 'chip') {
+    if (variant === AlignableVariant.CHIP) {
       if (!chipGroupId) return;
       registerChip(chipGroupId, id);
       return () => unregisterChip(chipGroupId, id);
@@ -348,10 +346,10 @@ export function useAlignable({
 
   const crooked = !aligned && !reduceMotion;
   const chipStyle: CSSProperties | undefined =
-    crooked && variant === 'chip' ? chipNudgeStyle(index) : undefined;
+    crooked && variant === AlignableVariant.CHIP ? chipNudgeStyle(index) : undefined;
 
   const className = cn(
-    variant === 'card' ? 'card-settle' : 'chip chip-nudge',
+    variant === AlignableVariant.CARD ? 'card-settle' : 'chip chip-nudge',
     crooked && 'align-crooked',
     aligned && 'is-aligned',
     dragEnabled && 'align-draggable',
@@ -360,17 +358,17 @@ export function useAlignable({
   );
 
   const mergedStyle: CSSProperties | undefined =
-    variant === 'card' && crooked
+    variant === AlignableVariant.CARD && crooked
       ? {
           ...dragStyle,
-          zIndex: nudgeProfile === 'stack' ? 20 - index : index + 1,
+          zIndex: nudgeProfile === NudgeProfile.STACK ? 20 - index : index + 1,
         }
       : chipStyle;
 
   return {
     alignProps: {
       'aria-label': !aligned
-        ? variant === 'chip'
+        ? variant === AlignableVariant.CHIP
           ? 'Hover to straighten'
           : 'Click or drag into place to straighten'
         : undefined,

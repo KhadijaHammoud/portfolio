@@ -1,17 +1,18 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Theme, ThemeContext } from './ThemeContext';
+import { Theme } from '../types';
+import { ThemeContext } from './ThemeContext';
 
 const STORAGE_KEY = 'theme';
 
 function getInitialTheme(): Theme {
-  if (typeof window === 'undefined') return 'light';
+  if (typeof window === 'undefined') return Theme.LIGHT;
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark') return stored;
+    if (stored === Theme.LIGHT || stored === Theme.DARK) return stored as Theme;
   } catch {
     // ignore storage access failures (e.g. privacy mode)
   }
-  return 'light';
+  return Theme.LIGHT;
 }
 
 interface ThemeProviderProps {
@@ -23,7 +24,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('light', 'dark');
+    root.classList.remove(Theme.LIGHT, Theme.DARK);
     root.classList.add(theme);
     try {
       window.localStorage.setItem(STORAGE_KEY, theme);
@@ -33,7 +34,10 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   }, [theme]);
 
   const toggleTheme = useCallback(
-    () => setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark')),
+    () =>
+      setThemeState((prev) =>
+        prev === Theme.DARK ? Theme.LIGHT : Theme.DARK,
+      ),
     [],
   );
 

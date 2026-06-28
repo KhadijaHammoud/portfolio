@@ -43,7 +43,8 @@ export type WorkShot = {
   src: string;
   alt: string;
   caption?: string;
-  variant?: 'mobile';
+  /** Portrait phone screenshot; default is landscape/desktop aspect. */
+  mobile?: boolean;
 };
 
 /** Product area within a multi-app work card (e.g. Skiff Mail). */

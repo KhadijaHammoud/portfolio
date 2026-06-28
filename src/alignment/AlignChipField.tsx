@@ -1,19 +1,20 @@
 import { useLayoutEffect, type ElementType, type ReactNode } from 'react';
 import { useAlignment } from '../contexts';
 import { cn } from '../utils';
+import { AlignChipFieldTag } from '../types';
 import { AlignChipFieldProvider } from './AlignChipFieldProvider';
 
 type AlignChipFieldProps = {
   children: ReactNode;
   id: string;
-  as?: 'div' | 'ul';
+  as?: AlignChipFieldTag;
   className?: string;
 };
 
 const AlignChipField = ({
   children,
   id,
-  as = 'div',
+  as = AlignChipFieldTag.DIV,
   className = '',
 }: AlignChipFieldProps) => {
   const { isGameEnabled, registerChipGroup, unregisterChipGroup } =

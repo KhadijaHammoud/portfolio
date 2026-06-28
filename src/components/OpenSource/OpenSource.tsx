@@ -1,6 +1,7 @@
 import { useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Star } from 'lucide-react';
 import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
+import { AlignableCardTag } from '../../types';
 import { getSettleMotion } from '../../motion';
 import Section from '../Section';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
@@ -27,7 +28,7 @@ const OpenSource = () => {
       <AlignableCard
         id='opensource-card'
         index={0}
-        as='article'
+        as={AlignableCardTag.ARTICLE}
         className='p-6 md:p-10'
         settle={articleSettle}
       >

@@ -2,262 +2,106 @@
 
 **Last updated:** June 2026
 
-Project-wide reference for how this portfolio is structured, how we name things, and how we ship changes. Cursor rules in `.cursor/rules/` mirror the essentials for day-to-day development.
-
----
-
-## Table of contents
-
-1. [Repository layout](#1-repository-layout)
-2. [General development principles](#2-general-development-principles)
-3. [Git and pull requests](#3-git-and-pull-requests)
-4. [Source layout](#4-source-layout)
-5. [TypeScript](#5-typescript)
-6. [Components and styling](#6-components-and-styling)
-7. [Content and constants](#7-content-and-constants)
-8. [Animations](#8-animations)
-9. [Tooling and quality gates](#9-tooling-and-quality-gates)
-
----
-
-## 1. Repository layout
-
-| Path                     | Role                                                     |
-| ------------------------ | -------------------------------------------------------- |
-| `src/components/`        | Section and UI components                                |
-| `src/components/shared/` | Reusable buttons and primitives                          |
-| `src/hooks/`             | Shared React hooks                                       |
-| `src/alignment/`         | Alignment mini-game — components, feature context, hooks |
-| `src/contexts/`          | App-level providers used in `App.tsx` / `index.tsx` (flat files) |
-| `src/motion/`            | Shared Framer Motion helpers                             |
-| `src/components/icons/`  | Brand / social icons                                     |
-| `src/constants/`         | Portfolio copy, experience, education, skills            |
-| `src/utils/`             | Cross-cutting utilities used in multiple places          |
-| `public/`                | Static assets, `index.html`, manifest                    |
-| `.cursor/rules/`         | Cursor agent guidance                                    |
+How this portfolio is structured, named, and shipped. Keep changes small and match existing patterns.
 
 **Stack:** React 19, TypeScript, Create React App, Tailwind CSS, Framer Motion, lucide-react, simple-icons.
 
 ---
 
-## 2. General development principles
+## Development
 
-### Planning and scope
-
-- Propose the approach before large implementations; split work into ordered steps.
-- Implement only what was asked; avoid drive-by refactors or speculative features.
-- Prefer **small, incremental diffs** over large batches.
-- When requirements are unclear, **ask** rather than assume.
-
-### Code style
-
-- **Match surrounding code** — naming, file layout, export style, animation patterns.
-- **Single responsibility** — one concern per component or module.
-- **Extract helpers** when logic repeats; avoid one-off abstractions used once.
-- **Single-use helpers** belong in the consuming file or the parent feature folder — not `src/utils/`.
-- **Comments** explain non-obvious behavior—not restatements of the code. Avoid ticket- or prompt-specific noise in comments.
-- **No `console.log`** in committed code.
-
-### Testing
-
-- No routine automated test suite for this project. Rely on `npm run build`, manual QA in the browser, and visual review.
-- Do not add broad test suites unless explicitly requested.
+- Propose the approach before large work; implement only what was asked.
+- Match surrounding code — naming, exports, animation patterns.
+- One concern per module; extract helpers when logic repeats.
+- Single-use helpers stay with their owner — do not promote to shared utils.
+- Comments explain non-obvious behavior only. No `console.log` in committed code.
+- No routine automated tests. Verify with `npm run build` and manual browser QA.
 
 ---
 
-## 3. Git and pull requests
+## Git
 
-### Branches
-
-- Feature work branches from `main` unless another release train is in use.
-
-### Commit messages
-
-Use a short prefix and description when helpful:
-
-```
-copy: update hero tagline to fast, polished
-feat: add Ulm University bachelor project to education
-fix: prevent horizontal scroll on mobile
-```
-
-Prefer **why** over **what** in the body when needed. Do not commit secrets or local env files.
-
-### Pull requests
-
-- Summarize behavior change and risk; include a short **test plan** (e.g. desktop + mobile, light + dark theme).
-- Ensure `npm run build` passes before merge.
+- Branch from `main` for feature work.
+- Commits: short prefix + description (`feat:`, `fix:`, `copy:`). Prefer why over what.
+- PRs: summarize behavior change, include a test plan (desktop + mobile, light + dark).
+- `npm run build` must pass before merge. Do not commit secrets.
 
 ---
 
-## 4. Source layout
+## Layout
 
-```
-src/
-├── alignment/            # Alignment mini-game (desktop md+)
-├── components/           # Section components (Hero, About, Experience, …)
-│   ├── shared/           # TextButton, IconButton, ButtonGroup, barrel index
-│   └── icons/            # SVG / icon components
-├── constants/            # portfolio.const.ts — all site copy & data
-├── contexts/             # App-level contexts (AlignmentProvider, ThemeProvider, …)
-├── hooks/                # Shared hooks (useMinMd, …)
-├── motion/               # Shared motion helpers (settle, …)
-├── utils/                # Shared utilities (cn) — not single-use helpers
-├── App.tsx               # Page composition
-├── index.css             # Global styles, CSS variables, utilities (.card)
-└── index.tsx             # Entry
-```
+**Top-level areas:** sections and shared UI, alignment mini-game, shared constants, app-level contexts, shared hooks, motion helpers, cross-feature types, shared utils.
 
-### Section components
+**Colocate** contexts, hooks, utils, constants, and types with their owning feature or component. Promote to a top-level folder only when reused across unrelated features, or when a provider mounts at the app root.
 
-- Each major page block is a component (`Hero`, `Experience`, `Education`, …).
-- **One React component per file.** Split subcomponents into the same folder as the parent (e.g. `Hero/HeroStatsPanel.tsx`, `AlignHud/AlignHudHintCard.tsx`).
-- Use the shared `Section` wrapper for consistent eyebrow, title, and `id` anchors (navbar hash links).
-- Compose `App.tsx` from sections only—keep routing-free unless the app grows.
+**Sections:** one component per file; subcomponents live in the same folder. Use the shared section wrapper for eyebrow, title, and anchor ids. Keep the app entry as composition only.
 
-### Hooks and helpers
+**Shared UI:** reuse existing buttons and controls before adding variants. Group related actions with the shared button group. Export shared pieces from the shared barrel.
 
-- **Colocate by default** — contexts, hooks, utils, constants, and types stay in the feature or component folder that owns them (e.g. `useAlignable` and `alignment/context/` under `src/alignment/`).
-- **Promote to top-level only when reused** across unrelated features:
-  - **`src/hooks/`** — shared hooks (e.g. `useMinMd`)
-  - **`src/utils/`** — shared utilities (e.g. `cn`)
-  - **`src/constants/`** — portfolio-wide copy and data; section-specific copy stays in co-located `*.const.ts` files
-  - **`src/types/`** — types shared across multiple features
-  - **`src/contexts/`** — providers wired in `App.tsx` or `index.tsx` (e.g. theme, alignment game shell)
-- **Do not** add a standalone util/hook file for logic used in only one place — keep it in that module or co-locate in the parent feature folder.
-
-### Shared components
-
-- Reuse `src/components/shared/` before adding new button or control variants.
-- Use **`ButtonGroup`** to lay out related actions with consistent spacing.
-- **`TextButton`** — labeled actions (primary/secondary/ghost/accent); supports optional `href`, `onClick`, and icon.
-- **`IconButton`** — icon-only controls with tooltip label; use for compact HUD/toolbar actions.
-- Export shared pieces from `src/components/shared/index.ts`.
-
-### Contexts
-
-- **`src/contexts/`** — flat files for providers used in `App.tsx` or `index.tsx`. Split each into `*Context.tsx` (createContext, value type, hook) and `*Provider.tsx` (state/effects).
-- **Feature-scoped contexts** stay with their feature when not mounted at the app root (e.g. `src/alignment/context/alignChipField/`).
-- Import app-level providers and hooks from `contexts`; import feature contexts from their owning feature folder.
+**Contexts:** split each into context (types + hook) and provider (state/effects). App-root providers live in the contexts folder; feature-only contexts stay with that feature.
 
 ---
 
-## 5. TypeScript
+## TypeScript
 
-- **Avoid `any`.** Use interfaces for props; `interface` for object shapes; `type` for unions.
-- Prop interfaces: `ComponentNameProps` (or inline `type` for small local components).
-- Enums: `PascalCase` members (`ButtonVariant.PRIMARY`).
-- Module-level data constants: **SCREAMING_SNAKE_CASE** (`PROFILE`, `EXPERIENCES`, `EDUCATION`).
-- **File suffixes:** utilities → `*.util.ts`, constants → `*.const.ts`, shared types → `*.type.ts`.
-
-### Components
-
-- Prefer **named exports** for section and shared components.
-- `App.tsx` may use a default export as the CRA entry pattern.
-- Match existing style in each file (`React.FC` vs function declarations)—do not mix styles within one file.
-- **Props and context values:** required first, then optional. Within each group, **non-callback props before callbacks** (`onClick`, `onChange`, handler fns, etc.). Within each subgroup, **alphabetical** order. Apply consistently in `type`/`interface` definitions, destructuring, JSX, and context value shapes.
-- **Exports:** only export symbols consumed outside the module. Do not re-export from barrel files unless consumers import them from that barrel.
-
-### Alignment mini-game
-
-- Desktop-only (`md` / 768px+): gate with `useMinMd()` from `src/hooks/`.
-- Cards register via `useAlignable`; chips register inside `AlignChipField` groups.
-- HUD controls live in `AlignHud/`; celebration uses `celebrationEpoch` from `contexts/AlignmentContext` for reliable sparkles on manual complete.
-
-### Imports
-
-Order: external → internal → relative → assets. Prefer barrel imports from `components/shared` when available.
+- No `any`. Props interfaces named `ComponentNameProps`.
+- Fixed-choice inputs (props, params, stored values) → **enum**, not string unions. Members `PascalCase`; string values match runtime usage.
+- Cross-feature enums and types → top-level types folder. Component-specific types stay in that component folder.
+- Data constants: `SCREAMING_SNAKE_CASE`. Suffixes: `*.util.ts`, `*.const.ts`, `*.type.ts`.
+- Named exports for components. Match export style already used in each file.
+- **Props order:** required → optional; vars → callbacks; alphabetical within each group (types, destructuring, JSX, context values).
+- Only export symbols used outside the module.
 
 ---
 
-## 6. Components and styling
+## Styling
 
-### Tailwind and theme
-
-- **Primary:** Tailwind utility classes with design tokens from `tailwind.config.js` (`bg`, `ink`, `accent`, `secondary`, `line`, …).
-- **Theme:** CSS variables in `index.css`; dark mode via `class` on `html` (`ThemeProvider` from `src/contexts`).
-- **Utilities:** Use existing patterns (e.g. `.card`) before inventing new layout wrappers.
-- **Avoid** custom CSS unless necessary; keep one-off styles in the component’s `className`.
-
-### Semantic colors
-
-```tsx
-className = 'text-ink bg-bg';
-className = 'text-ink-muted border-line/10';
-className = 'bg-accent text-white'; // primary — CTAs, links, nav
-className = 'text-secondary bg-secondary/20'; // ambient — paws, spotlight, blurs
-```
-
-**Color roles:** `accent` (terracotta) is primary UI; `secondary` (ginger sand) is decorative motion/background only — do not use `secondary` for buttons or nav active states.
-
-### Icons
-
-- **UI chrome:** `lucide-react`
-- **Brand logos:** `@icons-pack/react-simple-icons` or dedicated components under `components/icons/`
-
-### Performance
-
-- `useCallback` / `useMemo` only when passing callbacks to memoized children or doing clearly expensive work—not by default.
+- Tailwind + semantic tokens (`ink`, `bg`, `accent`, `secondary`, `line`).
+- `accent` = primary UI (CTAs, links, nav). `secondary` = decorative only — not buttons or nav.
+- Dark mode via class on `html` through the theme provider.
+- Prefer existing utilities (e.g. `.card`) over new global CSS.
+- UI icons: lucide-react. Brand icons: simple-icons or dedicated icon components.
 
 ---
 
-## 7. Content and constants
+## Content
 
-All portfolio copy and structured data are split by feature:
-
-- **`src/constants/portfolio.const.ts`** — shared `PROFILE`, `ENGAGEMENT_CORE`, and `Skill`
-- **`src/constants/experience.const.ts`** — `EXPERIENCES` timeline
-- **Feature folders** — section-specific copy in co-located `*.const.ts` files (e.g. `Work/work.const.ts`, `About/about.const.ts`)
-
-- `PROFILE`, `EXPERIENCES`, `ENGAGEMENT_CORE`, `Skill` — in `src/constants/`
-- Section copy — co-located `*.const.ts` in each feature folder (`hero.const.ts`, `work.const.ts`, …)
-
-**Rules:**
-
-- Do not hardcode long copy inside section components—import from constants.
-- Keep dates, employers, and bullet highlights in the constant objects so content updates stay in one place.
-- Hero may use `PROFILE.name` for dynamic bits; static marketing lines can live in JSX when they are layout-specific.
+- Portfolio copy and structured data live in constants — not hardcoded in components.
+- Shared profile, experience, and skills data in the constants folder; section copy in co-located constant files per feature.
 
 ---
 
-## 8. Animations
+## Alignment mini-game
 
-- **Framer Motion** for section entrance and hero stagger (`motion.*`, shared variants like `FADE_UP`).
-- Prefer `whileInView` with `viewport={{ once: true }}` for scroll reveals.
-- Respect `prefers-reduced-motion` where animations are added or extended (match `BackgroundPawPrints` / existing patterns).
+- Desktop only (768px+); gate with the shared min-width hook.
+- Cards register via the alignable hook; chips register inside chip-field groups.
+- Manual complete triggers celebration via the alignment context epoch.
 
 ---
 
-## 9. Tooling and quality gates
+## Motion
 
-| Command                | Purpose                                                  |
-| ---------------------- | -------------------------------------------------------- |
-| `npm start`            | Local dev server (port 3000)                             |
-| `npm run build`        | Production build — **must pass before merge**            |
-| `npm test`             | CRA test runner (optional; not part of routine workflow) |
-| `npm run format`       | Format `src/` with Prettier                              |
-| `npm run format:check` | Check formatting without writing                         |
+- Framer Motion for section entrance and hero stagger.
+- Scroll reveals: `whileInView` with `once: true`.
+- Respect `prefers-reduced-motion` when adding animations.
 
-- **Prettier:** `.prettierrc.json` — single quotes, trailing commas, 80 print width.
-- **ESLint:** CRA defaults via `package.json` `eslintConfig`.
-- Run Prettier on touched files before committing.
+---
 
-### When adding a feature (checklist)
+## Tooling
 
-- [ ] Copy/data in the feature’s `*.const.ts` (or `portfolio.const.ts` / `experience.const.ts` when shared)
-- [ ] Section uses `Section` + navbar `id` if it is a new anchor
-- [ ] Shared UI reused from `components/shared/`
-- [ ] Light and dark theme checked
+| Command                | Purpose                          |
+| ---------------------- | -------------------------------- |
+| `npm start`            | Dev server                       |
+| `npm run build`        | Production build — gate for merge |
+| `npm run format`       | Prettier on source               |
+| `npm run format:check` | Check formatting                 |
+
+Prettier: single quotes, trailing commas, 80 print width. Format touched files before commit.
+
+### New feature checklist
+
+- [ ] Copy/data in constants (shared or feature-local)
+- [ ] Section wrapper + anchor id; navbar link if needed
+- [ ] Shared UI reused; light + dark checked
 - [ ] `npm run build` passes
-- [ ] No `console.log` left behind
-
----
-
-## Related documents
-
-| Document                 | Contents                            |
-| ------------------------ | ----------------------------------- |
-| [README.md](./README.md) | Local dev and scripts               |
-| `.cursor/rules/*.mdc`    | Agent-focused summaries of this doc |
-
-If conventions conflict, **prefer the more specific rule** in `.cursor/rules/` for the area you are editing, and update this file when team standards change.
+- [ ] No `console.log`

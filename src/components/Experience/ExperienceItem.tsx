@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { AlignCardFrame, useAlignable } from '../../alignment';
+import { AlignableVariant, NudgeProfile } from '../../types';
 import { getSettleMotion, settleWithoutOffset } from '../../motion';
 import type { Experience as ExperienceType } from '../../types';
 import { cn } from '../../utils';
@@ -16,8 +17,8 @@ const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
   const { alignProps, dragging } = useAlignable({
     id: `exp-${exp.workSlug ?? index}`,
     index,
-    variant: 'card',
-    nudgeProfile: 'stack',
+    variant: AlignableVariant.CARD,
+    nudgeProfile: NudgeProfile.STACK,
   });
 
   const settle = settleWithoutOffset(
