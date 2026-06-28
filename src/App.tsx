@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { AlignCelebration, AlignHud, AlignmentProvider } from './alignment';
 import About from './components/About';
 import BackgroundPawPrints from './components/BackgroundPawPrints';
@@ -10,11 +11,8 @@ import Navbar from './components/Navbar';
 import OpenSource from './components/OpenSource';
 import Skills from './components/Skills';
 import Work from './components/Work';
-import { useVisitPing } from './hooks';
 
 const App = () => {
-  useVisitPing();
-
   return (
     <AlignmentProvider>
       <div className='relative min-h-screen text-ink'>
@@ -39,6 +37,7 @@ const App = () => {
         </div>
         <AlignHud />
         <AlignCelebration />
+        <Analytics />
       </div>
     </AlignmentProvider>
   );
