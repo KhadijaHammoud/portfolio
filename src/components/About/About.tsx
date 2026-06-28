@@ -37,9 +37,9 @@ const About = () => {
         <AlignableCard
           id='about-sidebar'
           index={1}
-          settle={asideSettle}
           as='aside'
           className='space-y-6 p-6'
+          settle={asideSettle}
         >
           <AboutInfoRow label='Based in' value={PROFILE.location} />
           <AboutInfoRow

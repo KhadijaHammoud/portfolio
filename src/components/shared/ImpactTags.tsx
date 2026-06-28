@@ -2,11 +2,11 @@ import React from 'react';
 import { cn } from '../../utils';
 
 type ImpactTagsProps = {
-  tags?: readonly string[];
   className?: string;
+  tags?: readonly string[];
 };
 
-const ImpactTags: React.FC<ImpactTagsProps> = ({ tags, className = '' }) => {
+const ImpactTags: React.FC<ImpactTagsProps> = ({ className = '', tags }) => {
   if (!tags?.length) return null;
 
   return (

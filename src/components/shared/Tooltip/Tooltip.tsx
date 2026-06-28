@@ -44,8 +44,8 @@ type TooltipProps = {
 
 const Tooltip = ({
   children,
-  className = 'inline-flex',
   label,
+  className = 'inline-flex',
   placement,
 }: TooltipProps) => {
   const [open, setOpen] = useState(false);

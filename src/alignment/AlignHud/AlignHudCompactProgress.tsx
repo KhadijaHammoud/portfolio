@@ -10,24 +10,24 @@ import { minimizedStatusLabel } from './alignHud.util';
 
 type AlignHudCompactProgressProps = {
   canSweep: boolean;
-  onFindCrooked: () => void;
-  onShowHint: () => void;
-  onSweep: () => void;
   progress: number;
   reduceMotion: boolean | null;
   remaining: number;
   sweeping: boolean;
+  onFindCrooked: () => void;
+  onShowHint: () => void;
+  onSweep: () => void;
 };
 
 const AlignHudCompactProgress = ({
   canSweep,
-  onFindCrooked,
-  onShowHint,
-  onSweep,
   progress,
   reduceMotion,
   remaining,
   sweeping,
+  onFindCrooked,
+  onShowHint,
+  onSweep,
 }: AlignHudCompactProgressProps) => (
   <motion.div
     key='progress'
@@ -39,9 +39,9 @@ const AlignHudCompactProgress = ({
     <div className={COMPACT_HUD_ROW_CLASS}>
       <button
         type='button'
-        onClick={onShowHint}
         className='flex min-h-10 items-center gap-2.5 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-line/[0.04]'
         aria-label={EXPAND_HINT_LABEL}
+        onClick={onShowHint}
       >
         <span className='grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-accent/15 text-accent'>
           <AlignHorizontalJustifyCenter className='h-3.5 w-3.5' aria-hidden />
@@ -65,9 +65,9 @@ const AlignHudCompactProgress = ({
       </button>
       <AlignHudCompactActions
         canSweep={canSweep}
+        sweeping={sweeping}
         onFindCrooked={onFindCrooked}
         onSweep={onSweep}
-        sweeping={sweeping}
       />
     </div>
   </motion.div>

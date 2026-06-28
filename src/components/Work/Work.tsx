@@ -5,7 +5,6 @@ import WorkProject from './WorkProject';
 const Work = () => {
   return (
     <Section
-      id='work'
       eyebrow='Work'
       title={
         <>
@@ -13,11 +12,12 @@ const Work = () => {
         </>
       }
       description='Scope, impact, and stack for each product.'
+      id='work'
       uncontainedBody
     >
       <div className='space-y-16 md:space-y-24'>
         {FEATURED_WORK.map((project, i) => (
-          <WorkProject key={project.slug} project={project} index={i} />
+          <WorkProject key={project.slug} index={i} project={project} />
         ))}
       </div>
     </Section>

@@ -265,8 +265,8 @@ function useCardDragAlign({
 export function useAlignable({
   id,
   index,
-  nudgeProfile = 'spread',
   variant,
+  nudgeProfile = 'spread',
 }: UseAlignableOptions) {
   const {
     align,

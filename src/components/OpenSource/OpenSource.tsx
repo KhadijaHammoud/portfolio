@@ -14,7 +14,6 @@ const OpenSource = () => {
 
   return (
     <Section
-      id='open-source'
       eyebrow='Open Source'
       title={
         <>
@@ -23,13 +22,14 @@ const OpenSource = () => {
         </>
       }
       description="A closer look at the work I'm most proud of."
+      id='open-source'
     >
       <AlignableCard
         id='opensource-card'
         index={0}
         as='article'
-        settle={articleSettle}
         className='p-6 md:p-10'
+        settle={articleSettle}
       >
         <div className='flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-ink-muted'>
           <span className='font-medium text-ink'>{OPEN_SOURCE.company}</span>
@@ -81,8 +81,8 @@ const OpenSource = () => {
             <SkillChip
               key={s}
               id={`opensource-chip-${s}`}
-              label={s}
               index={chipIdx}
+              label={s}
             />
           ))}
         </AlignChipField>

@@ -24,11 +24,11 @@ type AlignableCardProps = {
 };
 
 const AlignableCard = ({
-  as = 'div',
   children,
-  className = '',
   id,
   index,
+  as = 'div',
+  className = '',
   settle,
 }: AlignableCardProps) => {
   const { isGameEnabled } = useAlignment();

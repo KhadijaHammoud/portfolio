@@ -8,7 +8,7 @@ type SkillChipProps = {
   as?: 'li' | 'span';
 };
 
-const SkillChip = ({ as = 'span', id, index, label }: SkillChipProps) => {
+const SkillChip = ({ id, index, label, as = 'span' }: SkillChipProps) => {
   const { alignProps } = useAlignable({
     id,
     index,

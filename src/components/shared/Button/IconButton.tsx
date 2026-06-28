@@ -20,26 +20,26 @@ type IconButtonProps = {
 };
 
 const IconButton: React.FC<IconButtonProps> = ({
+  icon,
+  label,
   className,
   disabled = false,
   href,
-  icon,
-  label,
   size = ButtonSize.MD,
   tooltipPlacement,
   variant = ButtonVariant.GHOST,
   onClick,
 }) => (
-  <Tooltip className='inline-flex' label={label} placement={tooltipPlacement}>
+  <Tooltip label={label} className='inline-flex' placement={tooltipPlacement}>
     <ButtonLink
       ariaLabel={label}
       className={className}
       disabled={disabled}
       href={href}
       iconOnly
-      onClick={onClick}
       size={size}
       variant={variant}
+      onClick={onClick}
     >
       {React.cloneElement(icon, {
         className: cn(buttonIconClass(size), icon.props.className),

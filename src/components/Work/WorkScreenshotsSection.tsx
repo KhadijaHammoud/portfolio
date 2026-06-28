@@ -10,10 +10,10 @@ type WorkScreenshotsSectionProps = {
 };
 
 const WorkScreenshotsSection = ({
-  className = 'mt-8 border-t border-line/5 pt-8',
   index,
   shots,
   viewerTitle,
+  className = 'mt-8 border-t border-line/5 pt-8',
 }: WorkScreenshotsSectionProps) => {
   return (
     <div className={cn('overflow-visible', className)}>

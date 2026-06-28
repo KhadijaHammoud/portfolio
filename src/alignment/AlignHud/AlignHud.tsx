@@ -73,8 +73,8 @@ const AlignHud = () => {
   if (isComplete) {
     return (
       <AlignHudCornerDot
-        onActivate={scrambleAgain}
         reduceMotion={reduceMotion}
+        onActivate={scrambleAgain}
       />
     );
   }
@@ -84,27 +84,27 @@ const AlignHud = () => {
     hudPanel = (
       <AlignHudHintCard
         canSweep={canSweep}
-        onDismiss={dismissHint}
-        onFindCrooked={scrollToFirstCrooked}
-        onSweep={sweep}
         progress={progress}
         progressLabel={progressLabel}
         reduceMotion={reduceMotion}
         remaining={remaining}
         sweeping={sweeping}
+        onDismiss={dismissHint}
+        onFindCrooked={scrollToFirstCrooked}
+        onSweep={sweep}
       />
     );
   } else {
     hudPanel = (
       <AlignHudCompactProgress
         canSweep={canSweep}
-        onFindCrooked={scrollToFirstCrooked}
-        onShowHint={showHint}
-        onSweep={sweep}
         progress={progress}
         reduceMotion={reduceMotion}
         remaining={remaining}
         sweeping={sweeping}
+        onFindCrooked={scrollToFirstCrooked}
+        onShowHint={showHint}
+        onSweep={sweep}
       />
     );
   }

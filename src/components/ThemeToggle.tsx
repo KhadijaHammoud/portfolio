@@ -24,8 +24,8 @@ const ThemeToggle = () => {
           </motion.span>
         </AnimatePresence>
       }
-      onClick={toggleTheme}
       label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+      onClick={toggleTheme}
     />
   );
 };

@@ -81,7 +81,6 @@ const Hero = () => {
         >
           {HERO.lead}
           <Tooltip
-            placement={TooltipPlacement.RIGHT}
             label={
               <>
                 {HERO.info.leading}{' '}
@@ -96,6 +95,7 @@ const Hero = () => {
                 {HERO.info.trailing}
               </>
             }
+            placement={TooltipPlacement.RIGHT}
           >
             <span
               tabIndex={0}

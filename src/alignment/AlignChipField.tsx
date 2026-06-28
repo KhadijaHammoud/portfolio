@@ -22,10 +22,10 @@ type AlignChipFieldProps = {
 };
 
 const AlignChipField = ({
-  as = 'div',
   children,
-  className = '',
   id,
+  as = 'div',
+  className = '',
 }: AlignChipFieldProps) => {
   const { isGameEnabled, registerChipGroup, unregisterChipGroup } =
     useAlignment();

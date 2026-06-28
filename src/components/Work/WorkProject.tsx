@@ -20,8 +20,8 @@ const WorkProject = ({ index, project }: WorkProjectProps) => {
           id={`work-${project.slug}`}
           index={index}
           as='article'
-          settle={getSettleMotion(reduceMotion, index * 0.05)}
           className='p-6 md:p-10'
+          settle={getSettleMotion(reduceMotion, index * 0.05)}
         >
           <div className='flex flex-wrap items-center gap-x-2 gap-y-1.5 text-sm text-ink-muted'>
             <span className='font-medium text-ink'>{project.company}</span>
@@ -49,8 +49,8 @@ const WorkProject = ({ index, project }: WorkProjectProps) => {
                 <SkillChip
                   key={s}
                   id={`work-${project.slug}-chip-${s}`}
-                  label={s}
                   index={chipIdx + index * 4}
+                  label={s}
                 />
               ))}
             </AlignChipField>

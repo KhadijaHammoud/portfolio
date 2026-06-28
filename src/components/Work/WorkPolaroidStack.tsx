@@ -134,12 +134,12 @@ const WorkPolaroidStack = ({
         <ImageViewer
           images={shots}
           index={viewerIndex}
+          title={viewerTitle}
           onClose={() => setViewerIndex(null)}
           onIndexChange={(nextIndex) => {
             setViewerIndex(nextIndex);
             setTopIndex(nextIndex);
           }}
-          title={viewerTitle}
         />
       )}
 
@@ -150,21 +150,21 @@ const WorkPolaroidStack = ({
             style={{ height: `${containerHeightRem}rem` }}
             role='button'
             tabIndex={0}
+            aria-label={
+              shots.length > 1
+                ? `Screenshot stack, showing ${activeShot.alt}. Activate to show next.`
+                : `Screenshot: ${activeShot.alt}`
+            }
             onClick={handleStackClick}
-            onMouseDown={(event) => event.preventDefault()}
-            onMouseEnter={fanSupported ? () => setFanOpen(true) : undefined}
-            onMouseLeave={fanSupported ? () => setFanOpen(false) : undefined}
             onKeyDown={(event) => {
               if (event.key === 'Enter' || event.key === ' ') {
                 event.preventDefault();
                 handleStackClick();
               }
             }}
-            aria-label={
-              shots.length > 1
-                ? `Screenshot stack, showing ${activeShot.alt}. Activate to show next.`
-                : `Screenshot: ${activeShot.alt}`
-            }
+            onMouseDown={(event) => event.preventDefault()}
+            onMouseEnter={fanSupported ? () => setFanOpen(true) : undefined}
+            onMouseLeave={fanSupported ? () => setFanOpen(false) : undefined}
           >
             {orderedIndices.map((shotIndex) => {
               const shot = shots[shotIndex];
@@ -240,10 +240,10 @@ const WorkPolaroidStack = ({
             </p>
           )}
           <TextButton
-            variant={ButtonVariant.SECONDARY}
-            onClick={() => openViewer(topIndex)}
             icon={<Expand aria-hidden />}
+            variant={ButtonVariant.SECONDARY}
             className='mt-5'
+            onClick={() => openViewer(topIndex)}
           >
             View full size
           </TextButton>

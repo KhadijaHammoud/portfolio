@@ -9,13 +9,13 @@ import {
 } from './alignHud.const';
 
 type AlignHudCornerDotProps = {
-  onActivate: () => void;
   reduceMotion: boolean | null;
+  onActivate: () => void;
 };
 
 const AlignHudCornerDot = ({
-  onActivate,
   reduceMotion,
+  onActivate,
 }: AlignHudCornerDotProps) => {
   const [showMessage, setShowMessage] = useState(true);
 
@@ -61,8 +61,8 @@ const AlignHudCornerDot = ({
       <IconButton
         icon={<RotateCcw className='text-accent' aria-hidden />}
         label='Scramble again'
-        onClick={onActivate}
         className='pointer-events-auto text-accent shadow-card backdrop-blur-md transition-colors'
+        onClick={onActivate}
       />
     </motion.div>
   );

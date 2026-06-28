@@ -15,8 +15,8 @@ const EducationCard = ({ index, school }: EducationCardProps) => {
     <AlignableCard
       id={`edu-${school.school}`}
       index={index}
-      settle={settle}
       className='p-6 md:p-8'
+      settle={settle}
     >
       <div className='flex items-center gap-3'>
         <span className='grid h-10 w-10 place-items-center rounded-xl bg-accent/15 text-accent-soft'>

@@ -14,10 +14,10 @@ type SectionProps = {
 
 const Section = ({
   children,
-  description,
   eyebrow,
-  id,
   title,
+  description,
+  id,
   uncontainedBody = false,
 }: SectionProps) => {
   const settle = useSettleMotion();

@@ -12,9 +12,9 @@ type WorkCollapsiblePanelProps = {
 
 const WorkCollapsiblePanel = ({
   children,
-  description,
   id,
   title,
+  description,
 }: WorkCollapsiblePanelProps) => {
   const reduceMotion = useReducedMotion();
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +25,10 @@ const WorkCollapsiblePanel = ({
       <button
         type='button'
         id={triggerId}
-        onClick={() => setIsOpen((open) => !open)}
         aria-expanded={isOpen}
         aria-controls={id}
         className='flex w-full items-start justify-between gap-4 px-4 py-4 text-left transition-colors hover:bg-line/[0.03] md:px-5 md:py-5'
+        onClick={() => setIsOpen((open) => !open)}
       >
         <div className='min-w-0'>
           <h4 className='text-lg font-semibold tracking-tight text-ink md:text-xl'>

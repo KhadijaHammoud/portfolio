@@ -69,8 +69,8 @@ const ExperienceItem = ({ exp, index, reduceMotion }: ExperienceItemProps) => {
               <div className='mt-5'>
                 <TextButton
                   href={`#work-${exp.workSlug}`}
-                  variant={ButtonVariant.GHOST}
                   showArrow
+                  variant={ButtonVariant.GHOST}
                 >
                   View product work
                 </TextButton>

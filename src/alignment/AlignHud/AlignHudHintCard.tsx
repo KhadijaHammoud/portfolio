@@ -18,26 +18,26 @@ import { FIND_CROOKED_LABEL } from './alignHud.const';
 
 type AlignHudHintCardProps = {
   canSweep: boolean;
-  onDismiss: () => void;
-  onFindCrooked: () => void;
-  onSweep: () => void;
   progress: number;
   progressLabel: string;
   reduceMotion: boolean | null;
   remaining: number;
   sweeping: boolean;
+  onDismiss: () => void;
+  onFindCrooked: () => void;
+  onSweep: () => void;
 };
 
 const AlignHudHintCard = ({
   canSweep,
-  onDismiss,
-  onFindCrooked,
-  onSweep,
   progress,
   progressLabel,
   reduceMotion,
   remaining,
   sweeping,
+  onDismiss,
+  onFindCrooked,
+  onSweep,
 }: AlignHudHintCardProps) => (
   <motion.div
     key='hint'
@@ -69,17 +69,16 @@ const AlignHudHintCard = ({
         <p className='mt-2 font-mono text-xs text-ink-faint'>{progressLabel}</p>
         <ButtonGroup className='mt-3' equalWidth={canSweep}>
           <TextButton
-            className={canSweep ? 'w-full' : undefined}
             icon={<ScanSearch aria-hidden />}
-            onClick={onFindCrooked}
             size={ButtonSize.SM}
             variant={ButtonVariant.GHOST}
+            className={canSweep ? 'w-full' : undefined}
+            onClick={onFindCrooked}
           >
             {FIND_CROOKED_LABEL}
           </TextButton>
           {canSweep && (
             <TextButton
-              className='w-full'
               disabled={sweeping}
               icon={
                 <BrushCleaning
@@ -87,9 +86,10 @@ const AlignHudHintCard = ({
                   className={cn('text-accent', sweeping && 'broom-sweeping')}
                 />
               }
-              onClick={onSweep}
               size={ButtonSize.SM}
               variant={ButtonVariant.ACCENT}
+              className='w-full'
+              onClick={onSweep}
             >
               <span className='truncate'>Sweep all</span>
               <span className='shrink-0 font-mono text-xs text-ink-muted'>
@@ -100,12 +100,12 @@ const AlignHudHintCard = ({
         </ButtonGroup>
       </div>
       <IconButton
-        className='shrink-0'
         icon={<X aria-hidden />}
         label='Minimize'
-        onClick={onDismiss}
+        className='shrink-0'
         size={ButtonSize.SM}
         tooltipPlacement={TooltipPlacement.TOP}
+        onClick={onDismiss}
       />
     </div>
   </motion.div>

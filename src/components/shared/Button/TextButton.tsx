@@ -11,12 +11,12 @@ type TextButtonProps = {
   download?: string;
   href?: string;
   icon?: React.ReactElement<LucideProps>;
-  onClick?: (
-    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
-  ) => void;
   showArrow?: boolean;
   size?: ButtonSize;
   variant?: ButtonVariant;
+  onClick?: (
+    event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+  ) => void;
 };
 
 const TextButton: React.FC<TextButtonProps> = ({
@@ -26,20 +26,20 @@ const TextButton: React.FC<TextButtonProps> = ({
   download,
   href,
   icon,
-  onClick,
   showArrow = false,
   size = ButtonSize.MD,
   variant = ButtonVariant.PRIMARY,
+  onClick,
 }) => (
   <ButtonLink
     className={className}
     disabled={disabled}
     download={download}
     href={href}
-    onClick={onClick}
     showArrow={showArrow}
     size={size}
     variant={variant}
+    onClick={onClick}
   >
     {icon &&
       React.cloneElement(icon, {

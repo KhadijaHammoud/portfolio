@@ -15,7 +15,7 @@ const Education = () => {
     >
       <div className='grid gap-5 md:grid-cols-2'>
         {EDUCATION.map((e, i) => (
-          <EducationCard key={e.school} school={e} index={i} />
+          <EducationCard key={e.school} index={i} school={e} />
         ))}
       </div>
     </Section>

@@ -6,8 +6,8 @@ type WorkHighlightListProps = {
 };
 
 const WorkHighlightList = ({
-  className = '',
   items,
+  className = '',
 }: WorkHighlightListProps) => (
   <ul className={cn('space-y-2.5', className)}>
     {items.map((h) => (

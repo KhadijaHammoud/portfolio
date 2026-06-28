@@ -40,9 +40,9 @@ const WorkProjectDetails = ({
               />
               {hasShots && (
                 <WorkScreenshotsSection
+                  index={i}
                   shots={app.shots!}
                   viewerTitle={`${project.company}: ${app.title}`}
-                  index={i}
                   className='mt-6 border-t border-line/5 pt-6'
                 />
               )}
@@ -71,9 +71,9 @@ const WorkProjectDetails = ({
         {hasHighlights && <WorkHighlightList items={highlights} />}
         {hasShots && (
           <WorkScreenshotsSection
+            index={projectIndex}
             shots={shots}
             viewerTitle={project.company}
-            index={projectIndex}
             className={
               hasHighlights ? 'mt-6 border-t border-line/5 pt-6' : undefined
             }

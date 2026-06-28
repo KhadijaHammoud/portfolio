@@ -12,17 +12,17 @@ type ViewerImage = {
 type ImageViewerProps = {
   images: readonly ViewerImage[];
   index: number;
+  title: string;
   onClose: () => void;
   onIndexChange: (index: number) => void;
-  title: string;
 };
 
 const ImageViewer: React.FC<ImageViewerProps> = ({
   images,
   index,
+  title,
   onClose,
   onIndexChange,
-  title,
 }) => {
   const reduceMotion = useReducedMotion();
   const count = images.length;
@@ -94,9 +94,9 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
           </div>
           <button
             type='button'
-            onClick={onClose}
             className={controlClass}
             aria-label='Close'
+            onClick={onClose}
           >
             <X className='h-5 w-5' />
           </button>
@@ -105,9 +105,9 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
         <div className='flex items-center justify-center gap-3 sm:gap-5'>
           <button
             type='button'
-            onClick={goPrev}
             className={controlClass}
             aria-label='Previous image'
+            onClick={goPrev}
           >
             <ChevronLeft className='h-5 w-5' />
           </button>
@@ -128,9 +128,9 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
 
           <button
             type='button'
-            onClick={goNext}
             className={controlClass}
             aria-label='Next image'
+            onClick={goNext}
           >
             <ChevronRight className='h-5 w-5' />
           </button>

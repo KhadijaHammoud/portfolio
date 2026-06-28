@@ -14,8 +14,8 @@ const SkillGroupCard = ({ group, index }: SkillGroupCardProps) => {
     <AlignableCard
       id={`skills-card-${group.group}`}
       index={index}
-      settle={settle}
       className='p-6'
+      settle={settle}
     >
       <div className='flex items-center gap-3'>
         <span className='grid h-8 w-8 place-items-center rounded-lg bg-accent/15 text-sm font-semibold text-accent-soft'>
@@ -31,10 +31,10 @@ const SkillGroupCard = ({ group, index }: SkillGroupCardProps) => {
         {group.items.map((item, itemIdx) => (
           <SkillChip
             key={item}
-            as='li'
             id={`skills-chip-${group.group}-${item}`}
-            label={item}
             index={itemIdx + index * 3}
+            label={item}
+            as='li'
           />
         ))}
       </AlignChipField>

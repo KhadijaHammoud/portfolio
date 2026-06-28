@@ -97,35 +97,35 @@ function buttonLinkClasses(
 }
 
 type ButtonLinkProps = {
+  ariaLabel?: string;
   children?: React.ReactNode;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-  iconOnly?: boolean;
-  unstyled?: boolean;
-  href?: string;
-  download?: string;
+  className?: string;
   disabled?: boolean;
+  download?: string;
+  href?: string;
+  iconOnly?: boolean;
+  showArrow?: boolean;
+  size?: ButtonSize;
+  unstyled?: boolean;
+  variant?: ButtonVariant;
   onClick?: (
     event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
   ) => void;
-  ariaLabel?: string;
-  showArrow?: boolean;
-  className?: string;
 };
 
 const ButtonLink: React.FC<ButtonLinkProps> = ({
-  children,
-  variant = ButtonVariant.PRIMARY,
-  size = ButtonSize.MD,
-  iconOnly = false,
-  unstyled = false,
-  href,
-  download,
-  disabled = false,
-  onClick,
   ariaLabel,
-  showArrow = false,
+  children,
   className = '',
+  disabled = false,
+  download,
+  href,
+  iconOnly = false,
+  showArrow = false,
+  size = ButtonSize.MD,
+  unstyled = false,
+  variant = ButtonVariant.PRIMARY,
+  onClick,
 }) => {
   const classes = cn(
     !unstyled && buttonLinkClasses(variant, iconOnly, size),
@@ -151,10 +151,10 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
     return (
       <button
         type='button'
-        onClick={onClick}
         disabled={disabled}
         aria-label={ariaLabel}
         className={classes}
+        onClick={onClick}
       >
         {content}
       </button>
@@ -163,13 +163,13 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
 
   return (
     <a
-      href={href}
-      download={download}
-      onClick={onClick}
       aria-label={ariaLabel}
-      target={isExternal ? '_blank' : undefined}
-      rel={isExternal ? 'noreferrer' : undefined}
       className={classes}
+      download={download}
+      href={href}
+      rel={isExternal ? 'noreferrer' : undefined}
+      target={isExternal ? '_blank' : undefined}
+      onClick={onClick}
     >
       {content}
     </a>
