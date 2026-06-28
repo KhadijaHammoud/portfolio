@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
-import { useAlignable, useAlignment } from '../../alignment';
+import { useAlignable } from '../../alignment';
+import { useAlignment } from '../../contexts';
 import { PROFILE } from '../../constants';
 import { cn } from '../../utils';
 import {

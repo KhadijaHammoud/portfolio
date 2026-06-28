@@ -1,18 +1,7 @@
-import {
-  createContext,
-  useContext,
-  useLayoutEffect,
-  type ElementType,
-  type ReactNode,
-} from 'react';
+import { useLayoutEffect, type ElementType, type ReactNode } from 'react';
+import { useAlignment } from '../contexts';
 import { cn } from '../utils';
-import { useAlignment } from './AlignmentContext';
-
-const AlignChipFieldContext = createContext<string | null>(null);
-
-export function useAlignChipFieldId() {
-  return useContext(AlignChipFieldContext);
-}
+import { AlignChipFieldProvider } from './AlignChipFieldProvider';
 
 type AlignChipFieldProps = {
   children: ReactNode;
@@ -38,11 +27,11 @@ const AlignChipField = ({
   }, [id, isGameEnabled, registerChipGroup, unregisterChipGroup]);
 
   return (
-    <AlignChipFieldContext.Provider value={id}>
+    <AlignChipFieldProvider id={id}>
       <Tag className={cn(className, isGameEnabled && 'align-chip-field')}>
         {children}
       </Tag>
-    </AlignChipFieldContext.Provider>
+    </AlignChipFieldProvider>
   );
 };
 

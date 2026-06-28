@@ -32,6 +32,8 @@ alwaysApply: false
 - Match the export/style pattern of the file you edit (`React.FC` vs function declaration).
 - Single responsibility; extract repeated logic to hooks or utils.
 - No `console.log` in committed code.
+- **Props:** required → optional; vars → callbacks; alphabetical within each subgroup (types, destructuring, JSX, context values).
+- **Colocate** contexts, hooks, utils, constants, and types with their owning feature; promote to top-level folders when reused across unrelated features, or when a provider is mounted in `App.tsx` / `index.tsx`.
 
 ## Styling
 

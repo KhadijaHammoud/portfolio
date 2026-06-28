@@ -7,9 +7,9 @@ import {
   type CSSProperties,
   type PointerEvent,
 } from 'react';
+import { useAlignment } from '../contexts';
 import { cn } from '../utils';
-import { useAlignChipFieldId } from './AlignChipField';
-import { useAlignment } from './AlignmentContext';
+import { useAlignChipFieldId } from './AlignChipFieldContext';
 
 type AlignableVariant = 'card' | 'chip';
 type NudgeProfile = 'spread' | 'stack';
@@ -269,10 +269,10 @@ export function useAlignable({
   nudgeProfile = 'spread',
 }: UseAlignableOptions) {
   const {
-    align,
     gameEpoch,
-    isAligned,
     isGameEnabled,
+    align,
+    isAligned,
     registerCard,
     registerChip,
     unregisterCard,
@@ -376,6 +376,8 @@ export function useAlignable({
         : undefined,
       className,
       'data-aligned': aligned ? 'true' : 'false',
+      ...(hoverEnabled ? { 'data-align-chip': 'true' as const } : {}),
+      style: mergedStyle,
       onFocus: hoverEnabled ? handleFocus : undefined,
       onMouseLeave: hoverEnabled ? handleMouseLeave : undefined,
       onPointerCancel: dragEnabled ? dragHandlers.onPointerCancel : undefined,
@@ -384,8 +386,6 @@ export function useAlignable({
         : dragHandlers.onPointerDown,
       onPointerMove: dragEnabled ? dragHandlers.onPointerMove : undefined,
       onPointerUp: dragEnabled ? dragHandlers.onPointerUp : undefined,
-      style: mergedStyle,
-      ...(hoverEnabled ? { 'data-align-chip': 'true' as const } : {}),
     },
     dragging,
   };

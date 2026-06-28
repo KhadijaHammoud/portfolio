@@ -111,8 +111,6 @@ const Tooltip = ({
       <span
         ref={tooltipRef}
         role='tooltip'
-        onMouseEnter={show}
-        onMouseLeave={hide}
         className={cn(
           'absolute z-50 whitespace-nowrap rounded-lg border border-line/10 bg-bg/95 px-2.5 py-1 text-xs font-medium text-ink shadow-card backdrop-blur-sm transition-opacity duration-150',
           open
@@ -121,6 +119,8 @@ const Tooltip = ({
           PLACEMENT_CLASSES[activePlacement],
           BRIDGE_CLASSES[activePlacement],
         )}
+        onMouseEnter={show}
+        onMouseLeave={hide}
       >
         {label}
       </span>

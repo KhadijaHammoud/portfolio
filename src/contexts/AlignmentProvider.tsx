@@ -1,7 +1,5 @@
 import {
-  createContext,
   useCallback,
-  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -9,34 +7,7 @@ import {
   type ReactNode,
 } from 'react';
 import { useMinMd } from '../hooks';
-
-type AlignmentContextValue = {
-  isGameEnabled: boolean;
-  registerCard: (id: string) => void;
-  unregisterCard: (id: string) => void;
-  registerChipGroup: (id: string) => void;
-  unregisterChipGroup: (id: string) => void;
-  registerChip: (groupId: string, chipId: string) => void;
-  unregisterChip: (groupId: string, chipId: string) => void;
-  align: (id: string) => void;
-  alignAll: () => void;
-  isAligned: (id: string) => boolean;
-  cardTotal: number;
-  cardAligned: number;
-  chipGroupTotal: number;
-  chipGroupAligned: number;
-  total: number;
-  alignedCount: number;
-  isComplete: boolean;
-  celebrationEpoch: number;
-  hintDismissed: boolean;
-  dismissHint: () => void;
-  showHint: () => void;
-  gameEpoch: number;
-  resetGame: () => void;
-};
-
-const AlignmentContext = createContext<AlignmentContextValue | null>(null);
+import { AlignmentContext } from './AlignmentContext';
 
 function countAlignedChipGroups(
   chipGroups: Map<string, Set<string>>,
@@ -222,54 +193,54 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
 
   const value = useMemo(
     () => ({
+      alignedCount,
+      cardAligned,
+      cardTotal,
+      celebrationEpoch,
+      chipGroupAligned,
+      chipGroupTotal,
+      gameEpoch,
+      hintDismissed,
+      isComplete,
       isGameEnabled,
-      registerCard,
-      unregisterCard,
-      registerChipGroup,
-      unregisterChipGroup,
-      registerChip,
-      unregisterChip,
+      total,
       align,
       alignAll,
-      isAligned,
-      cardTotal,
-      cardAligned,
-      chipGroupTotal,
-      chipGroupAligned,
-      total,
-      alignedCount,
-      isComplete,
-      celebrationEpoch,
-      hintDismissed,
       dismissHint,
-      showHint,
-      gameEpoch,
+      isAligned,
+      registerCard,
+      registerChip,
+      registerChipGroup,
       resetGame,
+      showHint,
+      unregisterCard,
+      unregisterChip,
+      unregisterChipGroup,
     }),
     [
+      alignedCount,
+      cardAligned,
+      cardTotal,
+      celebrationEpoch,
+      chipGroupAligned,
+      chipGroupTotal,
+      gameEpoch,
+      hintDismissed,
+      isComplete,
       isGameEnabled,
-      registerCard,
-      unregisterCard,
-      registerChipGroup,
-      unregisterChipGroup,
-      registerChip,
-      unregisterChip,
+      total,
       align,
       alignAll,
-      isAligned,
-      cardTotal,
-      cardAligned,
-      chipGroupTotal,
-      chipGroupAligned,
-      total,
-      alignedCount,
-      isComplete,
-      celebrationEpoch,
-      hintDismissed,
       dismissHint,
-      showHint,
-      gameEpoch,
+      isAligned,
+      registerCard,
+      registerChip,
+      registerChipGroup,
       resetGame,
+      showHint,
+      unregisterCard,
+      unregisterChip,
+      unregisterChipGroup,
     ],
   );
 
@@ -279,11 +250,3 @@ export const AlignmentProvider = ({ children }: { children: ReactNode }) => {
     </AlignmentContext.Provider>
   );
 };
-
-export function useAlignment() {
-  const ctx = useContext(AlignmentContext);
-  if (!ctx) {
-    throw new Error('useAlignment must be used within AlignmentProvider');
-  }
-  return ctx;
-}

@@ -27,11 +27,11 @@ Project-wide reference for how this portfolio is structured, how we name things,
 | `src/components/`        | Section and UI components                                |
 | `src/components/shared/` | Reusable buttons and primitives                          |
 | `src/hooks/`             | Shared React hooks                                       |
-| `src/alignment/`         | Alignment mini-game — components, context, feature hooks |
+| `src/alignment/`         | Alignment mini-game — components, feature context, hooks |
+| `src/contexts/`          | App-level providers used in `App.tsx` / `index.tsx` (flat files) |
 | `src/motion/`            | Shared Framer Motion helpers                             |
 | `src/components/icons/`  | Brand / social icons                                     |
 | `src/constants/`         | Portfolio copy, experience, education, skills            |
-| `src/theme/`             | Theme provider and light/dark behavior                   |
 | `src/utils/`             | Cross-cutting utilities used in multiple places          |
 | `public/`                | Static assets, `index.html`, manifest                    |
 | `.cursor/rules/`         | Cursor agent guidance                                    |
@@ -99,9 +99,9 @@ src/
 │   ├── shared/           # TextButton, IconButton, ButtonGroup, barrel index
 │   └── icons/            # SVG / icon components
 ├── constants/            # portfolio.const.ts — all site copy & data
+├── contexts/             # App-level contexts (AlignmentProvider, ThemeProvider, …)
 ├── hooks/                # Shared hooks (useMinMd, …)
 ├── motion/               # Shared motion helpers (settle, …)
-├── theme/                # ThemeProvider
 ├── utils/                # Shared utilities (cn) — not single-use helpers
 ├── App.tsx               # Page composition
 ├── index.css             # Global styles, CSS variables, utilities (.card)
@@ -117,10 +117,14 @@ src/
 
 ### Hooks and helpers
 
-- **`src/hooks/`** — hooks reused across features (e.g. `useMinMd` for Tailwind `md` breakpoint).
-- **Feature hooks** stay with their feature when not shared (e.g. `useAlignable` in `src/alignment/`).
-- **Do not** add a standalone util file for logic used in only one place — keep it in that module or co-locate private helpers in the parent feature folder.
-- **`src/utils/`** — utilities used across multiple unrelated modules (e.g. `cn`).
+- **Colocate by default** — contexts, hooks, utils, constants, and types stay in the feature or component folder that owns them (e.g. `useAlignable` and `alignment/context/` under `src/alignment/`).
+- **Promote to top-level only when reused** across unrelated features:
+  - **`src/hooks/`** — shared hooks (e.g. `useMinMd`)
+  - **`src/utils/`** — shared utilities (e.g. `cn`)
+  - **`src/constants/`** — portfolio-wide copy and data; section-specific copy stays in co-located `*.const.ts` files
+  - **`src/types/`** — types shared across multiple features
+  - **`src/contexts/`** — providers wired in `App.tsx` or `index.tsx` (e.g. theme, alignment game shell)
+- **Do not** add a standalone util/hook file for logic used in only one place — keep it in that module or co-locate in the parent feature folder.
 
 ### Shared components
 
@@ -129,6 +133,12 @@ src/
 - **`TextButton`** — labeled actions (primary/secondary/ghost/accent); supports optional `href`, `onClick`, and icon.
 - **`IconButton`** — icon-only controls with tooltip label; use for compact HUD/toolbar actions.
 - Export shared pieces from `src/components/shared/index.ts`.
+
+### Contexts
+
+- **`src/contexts/`** — flat files for providers used in `App.tsx` or `index.tsx`. Split each into `*Context.tsx` (createContext, value type, hook) and `*Provider.tsx` (state/effects).
+- **Feature-scoped contexts** stay with their feature when not mounted at the app root (e.g. `src/alignment/context/alignChipField/`).
+- Import app-level providers and hooks from `contexts`; import feature contexts from their owning feature folder.
 
 ---
 
@@ -145,14 +155,14 @@ src/
 - Prefer **named exports** for section and shared components.
 - `App.tsx` may use a default export as the CRA entry pattern.
 - Match existing style in each file (`React.FC` vs function declarations)—do not mix styles within one file.
-- **Props:** required props first, then optional — each group in **alphabetical** order. Apply the same order in `type`/`interface` definitions, destructuring, and JSX.
+- **Props and context values:** required first, then optional. Within each group, **non-callback props before callbacks** (`onClick`, `onChange`, handler fns, etc.). Within each subgroup, **alphabetical** order. Apply consistently in `type`/`interface` definitions, destructuring, JSX, and context value shapes.
 - **Exports:** only export symbols consumed outside the module. Do not re-export from barrel files unless consumers import them from that barrel.
 
 ### Alignment mini-game
 
 - Desktop-only (`md` / 768px+): gate with `useMinMd()` from `src/hooks/`.
 - Cards register via `useAlignable`; chips register inside `AlignChipField` groups.
-- HUD controls live in `AlignHud/`; celebration uses `celebrationEpoch` in `AlignmentContext` for reliable sparkles on manual complete.
+- HUD controls live in `AlignHud/`; celebration uses `celebrationEpoch` from `contexts/AlignmentContext` for reliable sparkles on manual complete.
 
 ### Imports
 
@@ -165,7 +175,7 @@ Order: external → internal → relative → assets. Prefer barrel imports from
 ### Tailwind and theme
 
 - **Primary:** Tailwind utility classes with design tokens from `tailwind.config.js` (`bg`, `ink`, `accent`, `secondary`, `line`, …).
-- **Theme:** CSS variables in `index.css`; dark mode via `class` on `html` (`ThemeProvider`).
+- **Theme:** CSS variables in `index.css`; dark mode via `class` on `html` (`ThemeProvider` from `src/contexts`).
 - **Utilities:** Use existing patterns (e.g. `.card`) before inventing new layout wrappers.
 - **Avoid** custom CSS unless necessary; keep one-off styles in the component’s `className`.
 

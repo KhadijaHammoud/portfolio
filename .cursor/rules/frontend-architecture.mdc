@@ -15,10 +15,15 @@ src/
 │   ├── shared/           # TextButton, IconButton
 │   └── icons/            # Brand icons
 ├── constants/            # portfolio.const.ts
-├── theme/                # ThemeProvider
+├── contexts/             # App-level contexts (flat *Context.tsx + *Provider.tsx)
 ├── App.tsx
 └── index.css             # CSS variables, .card, global utilities
 ```
+
+## Colocation
+
+- Keep contexts, hooks, utils, constants, and types in the feature or component folder that owns them.
+- Move to `src/hooks/`, `src/utils/`, `src/constants/`, `src/types/`, or `src/contexts/` only when reused across unrelated features — or when a provider is mounted in `App.tsx` / `index.tsx`.
 
 ## Component rules
 
@@ -30,7 +35,7 @@ src/
 ## Styling
 
 - Tailwind utilities + theme tokens (`ink`, `bg`, `accent`, `secondary`, `line`).
-- Dark mode: `class` on `html` via `ThemeProvider`.
+- Dark mode: `class` on `html` via `ThemeProvider` from `src/contexts`.
 - Prefer `.card` and existing layout patterns over new global CSS.
 
 ## Icons

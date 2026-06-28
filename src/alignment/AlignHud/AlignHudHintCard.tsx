@@ -69,16 +69,17 @@ const AlignHudHintCard = ({
         <p className='mt-2 font-mono text-xs text-ink-faint'>{progressLabel}</p>
         <ButtonGroup className='mt-3' equalWidth={canSweep}>
           <TextButton
+            className={canSweep ? 'w-full' : undefined}
             icon={<ScanSearch aria-hidden />}
             size={ButtonSize.SM}
             variant={ButtonVariant.GHOST}
-            className={canSweep ? 'w-full' : undefined}
             onClick={onFindCrooked}
           >
             {FIND_CROOKED_LABEL}
           </TextButton>
           {canSweep && (
             <TextButton
+              className='w-full'
               disabled={sweeping}
               icon={
                 <BrushCleaning
@@ -88,7 +89,6 @@ const AlignHudHintCard = ({
               }
               size={ButtonSize.SM}
               variant={ButtonVariant.ACCENT}
-              className='w-full'
               onClick={onSweep}
             >
               <span className='truncate'>Sweep all</span>

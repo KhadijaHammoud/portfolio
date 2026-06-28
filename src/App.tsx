@@ -1,5 +1,5 @@
 import { Analytics } from '@vercel/analytics/react';
-import { AlignCelebration, AlignHud, AlignmentProvider } from './alignment';
+import { AlignCelebration, AlignHud } from './alignment';
 import About from './components/About';
 import BackgroundPawPrints from './components/BackgroundPawPrints';
 import Contact from './components/Contact';
@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import OpenSource from './components/OpenSource';
 import Skills from './components/Skills';
 import Work from './components/Work';
+import { AlignmentProvider } from './contexts';
 
 const App = () => {
   return (

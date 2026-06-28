@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { settleWithoutOffset } from '../motion';
 import { cn } from '../utils';
 import AlignCardFrame from './AlignCardFrame';
-import { useAlignment } from './AlignmentContext';
+import { useAlignment } from '../contexts';
 import { useAlignable } from './useAlignable';
 
 type MotionTag = 'div' | 'article' | 'aside';

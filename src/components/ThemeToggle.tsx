@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '../theme';
+import { useTheme } from '../contexts';
 import { IconButton } from './shared';
 
 const ThemeToggle = () => {

@@ -30,7 +30,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   variant = ButtonVariant.GHOST,
   onClick,
 }) => (
-  <Tooltip label={label} className='inline-flex' placement={tooltipPlacement}>
+  <Tooltip className='inline-flex' label={label} placement={tooltipPlacement}>
     <ButtonLink
       ariaLabel={label}
       className={className}

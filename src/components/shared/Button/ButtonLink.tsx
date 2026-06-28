@@ -151,9 +151,9 @@ const ButtonLink: React.FC<ButtonLinkProps> = ({
     return (
       <button
         type='button'
-        disabled={disabled}
         aria-label={ariaLabel}
         className={classes}
+        disabled={disabled}
         onClick={onClick}
       >
         {content}

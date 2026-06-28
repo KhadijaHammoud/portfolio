@@ -1,6 +1,6 @@
 import { AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useCallback, useState } from 'react';
-import { useAlignment } from '../AlignmentContext';
+import { useAlignment } from '../../contexts';
 import { formatAlignProgress } from './alignHud.util';
 import AlignHudCornerDot from './AlignHudCornerDot';
 import AlignHudCompactProgress from './AlignHudCompactProgress';
@@ -22,19 +22,19 @@ function scrollToFirstCrooked() {
 const AlignHud = () => {
   const reduceMotion = useReducedMotion();
   const {
-    alignAll,
     alignedCount,
     cardAligned,
     cardTotal,
     chipGroupAligned,
     chipGroupTotal,
-    dismissHint,
     hintDismissed,
     isComplete,
     isGameEnabled,
+    total,
+    alignAll,
+    dismissHint,
     resetGame,
     showHint,
-    total,
   } = useAlignment();
   const [sweeping, setSweeping] = useState(false);
 
