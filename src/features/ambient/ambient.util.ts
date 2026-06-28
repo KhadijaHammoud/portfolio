@@ -1,9 +1,4 @@
-import {
-  IDLE_BEFORE_PAWS_MS,
-  PAW_DURATION,
-  SPOTLIGHT_HIDE_MS,
-  STEP_INTERVAL,
-} from './ambient.const';
+import { PAW_DURATION, STEP_INTERVAL } from './ambient.const';
 import type { PawStep, WalkPath } from './ambient.type';
 
 interface CrossingWalk {
