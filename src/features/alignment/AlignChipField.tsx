@@ -1,7 +1,7 @@
 import { useLayoutEffect, type ElementType, type ReactNode } from 'react';
-import { useAlignment } from '../contexts';
-import { cn } from '../utils';
-import { AlignChipFieldTag } from '../types';
+import { useAlignment } from '../../contexts';
+import { AlignChipFieldTag } from '../../types';
+import { cn } from '../../utils';
 import { AlignChipFieldProvider } from './AlignChipFieldProvider';
 
 type AlignChipFieldProps = {

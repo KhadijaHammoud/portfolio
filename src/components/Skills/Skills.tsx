@@ -1,6 +1,6 @@
-import { SKILLS } from './skills.const';
 import Section from '../Section';
 import SkillGroupCard from './SkillGroupCard';
+import { SKILLS } from './skills.const';
 
 const Skills = () => {
   return (

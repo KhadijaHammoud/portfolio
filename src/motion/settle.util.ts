@@ -1,5 +1,5 @@
-import { useReducedMotion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
+import { useReducedMotion } from 'framer-motion';
 
 const SETTLE_VIEWPORT = { once: true, margin: '-80px' } as const;
 
@@ -30,7 +30,9 @@ export function getSettleMotion(
 }
 
 /** Fade-only settle — avoids fighting alignment nudge transforms on mount. */
-export function settleWithoutOffset<T extends HTMLMotionProps<'div'>>(settle: T): T {
+export function settleWithoutOffset<T extends HTMLMotionProps<'div'>>(
+  settle: T,
+): T {
   return {
     ...settle,
     initial: { opacity: 0 },

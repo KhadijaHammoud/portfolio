@@ -30,7 +30,9 @@ How this portfolio is structured, named, and shipped. Keep changes small and mat
 
 ## Layout
 
-**Top-level areas:** sections and shared UI, alignment mini-game, shared constants, app-level contexts, shared hooks, motion helpers, cross-feature types, shared utils.
+**Top-level areas:** sections and shared UI, cross-cutting features, shared constants, app-level contexts, shared hooks, motion helpers, cross-feature types, shared utils.
+
+**Features:** self-contained app behaviors mounted at the root (alignment mini-game, ambient effects). Feature-only contexts stay inside the feature folder; app-root providers stay in contexts.
 
 **Colocate** contexts, hooks, utils, constants, and types with their owning feature or component. Promote to a top-level folder only when reused across unrelated features, or when a provider mounts at the app root.
 

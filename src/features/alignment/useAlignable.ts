@@ -7,9 +7,9 @@ import {
   type CSSProperties,
   type PointerEvent,
 } from 'react';
-import { useAlignment } from '../contexts';
-import { cn } from '../utils';
-import { AlignableVariant, NudgeProfile } from '../types';
+import { useAlignment } from '../../contexts';
+import { AlignableVariant, NudgeProfile } from '../../types';
+import { cn } from '../../utils';
 import { useAlignChipFieldId } from './AlignChipFieldContext';
 
 const CHIP_NUDGES = [
@@ -281,8 +281,10 @@ export function useAlignable({
   const aligned = isAligned(id);
   const gameActive = isGameEnabled && !reduceMotion;
 
-  const dragEnabled = gameActive && variant === AlignableVariant.CARD && !aligned;
-  const hoverEnabled = gameActive && variant === AlignableVariant.CHIP && !aligned;
+  const dragEnabled =
+    gameActive && variant === AlignableVariant.CARD && !aligned;
+  const hoverEnabled =
+    gameActive && variant === AlignableVariant.CHIP && !aligned;
 
   useEffect(() => {
     if (!isGameEnabled) return;
@@ -346,7 +348,9 @@ export function useAlignable({
 
   const crooked = !aligned && !reduceMotion;
   const chipStyle: CSSProperties | undefined =
-    crooked && variant === AlignableVariant.CHIP ? chipNudgeStyle(index) : undefined;
+    crooked && variant === AlignableVariant.CHIP
+      ? chipNudgeStyle(index)
+      : undefined;
 
   const className = cn(
     variant === AlignableVariant.CARD ? 'card-settle' : 'chip chip-nudge',

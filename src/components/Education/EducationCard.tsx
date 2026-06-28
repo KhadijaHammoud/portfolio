@@ -1,5 +1,5 @@
 import { GraduationCap } from 'lucide-react';
-import { AlignableCard } from '../../alignment';
+import { AlignableCard } from '../../features';
 import { useSettleMotion } from '../../motion';
 import { EDUCATION } from './education.const';
 

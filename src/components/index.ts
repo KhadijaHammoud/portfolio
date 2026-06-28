@@ -1,0 +1,14 @@
+export { default as About } from './About';
+export { default as Contact } from './Contact';
+export { default as Education } from './Education';
+export { default as Experience } from './Experience';
+export { default as Footer } from './Footer';
+export { default as Hero } from './Hero';
+export * from './icons';
+export { default as Navbar } from './Navbar';
+export { default as OpenSource } from './OpenSource';
+export { default as Section } from './Section';
+export * from './shared';
+export { default as Skills } from './Skills';
+export { default as ThemeToggle } from './ThemeToggle';
+export { default as Work } from './Work';

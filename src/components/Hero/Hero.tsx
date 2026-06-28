@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { AlignHorizontalJustifyCenter, MapPin } from 'lucide-react';
-import { useAlignable } from '../../alignment';
-import { useAlignment } from '../../contexts';
-import { AlignableVariant } from '../../types';
 import { PROFILE } from '../../constants';
+import { useAlignment } from '../../contexts';
+import { useAlignable } from '../../features';
+import { AlignableVariant } from '../../types';
 import { cn } from '../../utils';
 import {
   ButtonGroup,

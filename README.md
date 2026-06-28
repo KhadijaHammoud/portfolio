@@ -36,7 +36,9 @@ Cursor agents load summarized rules from `.cursor/rules/`.
 
 ```
 src/
-├── alignment/      # Crooked-card mini-game (desktop md+)
+├── features/
+│   ├── alignment/  # Crooked-card mini-game (desktop md+)
+│   └── ambient/    # Background paw-print animation
 ├── components/     # Sections + shared UI
 ├── constants/      # Shared copy and structured data
 ├── contexts/       # App-level providers (theme, alignment shell)
@@ -50,7 +52,7 @@ src/
 
 ### Alignment mini-game
 
-On viewports `md` and up, section cards and skill chips start slightly crooked. Visitors drag cards into place and hover chips to straighten them. State lives in `src/alignment/` and `src/contexts/` (`AlignmentProvider`, `useAlignable`, HUD, celebration). Sections wire it up via `AlignableCard`, `AlignChipField`, and `SkillChip`.
+On viewports `md` and up, section cards and skill chips start slightly crooked. Visitors drag cards into place and hover chips to straighten them. Game state lives under features and contexts; sections wire it up via `AlignableCard`, `AlignChipField`, and `SkillChip`.
 
 Inspired by [_A Little to the Left_](https://www.alittletotheleft.com/) — not affiliated.
 

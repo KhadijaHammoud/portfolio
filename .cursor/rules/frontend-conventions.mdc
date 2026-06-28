@@ -11,7 +11,9 @@ alwaysApply: false
 
 ```
 src/
-├── alignment/     # mini-game (desktop md+)
+├── features/
+│   ├── alignment/ # mini-game (desktop md+)
+│   └── ambient/   # background paw prints
 ├── components/    # sections + shared/
 ├── constants/     # shared copy/data
 ├── contexts/      # providers in App.tsx / index.tsx
@@ -23,7 +25,7 @@ src/
 └── index.css
 ```
 
-**Colocate** hooks, utils, constants, types, and contexts with their owner. Promote to top-level folders only when reused across unrelated features, or when a provider mounts in `App.tsx` / `index.tsx`. Component-specific types stay in that component folder (e.g. `Button.type.ts`).
+**Colocate** hooks, utils, constants, types, and contexts with their owner. Promote to top-level folders only when reused across unrelated features, or when a provider mounts in `App.tsx` / `index.tsx`. Cross-cutting app behaviors go under `features/`. Component-specific types stay in that component folder (e.g. `Button.type.ts`).
 
 ## Code
 

@@ -1,10 +1,6 @@
-import {
-  AlignableCard,
-  AlignChipField,
-  SkillChip,
-} from '../../alignment';
-import { AlignChipFieldTag, SkillChipTag } from '../../types';
+import { AlignableCard, AlignChipField, SkillChip } from '../../features';
 import { useSettleMotion } from '../../motion';
+import { AlignChipFieldTag, SkillChipTag } from '../../types';
 import { SKILLS } from './skills.const';
 
 type SkillGroupCardProps = {

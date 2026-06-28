@@ -1,6 +1,7 @@
 import { PawPrint } from 'lucide-react';
 import { cn } from '../../utils';
-import { PAW_DURATION, STEP_INTERVAL, type PawStep } from './pawWalk.util';
+import type { PawStep } from './ambient.type';
+import { PAW_DURATION, STEP_INTERVAL } from './ambient.const';
 
 type AutonomousPawMarkerProps = {
   reduceMotion: boolean;

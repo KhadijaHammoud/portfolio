@@ -1,6 +1,6 @@
 import { AnimatePresence, useReducedMotion } from 'framer-motion';
 import { useCallback, useState } from 'react';
-import { useAlignment } from '../../contexts';
+import { useAlignment } from '../../../contexts';
 import { formatAlignProgress } from './alignHud.util';
 import AlignHudCornerDot from './AlignHudCornerDot';
 import AlignHudCompactProgress from './AlignHudCompactProgress';

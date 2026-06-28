@@ -1,18 +1,10 @@
-interface Point {
-  x: number;
-  y: number;
-}
-
-export interface WalkPath {
-  start: Point;
-  end: Point;
-}
-
-export interface PawStep {
-  index: number;
-  left: string;
-  top: string;
-}
+import {
+  IDLE_BEFORE_PAWS_MS,
+  PAW_DURATION,
+  SPOTLIGHT_HIDE_MS,
+  STEP_INTERVAL,
+} from './ambient.const';
+import type { PawStep, WalkPath } from './ambient.type';
 
 interface CrossingWalk {
   crossingDuration: number;
@@ -24,14 +16,7 @@ interface CrossingWalk {
 /** Fixed distance between paw centers along the path (% of viewport diagonal units). */
 const STRIDE_DISTANCE = 9;
 const LATERAL_OFFSET = 2.1;
-/** Time between each paw landing along the path. */
-export const STEP_INTERVAL = 0.52;
-/** Each paw fades in and out once — does not share the full crossing duration. */
-export const PAW_DURATION = 0.5;
 const PAUSE_AFTER_CROSSING = 2.8;
-/** Mouse must be still this long before idle paws and spotlight resume. */
-export const IDLE_BEFORE_PAWS_MS = 10000;
-export const SPOTLIGHT_HIDE_MS = 280;
 
 export function crossingDurationForStepCount(stepCount: number): number {
   return (stepCount - 1) * STEP_INTERVAL + PAW_DURATION;

@@ -1,5 +1,5 @@
-import { AlignCardFrame } from '../../alignment';
-import type { useAlignable } from '../../alignment';
+import type { useAlignable } from '../../features';
+import { AlignCardFrame } from '../../features';
 import { cn } from '../../utils';
 import HeroStatsGrid from './HeroStatsGrid';
 

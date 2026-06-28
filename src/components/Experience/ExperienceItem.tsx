@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { AlignCardFrame, useAlignable } from '../../alignment';
-import { AlignableVariant, NudgeProfile } from '../../types';
+import { AlignCardFrame, useAlignable } from '../../features';
 import { getSettleMotion, settleWithoutOffset } from '../../motion';
 import type { Experience as ExperienceType } from '../../types';
+import { AlignableVariant, NudgeProfile } from '../../types';
 import { cn } from '../../utils';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 import { ButtonVariant, TextButton } from '../shared/Button';

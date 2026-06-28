@@ -1,7 +1,7 @@
 import { useReducedMotion } from 'framer-motion';
 import { Sparkle } from 'lucide-react';
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
-import { useAlignment } from '../contexts';
+import { useAlignment } from '../../contexts';
 
 const SPARKLES = Array.from({ length: 18 }, (_, i) => ({
   id: `sparkle-${i}`,

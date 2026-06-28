@@ -12,8 +12,8 @@ import {
   IconButton,
   TextButton,
   TooltipPlacement,
-} from '../../components/shared';
-import { cn } from '../../utils';
+} from '../../../components/shared';
+import { cn } from '../../../utils';
 import { FIND_CROOKED_LABEL } from './alignHud.const';
 
 type AlignHudHintCardProps = {

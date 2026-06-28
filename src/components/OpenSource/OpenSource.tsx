@@ -1,8 +1,8 @@
 import { useReducedMotion } from 'framer-motion';
 import { ArrowUpRight, Star } from 'lucide-react';
-import { AlignableCard, AlignChipField, SkillChip } from '../../alignment';
-import { AlignableCardTag } from '../../types';
+import { AlignableCard, AlignChipField, SkillChip } from '../../features';
 import { getSettleMotion } from '../../motion';
+import { AlignableCardTag } from '../../types';
 import Section from '../Section';
 import { EngagementBadges, ImpactTags, LinkedText } from '../shared';
 import WorkCollapsiblePanel from '../Work/WorkCollapsiblePanel';

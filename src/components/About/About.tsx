@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { AlignableCard } from '../../alignment';
-import { AlignableCardTag } from '../../types';
 import { PROFILE } from '../../constants';
+import { AlignableCard } from '../../features';
 import { useSettleMotion } from '../../motion';
+import { AlignableCardTag } from '../../types';
 import Section from '../Section';
 import { LinkedText } from '../shared';
 import { BIO, LANGUAGES } from './about.const';

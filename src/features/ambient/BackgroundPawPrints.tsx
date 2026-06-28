@@ -1,21 +1,14 @@
 import { useReducedMotion } from 'framer-motion';
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import AutonomousPawMarker from './AutonomousPawMarker';
 import {
   buildCrossingWalk,
   crossingDurationForStepCount,
   cycleSecondsForStepCount,
   generateRandomPath,
-  IDLE_BEFORE_PAWS_MS,
-  SPOTLIGHT_HIDE_MS,
-  type WalkPath,
-} from './pawWalk.util';
+} from './ambient.util';
+import { IDLE_BEFORE_PAWS_MS, SPOTLIGHT_HIDE_MS } from './ambient.const';
+import type { WalkPath } from './ambient.type';
 
 interface SpotlightState {
   opacity: number;

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { RotateCcw } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { IconButton } from '../../components/shared';
+import { IconButton } from '../../../components/shared';
 import {
   CORNER_COMPLETE_HEADLINE,
   CORNER_COMPLETE_HINT,
