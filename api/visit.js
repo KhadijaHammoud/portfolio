@@ -167,6 +167,8 @@ module.exports = async function handler(req, res) {
   } catch (err) {
     const message =
       err instanceof Error ? err.message : 'Failed to send notification';
-    res.status(500).json({ error: 'Failed to send notification', detail: message });
+    res
+      .status(500)
+      .json({ error: 'Failed to send notification', detail: message });
   }
 };
